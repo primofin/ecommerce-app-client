@@ -6,8 +6,7 @@ import { Product, AppState } from '../../types'
 import { addProduct, removeProduct } from '../../redux/actions'
 import Header from '../../components/Header/index'
 import Footer from '../../components/Footer/index'
-import "./home.scss"
-
+import './home.scss'
 
 // const names = ['Apple', 'Orange', 'Avocado', 'Banana', 'Cucumber', 'Carrot']
 
@@ -26,11 +25,10 @@ export default function Home() {
 
   return (
     <>
-    <Header/>
-    <div className="content-wrapper">
-
-    </div>
-    <Footer />
+      <Header />
+      <div className="content-wrapper">
+      </div>
+      <Footer />
       {/* <h1>Home page</h1>
       {products.length <= 0 && <div>No products in cart</div>}
       <ul>
