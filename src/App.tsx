@@ -1,14 +1,12 @@
 import React from 'react'
 
 import Routes from './Routes'
-import Header from './components/Header/index'
-import Footer from './components/Footer/index'
+import './app.scss'
+
 export default function App() {
   return (
-    <>
-      <Header />
-      <Footer />
+    <div className="app-wrapper">
       <Routes />
-    </>
+    </div>
   )
 }

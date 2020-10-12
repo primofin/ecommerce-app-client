@@ -1,3 +1,7 @@
+@mixin link {
+    text-decoration: none;
+    color: inherit;
+}
 .header {
     position: fixed;
     width: 100%;
@@ -8,9 +12,17 @@
     align-items: center;
     grid-template-columns: 10% 75% auto;
     text-transform: uppercase;
+    background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     &__title {
         text-align: center;
+        text-decoration: none;
+        font-size: 20px;
+        color: black;
+        a:link,
+        a:visited {
+            @include link;
+        }
     }
 }
 .nav {
@@ -36,6 +48,7 @@
     min-width: 40px;
     border: none;
     background-color: white;
+    cursor: pointer;
     &__search {
         background-image: url("../../icons/icons8-search.svg");
         background-repeat: no-repeat;
@@ -66,5 +79,6 @@
     &__text {
         position: relative;
         top: 8px;
+        @include link;
     }
 }

@@ -1,0 +1,27 @@
+.form {
+    &__wrapper {
+        margin-top: 10%;
+        text-align: center;
+        border: solid 1px black;
+        height: 400px;
+    }
+    &__title {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+    }
+    &__content {
+        width: 400px;
+        &__label {
+            display: block;
+            input {
+                margin-top: 4px;
+                margin-bottom: 10px;
+            }
+        }
+        button {
+            padding: 6px 10px;
+        }
+    }
+}
+
