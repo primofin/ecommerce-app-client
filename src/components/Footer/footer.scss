@@ -1,8 +1,24 @@
+@import "../../variables";
 .footer {
     position: fixed;
     width: 100%;
     left: 0;
     bottom: 0;
     padding: 10px 16px;
-    background-color: red;
+    background-color: $color-light-brow;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 40% 40% auto;
+    &__intro{
+        font-size: large;
+    }
+    &__menu {
+        list-style: none;
+        margin-right: 40px;
+        display: flex;
+        justify-content: space-around;
+        font-size: 26px;
+        &__icon {
+        }
+    }
 }

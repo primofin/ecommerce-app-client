@@ -23,6 +23,7 @@ const Header = () => {
         </button>
         <button className="btn btn__cart">
           <div className="btn__text">cart</div>
+          <span className="btn__cart__badge"></span>
         </button>
       </div>
     </div>

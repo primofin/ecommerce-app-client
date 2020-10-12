@@ -2,8 +2,6 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import Header from '../components/Header/index'
-import Footer from '../components/Footer/index'
 import { Product, AppState } from '../types'
 import { addProduct, removeProduct } from '../redux/actions'
 
@@ -25,8 +23,6 @@ export default function Home() {
 
   return (
     <>
-      <Header />
-      <Footer />
       {/* <h1>Home page</h1>
       {products.length <= 0 && <div>No products in cart</div>}
       <ul>
