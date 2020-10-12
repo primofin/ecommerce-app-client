@@ -1,4 +1,5 @@
 // Action types
+export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
 export const ADD_PRODUCT = 'ADD_PRODUCT'
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 export const TOGGLE_DIALOG = 'TOGGLE_DIALOG'
@@ -9,11 +10,44 @@ export enum DialogType {
   SignUp = 'signUp',
 }
 
+export type Google = {
+  id: string
+  token: string
+  name: string
+}
+
+// A user
+export type User = {
+  _id: string
+  username: string
+  firstName?: string
+  lastName?: string
+  email: string
+  password: string
+  avatar?: string
+  google?: Google
+  isAdmin?: boolean
+  isBan?: boolean
+  itemsInCart?: Product[]
+}
+
 // A product
 export type Product = {
-  id: string
+  _id: string
   name: string
   price: number
+  description?: string
+  category: string
+  variants?: string[]
+  sizes: string[] | number[]
+  orderBy?: User
+}
+
+export type GetAllProductAction = {
+  type: typeof GET_ALL_PRODUCTS
+  payload: {
+    products: Product[]
+  }
 }
 
 export type AddProductAction = {
@@ -40,9 +74,13 @@ export type ToggleDialogAction = {
 export type UiActions = ToggleDialogAction
 
 // Use this union in reducer
-export type ProductActions = AddProductAction | RemoveProductAction
+export type ProductActions =
+  | GetAllProductAction
+  | AddProductAction
+  | RemoveProductAction
 
 export type ProductState = {
+  items: Product[]
   inCart: Product[]
 }
 

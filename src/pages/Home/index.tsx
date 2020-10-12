@@ -6,6 +6,7 @@ import { Product, AppState } from '../../types'
 import { addProduct, removeProduct } from '../../redux/actions'
 import Header from '../../components/Header/index'
 import Footer from '../../components/Footer/index'
+import ProductList from '../../components/ProductList/index'
 import './home.scss'
 
 // const names = ['Apple', 'Orange', 'Avocado', 'Banana', 'Cucumber', 'Carrot']
@@ -24,9 +25,10 @@ export default function Home() {
   // }
 
   return (
-    <>
+    <div className="home__wrapper">
       <Header />
-      <div className="content-wrapper">
+      <div className="home__content">
+        <ProductList />
       </div>
       <Footer />
       {/* <h1>Home page</h1>
@@ -43,6 +45,6 @@ export default function Home() {
         ))}
       </ul>
       <button onClick={handleAddProduct}>Add product</button> */}
-    </>
+    </div>
   )
 }
