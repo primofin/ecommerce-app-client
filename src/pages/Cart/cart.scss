@@ -1,0 +1,13 @@
+.cart {
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+    }
+    &__content {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 100px;
+        height: 100%;
+    }
+}

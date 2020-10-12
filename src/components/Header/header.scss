@@ -33,6 +33,9 @@
     }
     &__item {
         padding: 10px 16px;
+        a {
+            @include link;
+        }
     }
 }
 
@@ -43,11 +46,13 @@
 }
 
 .btn {
+    flex: 1;
     height: 100%;
     width: 100%;
     min-width: 40px;
     border: none;
     background-color: white;
+    @include link;
     cursor: pointer;
     &__search {
         background-image: url("../../icons/icons8-search.svg");
@@ -79,6 +84,5 @@
     &__text {
         position: relative;
         top: 8px;
-        @include link;
     }
 }
