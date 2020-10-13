@@ -13,8 +13,15 @@ const ProductList = () => {
     dispatch(fetchProducts())
     return <p>Loading...</p>
   }
-  console.log('product list', products)
-  return <div></div>
+  return (
+    <>
+      <div className="product__list">
+        {products.map((product) => (
+          <ProductCard key={product._id} product={product} />
+        ))}
+      </div>
+    </>
+  )
 }
 
 export default ProductList

@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <div className="header">
       <div className="header__title">
-        <a href="http://localhost:3000/">AMOUR</a>
+        <Link to="/">AMOUR</Link>
       </div>
       <div className="nav">
         <ul className="nav__list">

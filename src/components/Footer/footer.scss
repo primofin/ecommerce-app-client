@@ -1,6 +1,5 @@
 @import "../../variables";
 .footer {
-
     padding: 10px 16px;
     background-color: $color-light-brow;
     display: grid;
@@ -15,7 +14,5 @@
         display: flex;
         justify-content: space-around;
         font-size: 26px;
-        &__icon {
-        }
     }
 }

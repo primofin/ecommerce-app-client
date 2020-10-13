@@ -52,7 +52,6 @@ export function fetchProducts() {
       const response = await axios
         .get(`http://localhost:3000/api/v1/products/`)
       // handle success
-      console.log(response)
       dispatch(getAllProducts(response.data))
     } catch (error) {
       // handle error
