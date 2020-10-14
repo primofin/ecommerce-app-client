@@ -2,10 +2,10 @@
 /**
  * User authentication actions
  */
-export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
-export const REGISTER_FAIL = 'REGISTER_FAIL'
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
-export const LOGIN_FAIL = 'LOGIN_FAIL'
+export const REGISTER_SUCCESSED = 'REGISTER_SUCCESS'
+export const REGISTER_FAILED = 'REGISTER_FAIL'
+export const LOGIN_SUCCESSED = 'LOGIN_SUCCESS'
+export const LOGIN_FAILED = 'LOGIN_FAIL'
 /**
  * Product actions
  */
@@ -26,22 +26,10 @@ export type Google = {
   name: string
 }
 
-// A user
-export type User = {
-  _id: string
-  username: string
-  firstName?: string
-  lastName?: string
-  email: string
-  password: string
-  avatar?: string
-  google?: Google
-  isAdmin?: boolean
-  isBan?: boolean
-  itemsInCart?: Product[]
-}
+/**
+ *  --------------PRODUCT --------------
+ */
 
-// A product
 export type Product = {
   _id: string
   name: string
@@ -50,13 +38,10 @@ export type Product = {
   description?: string
   category: string
   variants?: string[]
-  sizes: string[] | number[]
+  // sizes: string[] | number[]
+  size: string | number
   orderBy?: User
 }
-
-/**
- *  PRODUCT ACTION TYPES
- */
 export type GetAllProductAction = {
   type: typeof GET_ALL_PRODUCTS
   payload: {
@@ -78,23 +63,6 @@ export type RemoveProductAction = {
   }
 }
 
-export type ToggleDialogAction = {
-  type: typeof TOGGLE_DIALOG
-  payload: {
-    dialog: DialogType
-  }
-}
-/**
- *  USER ACTION TYPES
- */
-export type RegisterSuccess = {
-  type: typeof REGISTER_SUCCESS
-  payload: {
-    products: Product[]
-  }
-}
-export type UiActions = ToggleDialogAction
-
 // Use this union in reducer
 export type ProductActions =
   | GetAllProductAction
@@ -106,10 +74,69 @@ export type ProductState = {
   inCart: Product[]
 }
 
-export type UserState = {
+export type ToggleDialogAction = {
+  type: typeof TOGGLE_DIALOG
+  payload: {
+    dialog: DialogType
+  }
+}
+/**
+ *  -------------USER--------------------
+ */
+export type User = {
+  _id: string
+  username: string
+  firstName?: string
+  lastName?: string
+  email: string
+  password: string
+  avatar?: string
+  google?: Google
+  isAdmin?: boolean
+  isBan?: boolean
+  itemsInCart?: Product[]
+}
+export type AuthState = {
   isLoggedIn: boolean
   user: User | null
+  error: string | null
 }
+export type RegisterSuccessed = {
+  type: typeof REGISTER_SUCCESSED
+  payload: {
+    user: User
+  }
+}
+export type RegisterFailed = {
+  type: typeof REGISTER_FAILED
+  payload: {
+    error: string
+  }
+}
+export type LoginSuccessed = {
+  type: typeof LOGIN_SUCCESSED
+  payload: {
+    user: User
+  }
+}
+export type LoginFailed = {
+  type: typeof LOGIN_FAILED
+  payload: {
+    error: string
+  }
+}
+// Use this union in reducer
+export type UserActions =
+  | RegisterSuccessed
+  | RegisterFailed
+  | LoginSuccessed
+  | LoginFailed
+
+/**
+ * -----------------UI----------------
+ */
+export type UiActions = ToggleDialogAction
+
 // Using dynamic keys from an enum
 export type UiState = {
   dialogOpen: {
@@ -118,7 +145,7 @@ export type UiState = {
 }
 
 export type AppState = {
-  user: UserState
+  auth: AuthState
   product: ProductState
   ui: UiState
 }

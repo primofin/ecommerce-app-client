@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import { Product } from '../../types'
 import './productCard.scss'
@@ -12,13 +13,13 @@ function ProductCard(props: ProductCard) {
   return (
     <article className="product__wrapper">
       <figure>
-        <a href="#">
+        <Link to={`/products/${product._id}`}>
           <img
             className="product__photo"
             src={product.images[0]}
             alt={product.name}
           />
-        </a>
+        </Link>
         <figcaption>{product.name}</figcaption>
         <section>
           <p>{product.price}</p>

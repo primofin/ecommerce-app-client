@@ -1,7 +1,11 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 import { Formik, Field, Form, FormikHelpers } from 'formik'
-import axios from 'axios'
+import { GoogleLogin } from 'react-google-login'
 
+import { AppState } from '../../types'
+import { userLogin } from '../../redux/actions/auth'
 import './loginForm.scss'
 
 type Values = {
@@ -9,6 +13,18 @@ type Values = {
   password: string
 }
 const LoginForm = () => {
+  const history = useHistory()
+  const dispatch = useDispatch()
+  const user = useSelector((state: AppState) => state.auth.user)
+  const isLoggedIn = useSelector((state: AppState) => state.auth.isLoggedIn)
+  const GOOGLE_ID =
+    '936466011859-tpvqnj6448vmi6ck6m7i78pd90ka2lva.apps.googleusercontent.com'
+  const responseGoogle = (response: any) => {
+    console.log('responseGoogle', response)
+  }
+  if (isLoggedIn) {
+    history.push('/')
+  }
   return (
     <div className="login form__wrapper">
       <div className="form__title">Are you a user? </div>
@@ -21,12 +37,7 @@ const LoginForm = () => {
           values: Values,
           { setSubmitting }: FormikHelpers<Values>
         ) => {
-          const res = await axios.post(
-            'http://localhost:3000/api/v1/auth/login',
-            values,
-            { withCredentials: true }
-          )
-          return res
+          dispatch(userLogin(values.username, values.password))
         }}
       >
         <Form>
@@ -37,6 +48,14 @@ const LoginForm = () => {
           <button type="submit">Submit</button>
         </Form>
       </Formik>
+      <div>Login with your social media account</div>
+      <GoogleLogin
+        clientId={GOOGLE_ID}
+        buttonText="Login"
+        onSuccess={responseGoogle}
+        onFailure={responseGoogle}
+        cookiePolicy={'single_host_origin'}
+      />
     </div>
   )
 }

@@ -16,7 +16,7 @@ const register = async (
       password,
       firstName,
       lastName,
-    })
+    },{withCredentials:true})
   } catch (error) {
     return error
   }
@@ -27,14 +27,24 @@ const login = async (username: string, password: string) => {
     const response = await axios.post(baseUrl + '/auth/login', {
       username,
       password,
-    })
+    },{withCredentials:true})
+    return response
   } catch (error) {
     return error
   }
 }
 
-export default {
+const logout = async () => {
+  try {
+    const response = await axios.get(baseUrl + '/auth/logout')
+    return response
+  } catch (error) {
+    return error
+  }
+}
+
+export {
   register,
   login,
-  // logout,
+  logout,
 }

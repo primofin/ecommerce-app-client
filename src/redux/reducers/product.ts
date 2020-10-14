@@ -17,7 +17,7 @@ export default function product(
     case GET_ALL_PRODUCTS: {
       const { products } = action.payload
       if (products) {
-        return { ...state, items: products, inCart: [] }
+        return { ...state, items: products}
       }
       return state
     }
