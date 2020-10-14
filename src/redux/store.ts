@@ -7,6 +7,10 @@ import createRootReducer from './reducers'
 import rootSaga from './sagas'
 
 const initState: AppState = {
+  user: {
+    isLoggedIn: false,
+    user: null
+  },
   product: {
     items: [],
     inCart: [],

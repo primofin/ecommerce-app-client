@@ -16,8 +16,10 @@ export default function product(
   switch (action.type) {
     case GET_ALL_PRODUCTS: {
       const { products } = action.payload
-
-      return { ...state, items: products, inCart: [] }
+      if (products) {
+        return { ...state, items: products, inCart: [] }
+      }
+      return state
     }
     // case ADD_PRODUCT: {
     //   const { product } = action.payload

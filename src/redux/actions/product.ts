@@ -1,5 +1,4 @@
 import { Dispatch } from 'redux'
-import axios from 'axios'
 
 import {
   GET_ALL_PRODUCTS,
@@ -8,6 +7,7 @@ import {
   ProductActions,
   Product,
 } from '../../types'
+import ProductApi from '../../api/productApi'
 
 export function getAllProducts(products: Product[]): ProductActions {
   return {
@@ -49,13 +49,13 @@ export function fetchProduct(productId: string) {
 export function fetchProducts() {
   return async (dispatch: Dispatch) => {
     try {
-      const response = await axios
-        .get(`http://localhost:3000/api/v1/products/`)
+      const response = await ProductApi.getAllProducts()
       // handle success
       dispatch(getAllProducts(response.data))
     } catch (error) {
       // handle error
       console.log(error)
+      return error
     }
   }
 }

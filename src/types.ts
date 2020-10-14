@@ -1,4 +1,14 @@
 // Action types
+/**
+ * User authentication actions
+ */
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
+export const REGISTER_FAIL = 'REGISTER_FAIL'
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const LOGIN_FAIL = 'LOGIN_FAIL'
+/**
+ * Product actions
+ */
 export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
 export const ADD_PRODUCT = 'ADD_PRODUCT'
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
@@ -44,6 +54,9 @@ export type Product = {
   orderBy?: User
 }
 
+/**
+ *  PRODUCT ACTION TYPES
+ */
 export type GetAllProductAction = {
   type: typeof GET_ALL_PRODUCTS
   payload: {
@@ -71,7 +84,15 @@ export type ToggleDialogAction = {
     dialog: DialogType
   }
 }
-
+/**
+ *  USER ACTION TYPES
+ */
+export type RegisterSuccess = {
+  type: typeof REGISTER_SUCCESS
+  payload: {
+    products: Product[]
+  }
+}
 export type UiActions = ToggleDialogAction
 
 // Use this union in reducer
@@ -85,6 +106,10 @@ export type ProductState = {
   inCart: Product[]
 }
 
+export type UserState = {
+  isLoggedIn: boolean
+  user: User | null
+}
 // Using dynamic keys from an enum
 export type UiState = {
   dialogOpen: {
@@ -93,6 +118,7 @@ export type UiState = {
 }
 
 export type AppState = {
+  user: UserState
   product: ProductState
   ui: UiState
 }

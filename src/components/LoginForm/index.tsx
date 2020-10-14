@@ -1,26 +1,42 @@
 import React from 'react'
+import { Formik, Field, Form, FormikHelpers } from 'formik'
+import axios from 'axios'
 
 import './loginForm.scss'
 
+type Values = {
+  username: string
+  password: string
+}
 const LoginForm = () => {
   return (
     <div className="login form__wrapper">
       <div className="form__title">Are you a user? </div>
-      <form className="form__content">
-        <label className="form__content__label">
-          Username:
-          <br />
-          <input type="text" name="name" />
-        </label>
-        <label className="form__content__label">
-          Password:
-          <br />
-          <input type="text" name="password" />
-        </label>
-        <button type="submit" value="Submit">
-          Login
-        </button>
-      </form>
+      <Formik
+        initialValues={{
+          username: '',
+          password: '',
+        }}
+        onSubmit={async (
+          values: Values,
+          { setSubmitting }: FormikHelpers<Values>
+        ) => {
+          const res = await axios.post(
+            'http://localhost:3000/api/v1/auth/login',
+            values,
+            { withCredentials: true }
+          )
+          return res
+        }}
+      >
+        <Form>
+          <label htmlFor="username">Username</label>
+          <Field id="username" name="username" placeholder="john123" />
+          <label htmlFor="password">Password</label>
+          <Field id="password" name="password" type="password" />
+          <button type="submit">Submit</button>
+        </Form>
+      </Formik>
     </div>
   )
 }
