@@ -58,9 +58,7 @@ export function userRegister(
 export function userLogin(username: string, password: string) {
   return async (dispatch: Dispatch) => {
     try {
-      console.log(username,password)
       const response = await login(username, password)
-      console.log('loginResponse',response)
       // handle success
       dispatch(loginSuccessed(response.data))
     } catch (error) {

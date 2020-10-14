@@ -16,6 +16,7 @@ const LoginForm = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const user = useSelector((state: AppState) => state.auth.user)
+  console.log('user',user)
   const isLoggedIn = useSelector((state: AppState) => state.auth.isLoggedIn)
   const GOOGLE_ID =
     '936466011859-tpvqnj6448vmi6ck6m7i78pd90ka2lva.apps.googleusercontent.com'
@@ -37,7 +38,8 @@ const LoginForm = () => {
           values: Values,
           { setSubmitting }: FormikHelpers<Values>
         ) => {
-          dispatch(userLogin(values.username, values.password))
+          const { username, password } = values
+          dispatch(userLogin(username, password))
         }}
       >
         <Form>

@@ -27,7 +27,7 @@ function Product() {
   if (!product) {
     return <div>Product not found</div>
   }
-  console.log(product)
+  console.log('product',product)
   const handleGoBack = () => history.goBack()
   return (
     <div>

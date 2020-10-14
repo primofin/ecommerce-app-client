@@ -1,6 +1,10 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 import { Formik, Field, Form, FormikHelpers } from 'formik'
 
+import { AppState } from '../../types'
+import { userRegister } from '../../redux/actions/auth'
 import './registerForm.scss'
 
 type Values = {
@@ -11,6 +15,12 @@ type Values = {
   password: string
 }
 const RegisterForm = () => {
+  const history = useHistory()
+  const dispatch = useDispatch()
+  const isLoggedIn = useSelector((state: AppState) => state.auth.isLoggedIn)
+  if (isLoggedIn) {
+    history.push('/')
+  }
   return (
     <div className="register form__wrapper">
       <div className="form__title">Is this your first visit?</div>
@@ -26,10 +36,8 @@ const RegisterForm = () => {
           values: Values,
           { setSubmitting }: FormikHelpers<Values>
         ) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2))
-            setSubmitting(false)
-          }, 500)
+          const { username, firstName, lastName, email, password } = values
+          dispatch(userRegister(username, email, password, firstName, lastName))
         }}
       >
         <Form>
