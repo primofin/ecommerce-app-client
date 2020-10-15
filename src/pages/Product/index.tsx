@@ -49,10 +49,11 @@ function Product() {
             <h3>Size:</h3>
             <p>{product.size}</p>
             <p>{product.description}</p>
-            <button>Add to Bag</button>
+            <button>Add to shopping bag</button>
+            <div><span className="product__span">&#10003;</span>Free delivery to store</div>
           </div>
         </section>
-      <Footer />
+      <Footer/>
     </div>
   )
 }

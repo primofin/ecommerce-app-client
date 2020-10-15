@@ -7,7 +7,7 @@ import {
   ProductActions,
   Product,
 } from '../../types'
-import ProductApi from '../../api/productApi'
+import { fetchAllProducts } from '../../api/product'
 
 export function getAllProducts(products: Product[]): ProductActions {
   return {
@@ -49,7 +49,7 @@ export function fetchProduct(productId: string) {
 export function fetchProducts() {
   return async (dispatch: Dispatch) => {
     try {
-      const response = await ProductApi.getAllProducts()
+      const response = await fetchAllProducts()
       // handle success
       dispatch(getAllProducts(response.data))
     } catch (error) {
