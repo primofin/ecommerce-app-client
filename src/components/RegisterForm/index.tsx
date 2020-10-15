@@ -40,27 +40,60 @@ const RegisterForm = () => {
           dispatch(userRegister(username, email, password, firstName, lastName))
         }}
       >
-        <Form>
-          <label htmlFor="username">Username</label>
-          <Field id="username" name="username" placeholder="john123" />
+        <Form className="form__content">
+          <label htmlFor="username" className="form__content__label">
+            Username:
+          </label>
+          <Field
+            id="username"
+            name="username"
+            placeholder="john123"
+            className="form__content__input"
+          />
+          <label htmlFor="password" className="form__content__label">
+            Password:
+          </label>
+          <Field
+            id="password"
+            name="password"
+            type="password"
+            placeholder="your password"
+            className="form__content__input"
+          />
 
-          <label htmlFor="password">Password</label>
-          <Field id="password" name="password" type="password" />
+          <label htmlFor="firstName" className="form__content__label">
+            First Name:
+          </label>
+          <Field
+            id="firstName"
+            name="firstName"
+            placeholder="John"
+            className="form__content__input"
+          />
 
-          <label htmlFor="firstName">First Name</label>
-          <Field id="firstName" name="firstName" placeholder="John" />
+          <label htmlFor="lastName" className="form__content__label">
+            Last Name:
+          </label>
+          <Field
+            id="lastName"
+            name="lastName"
+            placeholder="Doe"
+            className="form__content__input"
+          />
 
-          <label htmlFor="lastName">Last Name</label>
-          <Field id="lastName" name="lastName" placeholder="Doe" />
-
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email" className="form__content__label">
+            Email:
+          </label>
           <Field
             id="email"
             name="email"
             placeholder="john@acme.com"
             type="email"
+            className="form__content__input"
           />
-          <button type="submit">Submit</button>
+          <button type="submit" className="form__content__submit-btn">
+            Register
+          </button>
         </Form>
       </Formik>
     </div>

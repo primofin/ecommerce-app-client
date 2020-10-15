@@ -10,6 +10,22 @@
         margin-top: 100px;
         height: 100%;
     }
+    &__login-btn {
+        align-self: center;
+        height: 40px;
+        width: 260px;
+        color: white;
+        background-color: black;
+        border: none
+    }
+    &__register-btn {
+        align-self: center;
+        height: 40px;
+        width: 260px;
+        color: white;
+        background-color: black;
+        border: none
+    }
 }
 .divider {
     left: 50%;

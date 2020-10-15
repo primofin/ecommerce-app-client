@@ -8,7 +8,7 @@ import {
   User,
   UserActions,
   AUTHENTICATED_SUCCESSED,
-  AUTHENTICATED_FAILED
+  AUTHENTICATED_FAILED,
 } from '../../types'
 import { register, login, isAuthenticated } from '../../api/auth'
 
@@ -92,11 +92,12 @@ export function userAuthenticate() {
   return async (dispatch: Dispatch) => {
     try {
       const response = await isAuthenticated()
-      // handle success
-      if (response.data) {
-        dispatch(authenticateSuccessed(response.data))
+      // handle failure
+      if (!response.data) {
+        dispatch(authenticateFailed(response))
       }
-      dispatch(authenticateFailed(response))
+      // handle success
+      dispatch(authenticateSuccessed(response.data))
     } catch (error) {
       // handle error
       console.log(error)

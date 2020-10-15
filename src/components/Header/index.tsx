@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { AppState } from '../../types'
+import { AppState, Product } from '../../types'
 import shoppingCart from '../../icons/shopping-cart.svg'
 import userProfile from '../../icons//user-profile.svg'
 import './header.scss'
@@ -10,6 +10,7 @@ import './header.scss'
 const Header = () => {
   const user = useSelector((state: AppState) => state.auth.user)
   const isLoggedIn = useSelector((state: AppState) => state.auth.isLoggedIn)
+  let itemsInCart = user?.itemsInCart
   return (
     <div className="header">
       <div className="header__title">
@@ -42,13 +43,18 @@ const Header = () => {
           </button>
         </div>
         <Link to="/auth" className="tool__link">
-          <img src={userProfile} className="tool__link__img tool__link__img--user" />
+          <img
+            src={userProfile}
+            className="tool__link__img tool__link__img--user"
+          />
           <div className="tool__link__text">
             {user?.username ? user.username : 'account'}
           </div>
         </Link>
         <Link to="/checkout/cart" className="tool__link">
-          <span className="tool__link__badge">0</span>
+          <span className="tool__link__badge">
+            {isLoggedIn ? itemsInCart!.length : '0'}
+          </span>
           <img src={shoppingCart} className="tool__link__img" />
           <div className="tool__link__text">cart</div>
         </Link>

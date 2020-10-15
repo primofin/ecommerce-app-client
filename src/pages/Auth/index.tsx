@@ -7,7 +7,7 @@ import RegisterForm from '../../components/RegisterForm/index'
 import './auth.scss'
 
 const Auth = () => {
-  const [login, setLogin] = useState(false)
+  const [login, setLogin] = useState(true)
   const handleAuthToggle = () => setLogin(!login)
   return (
     <div className="auth__wrapper">
@@ -16,11 +16,11 @@ const Auth = () => {
         {login ? (
           <LoginForm />
         ) : (
-          <button onClick={handleAuthToggle}>Login</button>
+          <button className="auth__login-btn" onClick={handleAuthToggle}>Login</button>
         )}
         <div className="divider" />
         {login ? (
-          <button onClick={handleAuthToggle}>Register</button>
+          <button className="auth__register-btn" onClick={handleAuthToggle}>Register</button>
         ) : (
           <RegisterForm />
         )}

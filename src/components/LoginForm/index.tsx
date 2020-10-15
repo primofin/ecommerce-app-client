@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { Formik, Field, Form, FormikHelpers } from 'formik'
 import { GoogleLogin } from 'react-google-login'
@@ -25,7 +25,7 @@ const LoginForm = () => {
     history.push('/')
   }
   return (
-    <div className="login form__wrapper">
+    <div className="form__wrapper">
       <div className="form__title">Are you a user? </div>
       <Formik
         initialValues={{
@@ -40,15 +40,26 @@ const LoginForm = () => {
           dispatch(userLogin(username, password))
         }}
       >
-        <Form>
-          <label htmlFor="username">Username</label>
-          <Field id="username" name="username" placeholder="john123" />
-          <label htmlFor="password">Password</label>
-          <Field id="password" name="password" type="password" />
-          <button type="submit">Submit</button>
+        <Form className="form__content">
+          <Field
+            id="username"
+            name="username"
+            placeholder="Username"
+            className="form__content__input"
+          />
+          <Field
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Password"
+            className="form__content__input"
+          />
+          <button type="submit" className="form__content__submit-btn">
+            Log in to AMOUR
+          </button>
         </Form>
       </Formik>
-      <div>Login with your social media account</div>
+      <div className="social__login__text">Or login with your social media account</div>
       <GoogleLogin
         clientId={GOOGLE_ID}
         buttonText="Login"
@@ -56,6 +67,9 @@ const LoginForm = () => {
         onFailure={responseGoogle}
         cookiePolicy={'single_host_origin'}
       />
+      <div className="forgot-password__link">
+        <Link to="/auth/forgot-password">I forgot my password</Link>
+      </div>
     </div>
   )
 }
