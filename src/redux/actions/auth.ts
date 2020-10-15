@@ -8,6 +8,7 @@ import {
   User,
   UserActions,
   AUTHENTICATED_SUCCESSED,
+  AUTHENTICATED_FAILED
 } from '../../types'
 import { register, login, isAuthenticated } from '../../api/auth'
 
@@ -29,11 +30,20 @@ export function loginSuccessed(user: User): UserActions {
   }
 }
 
-export function authenticatedSuccessed(user: User): UserActions {
+export function authenticateSuccessed(user: User): UserActions {
   return {
     type: AUTHENTICATED_SUCCESSED,
     payload: {
       user,
+    },
+  }
+}
+
+export function authenticateFailed(error: string): UserActions {
+  return {
+    type: AUTHENTICATED_FAILED,
+    payload: {
+      error,
     },
   }
 }
@@ -84,8 +94,9 @@ export function userAuthenticate() {
       const response = await isAuthenticated()
       // handle success
       if (response.data) {
-        dispatch(authenticatedSuccessed(response.data))
+        dispatch(authenticateSuccessed(response.data))
       }
+      dispatch(authenticateFailed(response))
     } catch (error) {
       // handle error
       console.log(error)

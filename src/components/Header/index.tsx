@@ -7,6 +7,7 @@ import './header.scss'
 
 const Header = () => {
   const user = useSelector((state: AppState) => state.auth.user)
+  const isLoggedIn = useSelector((state: AppState) => state.auth.isLoggedIn)
   return (
     <div className="header">
       <div className="header__title">

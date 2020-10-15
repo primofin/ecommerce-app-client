@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import Routes from './Routes'
-import { AppState } from './types'
 import { userAuthenticate } from './redux/actions/auth'
 import './app.scss'
 

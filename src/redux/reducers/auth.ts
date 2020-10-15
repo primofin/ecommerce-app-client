@@ -6,6 +6,7 @@ import {
   LOGIN_SUCCESSED,
   LOGIN_FAILED,
   AUTHENTICATED_SUCCESSED,
+  AUTHENTICATED_FAILED
 } from '../../types'
 
 export default function auth(
@@ -29,6 +30,10 @@ export default function auth(
       const { user } = action.payload
       return { ...state, isLoggedIn: true, user: user }
     }
+    case AUTHENTICATED_FAILED: {
+      const { error } = action.payload
+      return { ...state, isLoggedIn: false, error: error }
+    }
     // case ADD_PRODUCT: {
     //   const { product } = action.payload
     //   if (state.inCart.find((p) => p.id === product.id)) {
@@ -46,8 +51,7 @@ export default function auth(
     //     return { ...state, inCart: [...state.inCart] }
     //   }
     //   return state
-    // }
-
+    // }   
     default:
       return state
   }
