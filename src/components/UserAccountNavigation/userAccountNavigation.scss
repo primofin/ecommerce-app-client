@@ -1,0 +1,15 @@
+.account__navigation {
+    width: 250px;
+    ul {
+        padding: 0;
+    }
+    li {
+        list-style: none;
+        padding: 10px 0;
+    }
+    a {
+        text-transform: uppercase;
+        text-decoration: none;
+        color: inherit;
+    }
+}

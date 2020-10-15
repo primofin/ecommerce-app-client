@@ -98,7 +98,9 @@ export function userAuthenticate() {
         dispatch(authenticateSuccessed(response.data))
       }
       // handle failure
-      dispatch(authenticateFailed(response))
+      if (!response.data) {
+        dispatch(authenticateFailed(response))
+      }
     } catch (error) {
       // handle error
       console.log(error)

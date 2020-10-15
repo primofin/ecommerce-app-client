@@ -42,7 +42,7 @@ const Header = () => {
             <div className="tool__search-container__text">search</div>
           </button>
         </div>
-        <Link to="/auth" className="tool__link">
+        <Link to={isLoggedIn ? `/user/${user?._id}` : "/auth"} className="tool__link">
           <img
             src={userProfile}
             className="tool__link__img tool__link__img--user"

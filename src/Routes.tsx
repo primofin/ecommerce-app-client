@@ -6,6 +6,7 @@ import Auth from './pages/Auth/index'
 import ForgotPassword from './pages/ForgotPassword/index'
 import Cart from './pages/Cart/index'
 import Product from './pages/Product/index'
+import UserProfile from './pages/UserProfile/index'
 
 const Routes = () => (
   <Switch>
@@ -13,7 +14,8 @@ const Routes = () => (
     <Route exact path="/auth" component={Auth} />
     <Route exact path="/auth/forgot-password" component={ForgotPassword} />
     <Route exact path="/checkout/cart" component={Cart} />
-    <Route exact path="/products/:id" component={Product} />
+    <Route exact path="/products/:productId" component={Product} />
+    <Route exact path="/user/:userId" component={UserProfile} />
   </Switch>
 )
 

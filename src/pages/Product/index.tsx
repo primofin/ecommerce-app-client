@@ -11,10 +11,10 @@ import { AppState } from '../../types'
 import './product.scss'
 
 type ProductParams = {
-  id: string
+  productId: string
 }
 function Product() {
-  const { id } = useParams<ProductParams>()
+  const { productId } = useParams<ProductParams>()
   const history = useHistory()
   const dispatch = useDispatch()
 
@@ -23,7 +23,7 @@ function Product() {
     dispatch(fetchProducts())
     return <p>Loading...</p>
   }
-  const product = products.find((product) => product._id === id)
+  const product = products.find((product) => product._id === productId)
   if (!product) {
     return <div>Product not found</div>
   }
