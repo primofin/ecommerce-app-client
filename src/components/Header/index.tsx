@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { AppState } from '../../types'
+import shoppingCart from '../../icons/shopping-cart.svg'
+import userProfile from '../../icons//user-profile.svg'
 import './header.scss'
 
 const Header = () => {
@@ -33,24 +35,22 @@ const Header = () => {
         </ul>
       </div>
       <div className="tool">
-        <div className="search-container">
+        <div className="tool__search-container">
           <input type="text" placeholder="Search.." name="search" />
-          <button className="btn__search">
-            <div className="btn__text">search</div>
+          <button>
+            <div className="tool__search-container__text">search</div>
           </button>
         </div>
-        <Link to="/auth" className="btn">
-          <button className="btn btn__account">
-            <div className="btn__text">
-              {user?.username ? user.username : 'account'}
-            </div>
-          </button>
+        <Link to="/auth" className="tool__link">
+          <img src={userProfile} className="tool__link__img tool__link__img--user" />
+          <div className="tool__link__text">
+            {user?.username ? user.username : 'account'}
+          </div>
         </Link>
-        <Link to="/checkout/cart" className="btn">
-          <button className="btn btn__cart">
-            <div className="btn__text">cart</div>
-            <span className="btn__cart__badge"></span>
-          </button>
+        <Link to="/checkout/cart" className="tool__link">
+          <span className="tool__link__badge">0</span>
+          <img src={shoppingCart} className="tool__link__img" />
+          <div className="tool__link__text">cart</div>
         </Link>
       </div>
     </div>
