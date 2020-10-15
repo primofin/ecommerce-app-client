@@ -53,7 +53,7 @@ const Header = () => {
         </Link>
         <Link to="/checkout/cart" className="tool__link">
           <span className="tool__link__badge">
-            {isLoggedIn ? itemsInCart!.length : '0'}
+            {isLoggedIn ? (itemsInCart? itemsInCart.length : '0') : '0'}
           </span>
           <img src={shoppingCart} className="tool__link__img" />
           <div className="tool__link__text">cart</div>

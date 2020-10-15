@@ -92,12 +92,13 @@ export function userAuthenticate() {
   return async (dispatch: Dispatch) => {
     try {
       const response = await isAuthenticated()
-      // handle failure
-      if (!response.data) {
-        dispatch(authenticateFailed(response))
+      console.log(response)
+      if (response.data) {
+        // handle success
+        dispatch(authenticateSuccessed(response.data))
       }
-      // handle success
-      dispatch(authenticateSuccessed(response.data))
+      // handle failure
+      dispatch(authenticateFailed(response))
     } catch (error) {
       // handle error
       console.log(error)
