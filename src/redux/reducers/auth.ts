@@ -4,7 +4,8 @@ import {
   REGISTER_SUCCESSED,
   REGISTER_FAILED,
   LOGIN_SUCCESSED,
-  LOGIN_FAILED
+  LOGIN_FAILED,
+  AUTHENTICATED_SUCCESSED,
 } from '../../types'
 
 export default function auth(
@@ -21,6 +22,10 @@ export default function auth(
       return { ...state, isLoggedIn: true, user: user }
     }
     case LOGIN_SUCCESSED: {
+      const { user } = action.payload
+      return { ...state, isLoggedIn: true, user: user }
+    }
+    case AUTHENTICATED_SUCCESSED: {
       const { user } = action.payload
       return { ...state, isLoggedIn: true, user: user }
     }

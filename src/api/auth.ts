@@ -10,13 +10,17 @@ const register = async (
   lastName?: string
 ) => {
   try {
-    return await axios.post(baseUrl + '/auth/register', {
-      username,
-      email,
-      password,
-      firstName,
-      lastName,
-    },{withCredentials:true})
+    return await axios.post(
+      baseUrl + '/auth/register',
+      {
+        username,
+        email,
+        password,
+        firstName,
+        lastName,
+      },
+      { withCredentials: true }
+    )
   } catch (error) {
     return error
   }
@@ -24,10 +28,14 @@ const register = async (
 
 const login = async (username: string, password: string) => {
   try {
-    const response = await axios.post(baseUrl + '/auth/login', {
-      username,
-      password,
-    },{withCredentials:true})
+    const response = await axios.post(
+      baseUrl + '/auth/login',
+      {
+        username,
+        password,
+      },
+      { withCredentials: true }
+    )
     return response
   } catch (error) {
     return error
@@ -36,15 +44,24 @@ const login = async (username: string, password: string) => {
 
 const logout = async () => {
   try {
-    const response = await axios.get(baseUrl + '/auth/logout')
+    const response = await axios.get(baseUrl + '/auth/logout', {
+      withCredentials: true,
+    })
     return response
   } catch (error) {
     return error
   }
 }
 
-export {
-  register,
-  login,
-  logout,
+const isAuthenticated = async () => {
+  try {
+    const response = await axios.get(baseUrl + '/auth/isAuthenticated', {
+      withCredentials: true,
+    })
+    return response
+  } catch (error) {
+    return error
+  }
 }
+
+export { register, login, logout, isAuthenticated }

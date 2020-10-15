@@ -7,8 +7,9 @@ import {
   LOGIN_FAILED,
   User,
   UserActions,
+  AUTHENTICATED_SUCCESSED,
 } from '../../types'
-import { register, login } from '../../api/auth'
+import { register, login, isAuthenticated } from '../../api/auth'
 
 export function registerSuccessed(user: User): UserActions {
   return {
@@ -25,6 +26,15 @@ export function loginSuccessed(user: User): UserActions {
     payload: {
       user,
     },
+  }
+}
+
+export function authenticatedSuccessed(user: User): UserActions {
+  return {
+    type: AUTHENTICATED_SUCCESSED,
+    payload: {
+      user,
+    }
   }
 }
 
@@ -61,6 +71,19 @@ export function userLogin(username: string, password: string) {
       const response = await login(username, password)
       // handle success
       dispatch(loginSuccessed(response.data))
+    } catch (error) {
+      // handle error
+      console.log(error)
+      return error
+    }
+  }
+}
+export function userAuthenticate() {
+  return async (dispatch: Dispatch) => {
+    try {
+      const response = await isAuthenticated()
+      // handle success
+      dispatch(authenticatedSuccessed(response.data))
     } catch (error) {
       // handle error
       console.log(error)

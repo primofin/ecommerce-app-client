@@ -6,6 +6,7 @@ export const REGISTER_SUCCESSED = 'REGISTER_SUCCESS'
 export const REGISTER_FAILED = 'REGISTER_FAIL'
 export const LOGIN_SUCCESSED = 'LOGIN_SUCCESS'
 export const LOGIN_FAILED = 'LOGIN_FAIL'
+export const AUTHENTICATED_SUCCESSED = 'AUTHENTICATED_SUCCESSED'
 /**
  * Product actions
  */
@@ -125,12 +126,19 @@ export type LoginFailed = {
     error: string
   }
 }
+export type AuthenticatedSuccessed = {
+  type: typeof AUTHENTICATED_SUCCESSED
+  payload: {
+    user: User
+  }
+}
 // Use this union in reducer
 export type UserActions =
   | RegisterSuccessed
   | RegisterFailed
   | LoginSuccessed
   | LoginFailed
+  | AuthenticatedSuccessed
 
 /**
  * -----------------UI----------------
