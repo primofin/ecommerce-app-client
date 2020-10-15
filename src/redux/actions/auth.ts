@@ -34,7 +34,7 @@ export function authenticatedSuccessed(user: User): UserActions {
     type: AUTHENTICATED_SUCCESSED,
     payload: {
       user,
-    }
+    },
   }
 }
 
@@ -83,7 +83,9 @@ export function userAuthenticate() {
     try {
       const response = await isAuthenticated()
       // handle success
-      dispatch(authenticatedSuccessed(response.data))
+      if (response.data) {
+        dispatch(authenticatedSuccessed(response.data))
+      }
     } catch (error) {
       // handle error
       console.log(error)

@@ -1,9 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 
+import { AppState } from '../../types'
 import './header.scss'
 
 const Header = () => {
+  const user = useSelector((state: AppState) => state.auth.user)
   return (
     <div className="header">
       <div className="header__title">
@@ -37,7 +40,9 @@ const Header = () => {
         </div>
         <Link to="/auth" className="btn">
           <button className="btn btn__account">
-            <div className="btn__text">account</div>
+            <div className="btn__text">
+              {user?.username ? user.username : 'account'}
+            </div>
           </button>
         </Link>
         <Link to="/checkout/cart" className="btn">
