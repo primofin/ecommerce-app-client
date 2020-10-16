@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, useLocation } from 'react-router-dom'
 import Header from '../../components/Header/index'
 import UserAccountNavigation from '../../components/UserAccountNavigation/index'
 import UserDataForm from '../../components/UserDataForm/index'
+import UpdatePasswordForm from '../../components/UpdatePasswordForm/index'
 import './userProfile.scss'
 
 function UserProfile() {
@@ -17,6 +18,7 @@ function UserProfile() {
           <UserAccountNavigation />
           <div className="account__form-wrapper">
             <UserDataForm />
+            <UpdatePasswordForm />
           </div>
         </div>
       </div>
