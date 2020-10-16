@@ -1,12 +1,13 @@
 import {
   AuthState,
   UserActions,
-  REGISTER_SUCCESSED,
-  REGISTER_FAILED,
-  LOGIN_SUCCESSED,
-  LOGIN_FAILED,
-  AUTHENTICATED_SUCCESSED,
-  AUTHENTICATED_FAILED
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  AUTHENTICATE_SUCCESS,
+  AUTHENTICATE_FAILURE,
+  LOGOUT_SUCCESS,
 } from '../../types'
 
 export default function auth(
@@ -18,21 +19,24 @@ export default function auth(
   action: UserActions
 ): AuthState {
   switch (action.type) {
-    case REGISTER_SUCCESSED: {
+    case REGISTER_SUCCESS: {
       const { user } = action.payload
       return { ...state, isLoggedIn: true, user: user }
     }
-    case LOGIN_SUCCESSED: {
+    case LOGIN_SUCCESS: {
       const { user } = action.payload
       return { ...state, isLoggedIn: true, user: user }
     }
-    case AUTHENTICATED_SUCCESSED: {
+    case AUTHENTICATE_SUCCESS: {
       const { user } = action.payload
       return { ...state, isLoggedIn: true, user: user }
     }
-    case AUTHENTICATED_FAILED: {
+    case AUTHENTICATE_FAILURE: {
       const { error } = action.payload
       return { ...state, isLoggedIn: false, error: error }
+    }
+    case LOGOUT_SUCCESS: {
+      return { ...state, isLoggedIn: false, user: null, error: null }
     }
     // case ADD_PRODUCT: {
     //   const { product } = action.payload
@@ -51,7 +55,7 @@ export default function auth(
     //     return { ...state, inCart: [...state.inCart] }
     //   }
     //   return state
-    // }   
+    // }
     default:
       return state
   }

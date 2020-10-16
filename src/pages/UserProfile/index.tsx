@@ -6,7 +6,6 @@ import UserAccountNavigation from '../../components/UserAccountNavigation/index'
 import './userProfile.scss'
 
 function UserProfile() {
-  let location = useLocation()
   return (
     <div className="profile__wrapper">
       <Header />

@@ -1,26 +1,48 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 
-import "./userAccountNavigation.scss"
+import { AppState } from '../../types'
+import { userLogout } from '../../redux/actions/auth'
+import './userAccountNavigation.scss'
 
 function UserAccountNavigation() {
+  const history = useHistory()
+  const dispatch = useDispatch()
+  const user = useSelector((state: AppState) => state.auth.user)
+  const handleSignOut = ()=>{
+    dispatch(userLogout())
+    history.push('/')
+  }
   return (
     <nav className="account__navigation">
-      <ul>
-        <li>
-          <NavLink to="/user/:userid">my data</NavLink>
+      <ul className="account__navigation__list">
+        <li className="account__navigation__item">
+          <NavLink
+            to={`/user/${user?._id}`}
+            activeClassName="account__navigation__link--active"
+            className="account__navigation__link"
+          >
+            my data
+          </NavLink>
         </li>
-        <li>
-          <NavLink to="#">my orders</NavLink>
+        <li className="account__navigation__item">
+          <NavLink to="#" className="account__navigation__link">
+            my orders
+          </NavLink>
         </li>
-        <li>
-          <NavLink to="#">my returns</NavLink>
+        <li className="account__navigation__item">
+          <NavLink to="#" className="account__navigation__link">
+            my returns
+          </NavLink>
         </li>
-        <li>
-          <NavLink to="#">invoice data</NavLink>
+        <li className="account__navigation__item">
+          <NavLink to="#" className="account__navigation__link">
+            invoice data
+          </NavLink>
         </li>
-        <li>
-            <a href="#">sign out</a>
+        <li className="account__navigation__item">
+          <button className="account__navigation__btn" onClick={handleSignOut}>sign out</button>
         </li>
       </ul>
     </nav>

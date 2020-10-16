@@ -2,12 +2,13 @@
 /**
  * User authentication actions
  */
-export const REGISTER_SUCCESSED = 'REGISTER_SUCCESS'
-export const REGISTER_FAILED = 'REGISTER_FAIL'
-export const LOGIN_SUCCESSED = 'LOGIN_SUCCESS'
-export const LOGIN_FAILED = 'LOGIN_FAIL'
-export const AUTHENTICATED_SUCCESSED = 'AUTHENTICATED_SUCCESSED'
-export const AUTHENTICATED_FAILED = 'AUTHENTICATED_FAILED'
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
+export const REGISTER_FAILURE = 'REGISTER_FAIL'
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const LOGIN_FAILURE = 'LOGIN_FAILURE'
+export const AUTHENTICATE_SUCCESS = 'AUTHENTICATE_SUCCESS'
+export const AUTHENTICATE_FAILURE = 'AUTHENTICATE_FAILURE'
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 /**
  * Product actions
  */
@@ -104,40 +105,44 @@ export type AuthState = {
   error: string | null
 }
 export type RegisterSuccessed = {
-  type: typeof REGISTER_SUCCESSED
+  type: typeof REGISTER_SUCCESS
   payload: {
     user: User
   }
 }
 export type RegisterFailed = {
-  type: typeof REGISTER_FAILED
+  type: typeof REGISTER_FAILURE
   payload: {
     error: string
   }
 }
 export type LoginSuccessed = {
-  type: typeof LOGIN_SUCCESSED
+  type: typeof LOGIN_SUCCESS
   payload: {
     user: User
   }
 }
 export type LoginFailed = {
-  type: typeof LOGIN_FAILED
+  type: typeof LOGIN_FAILURE
   payload: {
     error: string
   }
 }
-export type AuthenticateSuccessed = {
-  type: typeof AUTHENTICATED_SUCCESSED
+export type AuthenticateSuccess = {
+  type: typeof AUTHENTICATE_SUCCESS
   payload: {
     user: User
   }
 }
-export type AuthenticateFailed = {
-  type: typeof AUTHENTICATED_FAILED
+export type AuthenticateFailure = {
+  type: typeof AUTHENTICATE_FAILURE
   payload: {
     error: string
   }
+}
+
+export type LogoutSuccess = {
+  type: typeof LOGOUT_SUCCESS
 }
 // Use this union in reducer
 export type UserActions =
@@ -145,8 +150,9 @@ export type UserActions =
   | RegisterFailed
   | LoginSuccessed
   | LoginFailed
-  | AuthenticateSuccessed
-  | AuthenticateFailed
+  | AuthenticateSuccess
+  | AuthenticateFailure
+  | LogoutSuccess
 
 /**
  * -----------------UI----------------

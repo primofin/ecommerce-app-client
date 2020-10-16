@@ -1,15 +1,27 @@
 .account__navigation {
-    width: 250px;
-    ul {
+    width: 200px;
+    &__list {
         padding: 0;
     }
-    li {
+    &__item {
         list-style: none;
         padding: 10px 0;
     }
-    a {
+    &__link {
+        font-size: 16px;
+        color: inherit;
         text-transform: uppercase;
         text-decoration: none;
-        color: inherit;
+        &--active {
+            font-size: 18px;
+            font-weight: 700;
+        }
+    }
+    &__btn {
+        font-size: 16px;
+        padding: 0;
+        border: none;
+        background-color: white;
+        text-transform: uppercase;
     }
 }

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
-import { AppState, Product } from '../../types'
+import { AppState } from '../../types'
 import shoppingCart from '../../icons/shopping-cart.svg'
 import userProfile from '../../icons//user-profile.svg'
 import './header.scss'
@@ -42,7 +42,10 @@ const Header = () => {
             <div className="tool__search-container__text">search</div>
           </button>
         </div>
-        <Link to={isLoggedIn ? `/user/${user?._id}` : "/auth"} className="tool__link">
+        <Link
+          to={isLoggedIn ? `/user/${user?._id}` : '/auth'}
+          className="tool__link"
+        >
           <img
             src={userProfile}
             className="tool__link__img tool__link__img--user"
@@ -53,7 +56,7 @@ const Header = () => {
         </Link>
         <Link to="/checkout/cart" className="tool__link">
           <span className="tool__link__badge">
-            {isLoggedIn ? (itemsInCart? itemsInCart.length : '0') : '0'}
+            {isLoggedIn ? (itemsInCart ? itemsInCart.length : '0') : '0'}
           </span>
           <img src={shoppingCart} className="tool__link__img" />
           <div className="tool__link__text">cart</div>

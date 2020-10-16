@@ -36,14 +36,6 @@ export function removeProduct(product: Product): ProductActions {
   }
 }
 
-// Async action processed by redux-thunk middleware
-export function fetchProduct(productId: string) {
-  return async (dispatch: Dispatch) => {
-    const resp = await fetch(`products/${productId}`)
-    const product = await resp.json()
-    dispatch(addProduct(product))
-  }
-}
 
 // Async action processed by redux-thunk middleware
 export function fetchProducts() {
