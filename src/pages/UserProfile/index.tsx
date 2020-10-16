@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, useLocation } from 'react-router-dom'
 
 import Header from '../../components/Header/index'
 import UserAccountNavigation from '../../components/UserAccountNavigation/index'
+import UserDataForm from '../../components/UserDataForm/index'
 import './userProfile.scss'
 
 function UserProfile() {
@@ -13,7 +14,10 @@ function UserProfile() {
         <h1>MY ACCOUNT</h1>
         <hr />
         <div className="account__container">
-            <UserAccountNavigation/>
+          <UserAccountNavigation />
+          <div className="account__form-wrapper">
+            <UserDataForm />
+          </div>
         </div>
       </div>
     </div>

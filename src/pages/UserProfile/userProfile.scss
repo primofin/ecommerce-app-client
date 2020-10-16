@@ -9,8 +9,15 @@
         margin-top: 100px;
         width: 80%;
         height: 100%;
-        h1{
-            text-align: center;
-        }
+    }
+}
+
+.account {
+    &__container {
+        display: flex;
+        flex-direction: row;
+    }
+    &__form-wrapper {
+        margin-left: 10%;
     }
 }

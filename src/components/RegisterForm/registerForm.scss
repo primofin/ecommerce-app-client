@@ -1,34 +1,4 @@
-.form {
-    &__wrapper {
-        margin-top: 10%;
-        text-align: center;
-        width: 260px;
-    }
-    &__title {
-        margin-top: 20px;
-        margin-bottom: 10px;
-        text-transform: uppercase;
-    }
-    &__content {
-        display: flex;
-        flex-direction: column;
-        &__label {
-            margin-top: 6px;
-            text-align: start;
-        }
-        &__input {
-            margin: 6px 0;
-            padding: 10px 14px;
-        }
-        &__submit-btn {
-            margin: 20px 0;
-            color: white;
-            background-color: black;
-            border: none;
-            padding: 10px 14px;
-        }
-    }
-}
+@import "../../style/_form.scss";
 
 .register {
     margin-top: 6%;
