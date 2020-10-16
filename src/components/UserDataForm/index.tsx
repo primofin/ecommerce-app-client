@@ -1,9 +1,10 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { Formik, Field, Form, FormikHelpers } from 'formik'
 
 import { AppState } from '../../types'
-import { userLogin } from '../../redux/actions/auth'
+import { updateUserProfile } from '../../redux/actions/user'
 import './userDataForm.scss'
 
 type Values = {
@@ -11,10 +12,13 @@ type Values = {
   firstName: string
   lastName: string
 }
+type Params = {
+  userId: string
+}
 const UserDataForm = () => {
+  const { userId } = useParams<Params>()
   const dispatch = useDispatch()
   const user = useSelector((state: AppState) => state.auth.user)
-
   const isLoggedIn = useSelector((state: AppState) => state.auth.isLoggedIn)
 
   return (
@@ -25,19 +29,16 @@ const UserDataForm = () => {
           initialValues={{
             email: user?.email ? user.email : '',
             firstName: user?.firstName ? user.firstName : '',
-            lastName: user?.firstName ? user.firstName : '',
+            lastName: user?.lastName ? user.lastName : '',
           }}
           onSubmit={async (
             values: Values,
             { setSubmitting }: FormikHelpers<Values>
           ) => {
-            // const { email, firstName, lastName } = values
-            // // dispatch(userLogin(username, password))
-            // setSubmitting(false)
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2))
-              setSubmitting(false)
-            }, 500)
+            const { email, firstName, lastName } = values
+            dispatch(updateUserProfile(userId, email, firstName, lastName))
+            alert('Your profile is updated')
+            setSubmitting(false)
           }}
         >
           {({ isSubmitting }) => (

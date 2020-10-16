@@ -13,7 +13,7 @@ import {
 } from '../../types'
 import { register, login, isAuthenticated, logout } from '../../api/auth'
 
-export function registerSuccessed(user: User): UserActions {
+export function registerSuccess(user: User): UserActions {
   return {
     type: REGISTER_SUCCESS,
     payload: {
@@ -22,7 +22,7 @@ export function registerSuccessed(user: User): UserActions {
   }
 }
 
-export function loginSuccessed(user: User): UserActions {
+export function loginSuccess(user: User): UserActions {
   return {
     type: LOGIN_SUCCESS,
     payload: {
@@ -72,7 +72,7 @@ export function userRegister(
         lastName
       )
       // handle success
-      dispatch(registerSuccessed(response.data))
+      dispatch(registerSuccess(response.data))
     } catch (error) {
       // handle error
       console.log(error)
@@ -86,7 +86,7 @@ export function userLogin(username: string, password: string) {
     try {
       const response = await login(username, password)
       // handle success
-      dispatch(loginSuccessed(response.data))
+      dispatch(loginSuccess(response.data))
     } catch (error) {
       // handle error
       console.log(error)
@@ -98,7 +98,6 @@ export function userAuthenticate() {
   return async (dispatch: Dispatch) => {
     try {
       const response = await isAuthenticated()
-      console.log('authResponse', response.request.status)
       if (response.data) {
         // handle success
         dispatch(authenticateSuccessed(response.data))
@@ -119,7 +118,6 @@ export function userLogout() {
   return async (dispatch: Dispatch) => {
     try {
       const response = await logout()
-      console.log("logout Response",response)
       if(response.request.status === 200){
         dispatch(logoutSuccess())
       }

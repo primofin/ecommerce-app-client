@@ -8,6 +8,8 @@ import {
   AUTHENTICATE_SUCCESS,
   AUTHENTICATE_FAILURE,
   LOGOUT_SUCCESS,
+  UPATE_PROFILE_SUCCESS,
+  UPDATE_PASSWORD_SUCCESS,
 } from '../../types'
 
 export default function auth(
@@ -38,24 +40,13 @@ export default function auth(
     case LOGOUT_SUCCESS: {
       return { ...state, isLoggedIn: false, user: null, error: null }
     }
-    // case ADD_PRODUCT: {
-    //   const { product } = action.payload
-    //   if (state.inCart.find((p) => p.id === product.id)) {
-    //     return state
-    //   }
-    //   // Always return new state (e.g, new object) if changed
-    //   return { ...state, inCart: [...state.inCart, product] }
-    // }
-
-    // case REMOVE_PRODUCT: {
-    //   const { product } = action.payload
-    //   const index = state.inCart.findIndex((p) => p.id === product.id)
-    //   if (index >= 0) {
-    //     state.inCart.splice(index, 1)
-    //     return { ...state, inCart: [...state.inCart] }
-    //   }
-    //   return state
-    // }
+    case UPATE_PROFILE_SUCCESS: {
+      const { user } = action.payload
+      return { ...state, user: user }
+    }
+    case UPDATE_PASSWORD_SUCCESS: {
+      return { ...state }
+    }
     default:
       return state
   }

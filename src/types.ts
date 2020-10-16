@@ -9,6 +9,8 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE'
 export const AUTHENTICATE_SUCCESS = 'AUTHENTICATE_SUCCESS'
 export const AUTHENTICATE_FAILURE = 'AUTHENTICATE_FAILURE'
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
+export const UPATE_PROFILE_SUCCESS = 'UPATE_PROFILE_SUCCESS'
+export const UPDATE_PASSWORD_SUCCESS = 'UPDATE_PASSWORD_SUCCESS'
 /**
  * Product actions
  */
@@ -140,9 +142,17 @@ export type AuthenticateFailure = {
     error: string
   }
 }
-
 export type LogoutSuccess = {
   type: typeof LOGOUT_SUCCESS
+}
+export type UpdateProfileSuccess = {
+  type: typeof UPATE_PROFILE_SUCCESS
+  payload: {
+    user: User
+  }
+}
+export type UpdatePasswordSuccess = {
+  type: typeof UPDATE_PASSWORD_SUCCESS
 }
 // Use this union in reducer
 export type UserActions =
@@ -153,6 +163,8 @@ export type UserActions =
   | AuthenticateSuccess
   | AuthenticateFailure
   | LogoutSuccess
+  | UpdateProfileSuccess
+  | UpdatePasswordSuccess
 
 /**
  * -----------------UI----------------

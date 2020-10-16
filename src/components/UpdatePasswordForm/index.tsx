@@ -1,18 +1,21 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { Formik, Field, Form, FormikHelpers } from 'formik'
 
-import { AppState } from '../../types'
-import { userLogin } from '../../redux/actions/auth'
+import { updateUserPassword } from '../../redux/actions/user'
 import './updatePasswordForm.scss'
 
 type Values = {
   oldPassword: string
   newPassword: string
 }
+type Params = {
+  userId: string
+}
 const UpdatePasswordForm = () => {
+  const { userId } = useParams<Params>()
   const dispatch = useDispatch()
-  const user = useSelector((state: AppState) => state.auth.user)
 
   return (
     <div className="personal__form">
@@ -27,7 +30,8 @@ const UpdatePasswordForm = () => {
           { setSubmitting }: FormikHelpers<Values>
         ) => {
           const { oldPassword, newPassword } = values
-          //   dispatch(userLogin(username, password))
+          dispatch(updateUserPassword(userId, oldPassword, newPassword))
+          alert('Your password is updated')
           setSubmitting(false)
         }}
       >
