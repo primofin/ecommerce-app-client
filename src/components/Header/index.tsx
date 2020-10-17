@@ -9,6 +9,9 @@ import './header.scss'
 
 const Header = () => {
   const user = useSelector((state: AppState) => state.auth.user)
+  const itemsInCartLocal = useSelector(
+    (state: AppState) => state.local.itemsInCart
+  )
   const isLoggedIn = useSelector((state: AppState) => state.auth.isLoggedIn)
   let itemsInCart = user?.itemsInCart
   return (
@@ -56,7 +59,12 @@ const Header = () => {
         </Link>
         <Link to="/checkout/cart" className="tool__link">
           <span className="tool__link__badge">
-            {isLoggedIn ? (itemsInCart ? itemsInCart.length : '0') : '0'}
+            {/* {isLoggedIn ? (itemsInCart ? itemsInCart.length : '0') : '0'} */}
+            {isLoggedIn
+              ? itemsInCart
+                ? itemsInCart.length
+                : '0'
+              : itemsInCartLocal.length}
           </span>
           <img src={shoppingCart} className="tool__link__img" />
           <div className="tool__link__text">cart</div>
