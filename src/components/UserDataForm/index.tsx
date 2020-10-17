@@ -46,7 +46,12 @@ const UserDataForm = () => {
               <label htmlFor="email" className="form__content__label">
                 Email:
               </label>
-              <Field id="email" name="email" className="form__content__input" />
+              <Field
+                id="email"
+                name="email"
+                className="form__content__input"
+                required
+              />
               <label htmlFor="firstName" className="form__content__label">
                 Firstname:
               </label>

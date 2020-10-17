@@ -41,6 +41,7 @@ const UpdatePasswordForm = () => {
               Current password
             </label>
             <Field
+              required
               type="password"
               id="oldPassword"
               name="oldPassword"
@@ -51,6 +52,7 @@ const UpdatePasswordForm = () => {
               New password
             </label>
             <Field
+              required
               type="password"
               id="newPassword"
               name="newPassword"

@@ -42,12 +42,14 @@ const LoginForm = () => {
       >
         <Form className="form__content">
           <Field
+            required
             id="username"
             name="username"
             placeholder="Username"
             className="form__content__input"
           />
           <Field
+            required
             id="password"
             name="password"
             type="password"
@@ -59,7 +61,9 @@ const LoginForm = () => {
           </button>
         </Form>
       </Formik>
-      <div className="social__login__text">Or login with your social media account</div>
+      <div className="social__login__text">
+        Or login with your social media account
+      </div>
       <GoogleLogin
         clientId={GOOGLE_ID}
         buttonText="Login"

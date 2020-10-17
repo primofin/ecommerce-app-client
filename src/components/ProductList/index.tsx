@@ -9,7 +9,6 @@ import './productList.scss'
 const ProductList = () => {
   const dispatch = useDispatch()
   const products = useSelector((state: AppState) => state.product.items)
-  console.log('products',products)
   if (products.length === 0) {
     dispatch(fetchProducts())
     return <p>Loading...</p>

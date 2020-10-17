@@ -9,7 +9,6 @@ type ProductCard = {
 }
 function ProductCard(props: ProductCard) {
   const { product } = props
-  console.log('product', product)
   return (
     <article className="product__wrapper">
       <figure>

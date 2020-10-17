@@ -15,6 +15,7 @@ type ProductParams = {
 }
 function Product() {
   const { productId } = useParams<ProductParams>()
+  console.log(productId)
   const history = useHistory()
   const dispatch = useDispatch()
 

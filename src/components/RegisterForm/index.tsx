@@ -45,6 +45,7 @@ const RegisterForm = () => {
             Username:
           </label>
           <Field
+            required
             id="username"
             name="username"
             placeholder="john123"
@@ -54,6 +55,7 @@ const RegisterForm = () => {
             Password:
           </label>
           <Field
+            required
             id="password"
             name="password"
             type="password"
@@ -85,6 +87,7 @@ const RegisterForm = () => {
             Email:
           </label>
           <Field
+            required
             id="email"
             name="email"
             placeholder="john@acme.com"

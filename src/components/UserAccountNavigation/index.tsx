@@ -10,7 +10,8 @@ function UserAccountNavigation() {
   const history = useHistory()
   const dispatch = useDispatch()
   const user = useSelector((state: AppState) => state.auth.user)
-  const handleSignOut = ()=>{
+  const isAdmin = user?.isAdmin
+  const handleSignOut = () => {
     dispatch(userLogout())
     history.push('/')
   }
@@ -26,6 +27,17 @@ function UserAccountNavigation() {
             my data
           </NavLink>
         </li>
+        {isAdmin && (
+          <li className="account__navigation__item">
+            <NavLink
+              to="/admin/addnewproduct"
+              activeClassName="account__navigation__link--active"
+              className="account__navigation__link"
+            >
+              Add new product
+            </NavLink>
+          </li>
+        )}
         <li className="account__navigation__item">
           <NavLink to="#" className="account__navigation__link">
             my orders
@@ -42,7 +54,9 @@ function UserAccountNavigation() {
           </NavLink>
         </li>
         <li className="account__navigation__item">
-          <button className="account__navigation__btn" onClick={handleSignOut}>sign out</button>
+          <button className="account__navigation__btn" onClick={handleSignOut}>
+            sign out
+          </button>
         </li>
       </ul>
     </nav>
