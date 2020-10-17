@@ -18,6 +18,12 @@ export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
 export const ADD_PRODUCT = 'ADD_PRODUCT'
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 export const TOGGLE_DIALOG = 'TOGGLE_DIALOG'
+/**
+ * Local actions
+ */
+export const GET_ALL_ITEMS_FROM_CART_LOCAL = 'GET_ALL_ITEMS_FROM_CART_LOCAL'
+export const ADD_ITEM_TO_CART_LOCAL = 'ADD_ITEM_TO_CART_LOCAL'
+export const REMOVE_ITEM_FROM_CART_LOCAL = 'REMOVE_ITEM_FROM_CART_LOCAL'
 
 // Enum
 export enum DialogType {
@@ -178,7 +184,38 @@ export type UiState = {
   }
 }
 
+/**
+ *  --------------LOCAL --------------
+ */
+export type GetAllItemsFromCartLocalAction = {
+  type: typeof GET_ALL_ITEMS_FROM_CART_LOCAL
+  payload: {
+    products: Product[]
+  }
+}
+export type AddItemToCartLocalAction = {
+  type: typeof ADD_ITEM_TO_CART_LOCAL
+  payload: {
+    product: Product
+  }
+}
+export type RemoveItemFromCartLocalAction = {
+  type: typeof REMOVE_ITEM_FROM_CART_LOCAL
+  payload: {
+    product: Product
+  }
+}
+export type LocalActions =
+  | GetAllItemsFromCartLocalAction
+  | AddItemToCartLocalAction
+  | RemoveItemFromCartLocalAction
+
+export type LocalState = {
+  itemsInCart: Product[]
+}
+
 export type AppState = {
+  local: LocalState
   auth: AuthState
   product: ProductState
   ui: UiState
