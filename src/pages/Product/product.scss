@@ -37,4 +37,12 @@
     &__span {
         margin-right: 4px;
     }
+    &__add-btn {
+        cursor: pointer;
+        &--disable {
+            &-true {
+                opacity: 0.5;
+            }
+        }
+    }
 }
