@@ -13,6 +13,69 @@ const fetchAllProducts = async () => {
   }
 }
 
+const createProduct = async (
+  name: string,
+  price: number,
+  images: string[],
+  description: string,
+  category: string,
+  variants: string[],
+  size: string | number
+) => {
+  try {
+    return await axios.post(
+      baseUrl + '/products/',
+      {
+        name,
+        price,
+        images,
+        description,
+        category,
+        variants,
+        size,
+      },
+      { withCredentials: true }
+    )
+  } catch (error) {
+    return error
+  }
+}
 
+const updateProduct = async (
+  productId: string,
+  name: string,
+  price: number,
+  description: string,
+  category: string,
+  variants: string[],
+  size: string | number
+) => {
+  try {
+    return await axios.patch(
+      baseUrl + `/products/${productId}`,
+      {
+        name,
+        price,
+        description,
+        category,
+        variants,
+        size,
+      },
+      { withCredentials: true }
+    )
+  } catch (error) {
+    return error
+  }
+}
 
-export { fetchAllProducts }
+const deleteProduct = async (productId: string) => {
+  try {
+    return await axios.delete(baseUrl + `/products/${productId}`, {
+      withCredentials: true,
+    })
+  } catch (error) {
+    return error
+  }
+}
+
+export { fetchAllProducts, createProduct, updateProduct, deleteProduct }

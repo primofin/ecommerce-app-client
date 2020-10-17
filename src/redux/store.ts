@@ -8,7 +8,7 @@ import rootSaga from './sagas'
 
 const initState: AppState = {
   local: {
-    itemsInCart: []
+    itemsInCart: [],
   },
   auth: {
     isLoggedIn: false,
@@ -17,7 +17,6 @@ const initState: AppState = {
   },
   product: {
     items: [],
-    inCart: [],
   },
   ui: {
     dialogOpen: {},

@@ -2,12 +2,12 @@ import { Dispatch } from 'redux'
 
 import {
   GET_ALL_PRODUCTS,
-  ADD_PRODUCT,
-  REMOVE_PRODUCT,
+  CREATE_PRODUCT_SUCCESS,
+  UPDATE_PRODUCT_SUCCESS,
   ProductActions,
   Product,
 } from '../../types'
-import { fetchAllProducts } from '../../api/product'
+import { fetchAllProducts, createProduct } from '../../api/product'
 
 export function getAllProducts(products: Product[]): ProductActions {
   return {
@@ -18,24 +18,14 @@ export function getAllProducts(products: Product[]): ProductActions {
   }
 }
 
-export function addProduct(product: Product): ProductActions {
+export function createProductSuccess(product: Product): ProductActions {
   return {
-    type: ADD_PRODUCT,
+    type: CREATE_PRODUCT_SUCCESS,
     payload: {
       product,
     },
   }
 }
-
-export function removeProduct(product: Product): ProductActions {
-  return {
-    type: REMOVE_PRODUCT,
-    payload: {
-      product,
-    },
-  }
-}
-
 
 // Async action processed by redux-thunk middleware
 export function fetchProducts() {
@@ -44,6 +34,36 @@ export function fetchProducts() {
       const response = await fetchAllProducts()
       // handle success
       dispatch(getAllProducts(response.data))
+    } catch (error) {
+      // handle error
+      console.log(error)
+      return error
+    }
+  }
+}
+
+export function adminCreateProduct(
+  name: string,
+  price: number,
+  images: string[],
+  description: string,
+  category: string,
+  variants: string[],
+  size: string | number
+) {
+  return async (dispatch: Dispatch) => {
+    try {
+      const response = await createProduct(
+        name,
+        price,
+        images,
+        description,
+        category,
+        variants,
+        size
+      )
+      // handle success
+      dispatch(createProductSuccess(response.data))
     } catch (error) {
       // handle error
       console.log(error)

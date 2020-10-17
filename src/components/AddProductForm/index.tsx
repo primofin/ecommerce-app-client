@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Formik, Field, Form, FormikHelpers, FieldArray } from 'formik'
 
 import { AppState } from '../../types'
-import { updateUserProfile } from '../../redux/actions/user'
+import { adminCreateProduct } from '../../redux/actions/product'
 import './addProductForm.scss'
 
 type Values = {
@@ -34,35 +34,40 @@ const AddProductForm = () => {
         <Formik
           initialValues={{
             productName: '',
-            price: 0,
+            price: 10,
             images: [''],
             description: '',
             category: '',
             variants: [''],
             size: '',
           }}
-          //   onSubmit={async (
-          //     values,
-          //     { setSubmitting }: FormikHelpers<Values>
-          //   ) => {
-          //     const {
-          //       productName,
-          //       price,
-          //       images,
-          //       description,
-          //       category,
-          //       variants,
-          //       size,
-          //     } = values
-          //     // dispatch(updateUserProfile(userId, email, firstName, lastName))
-          //     // alert('Your profile is updated')
-          //     // setSubmitting(false)
-          //   }}
-          onSubmit={(values, { setSubmitting }: FormikHelpers<Values>) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2))
-              setSubmitting(false)
-            }, 500)
+          onSubmit={async (
+            values,
+            { setSubmitting, resetForm }: FormikHelpers<Values>
+          ) => {
+            const {
+              productName,
+              price,
+              images,
+              description,
+              category,
+              variants,
+              size,
+            } = values
+            dispatch(
+              adminCreateProduct(
+                productName,
+                price,
+                images,
+                description,
+                category,
+                variants,
+                size
+              )
+            )
+            alert('New product is added')
+            setSubmitting(false)
+            resetForm()
           }}
         >
           {({ isSubmitting, values }) => (

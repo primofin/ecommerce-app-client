@@ -15,8 +15,9 @@ export const UPDATE_PASSWORD_SUCCESS = 'UPDATE_PASSWORD_SUCCESS'
  * Product actions
  */
 export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
-export const ADD_PRODUCT = 'ADD_PRODUCT'
-export const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
+export const CREATE_PRODUCT_SUCCESS = 'CREATE_PRODUCT_SUCCESS'
+export const UPDATE_PRODUCT_SUCCESS = 'UPDATE_PRODUCT_SUCCESS'
+export const DELETE_PRODUCT_SUCCESS = 'DELETE_PRODUCT_SUCCESS'
 export const TOGGLE_DIALOG = 'TOGGLE_DIALOG'
 /**
  * Local actions
@@ -60,29 +61,31 @@ export type GetAllProductAction = {
   }
 }
 
-export type AddProductAction = {
-  type: typeof ADD_PRODUCT
+export type CreateProductSuccessAction = {
+  type: typeof CREATE_PRODUCT_SUCCESS
   payload: {
     product: Product
   }
 }
-
-export type RemoveProductAction = {
-  type: typeof REMOVE_PRODUCT
+export type UpdateProductSuccessAction = {
+  type: typeof UPDATE_PRODUCT_SUCCESS
   payload: {
     product: Product
   }
+}
+export type DeleteProductSuccessAction = {
+  type: typeof DELETE_PRODUCT_SUCCESS
 }
 
 // Use this union in reducer
 export type ProductActions =
   | GetAllProductAction
-  | AddProductAction
-  | RemoveProductAction
+  | CreateProductSuccessAction
+  | UpdateProductSuccessAction
+  | DeleteProductSuccessAction
 
 export type ProductState = {
   items: Product[]
-  inCart: Product[]
 }
 
 export type ToggleDialogAction = {
@@ -112,25 +115,25 @@ export type AuthState = {
   user: User | null
   error: string | null
 }
-export type RegisterSuccessed = {
+export type RegisterSuccess = {
   type: typeof REGISTER_SUCCESS
   payload: {
     user: User
   }
 }
-export type RegisterFailed = {
+export type RegisterFailure = {
   type: typeof REGISTER_FAILURE
   payload: {
     error: string
   }
 }
-export type LoginSuccessed = {
+export type LoginSuccess = {
   type: typeof LOGIN_SUCCESS
   payload: {
     user: User
   }
 }
-export type LoginFailed = {
+export type LoginFailure = {
   type: typeof LOGIN_FAILURE
   payload: {
     error: string
@@ -162,10 +165,10 @@ export type UpdatePasswordSuccess = {
 }
 // Use this union in reducer
 export type UserActions =
-  | RegisterSuccessed
-  | RegisterFailed
-  | LoginSuccessed
-  | LoginFailed
+  | RegisterSuccess
+  | RegisterFailure
+  | LoginSuccess
+  | LoginFailure
   | AuthenticateSuccess
   | AuthenticateFailure
   | LogoutSuccess
