@@ -3,6 +3,7 @@ import {
   ProductActions,
   GET_ALL_PRODUCTS,
   CREATE_PRODUCT_SUCCESS,
+  DELETE_PRODUCT_SUCCESS,
 } from '../../types'
 
 export default function product(
@@ -23,6 +24,15 @@ export default function product(
       const { product } = action.payload
       if (product) {
         return { ...state, items: [...state.items, product] }
+      }
+      return state
+    }
+    case DELETE_PRODUCT_SUCCESS: {
+      const { product } = action.payload
+      const index = state.items.findIndex((p) => p._id === product._id)
+      if (index >= 0) {
+        state.items.splice(index, 1)
+        return { ...state, items: [...state.items] }
       }
       return state
     }

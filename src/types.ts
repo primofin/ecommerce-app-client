@@ -75,6 +75,9 @@ export type UpdateProductSuccessAction = {
 }
 export type DeleteProductSuccessAction = {
   type: typeof DELETE_PRODUCT_SUCCESS
+  payload: {
+    product: Product
+  }
 }
 
 // Use this union in reducer

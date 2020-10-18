@@ -6,10 +6,16 @@ import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons'
 
 import Header from '../../components/Header/index'
 import Footer from '../../components/Footer/index'
-import { fetchProducts } from '../../redux/actions/product'
-import { userAddItemToCart } from '../../redux/actions/user'
+import { fetchProducts, adminDeleteProduct } from '../../redux/actions/product'
+import {
+  userAddItemToCart,
+  userRemoveItemFromCart,
+} from '../../redux/actions/user'
 import { getAllItemsFromLocalStorage } from '../../redux/actions/local'
-import { saveItemToLocalStorage } from '../../localStorage/index'
+import {
+  removeItemFromLocalStorage,
+  saveItemToLocalStorage,
+} from '../../localStorage/index'
 import { AppState, Product as ProductType } from '../../types'
 import './product.scss'
 
@@ -22,6 +28,7 @@ function Product() {
   const dispatch = useDispatch()
   const isLoggedIn = useSelector((state: AppState) => state.auth.isLoggedIn)
   const user = useSelector((state: AppState) => state.auth.user)
+  const isAdmin = user?.isAdmin
   const products = useSelector((state: AppState) => state.product.items)
   const itemsInCartLocal = useSelector(
     (state: AppState) => state.local.itemsInCart
@@ -68,6 +75,14 @@ function Product() {
     }
   }
   const handleGoBack = () => history.goBack()
+  const handleDeleteProduct = () => {
+    if (user && isAdmin) {
+      removeItemFromLocalStorage(productId)
+      dispatch(userRemoveItemFromCart(user?._id, productId))
+      dispatch(adminDeleteProduct(productId))
+      history.push('/')
+    }
+  }
   return (
     <div>
       <Header />
@@ -101,14 +116,19 @@ function Product() {
             <span className="product__span">&#10003;</span>Free delivery to
             store
           </div>
-          <div className="product__settings">
-            <button className="product__settings__update">
-              Update the product info
-            </button>
-            <button className="product__settings__delete">
-              Delete this product
-            </button>
-          </div>
+          {isAdmin && (
+            <div className="product__settings">
+              <button className="product__settings__update">
+                Update the product info
+              </button>
+              <button
+                className="product__settings__delete"
+                onClick={handleDeleteProduct}
+              >
+                Delete this product
+              </button>
+            </div>
+          )}
         </div>
       </section>
       <Footer />
