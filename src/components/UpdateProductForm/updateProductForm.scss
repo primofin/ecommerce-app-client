@@ -1,0 +1,21 @@
+@import "../../style/form.scss";
+
+.update-product {
+    &__form {
+        width: 100%;
+        border-bottom: solid 1px black;
+        &__title {
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+        }
+        &__content {
+            width: 360px;
+            margin: auto;
+        }
+    }
+}
+
+span {
+    font-weight: 100;
+}

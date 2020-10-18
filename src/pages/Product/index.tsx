@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams, useHistory, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons'
@@ -83,6 +83,9 @@ function Product() {
       history.push('/')
     }
   }
+  // const handleUpdateProduct = () =>{
+  //   history.push(`/products/${productId}`)
+  // }
   return (
     <div>
       <Header />
@@ -118,9 +121,12 @@ function Product() {
           </div>
           {isAdmin && (
             <div className="product__settings">
-              <button className="product__settings__update">
+              <Link
+                to={`/products/update/${product._id}`}
+                className="product__settings__update"
+              >
                 Update the product info
-              </button>
+              </Link>
               <button
                 className="product__settings__delete"
                 onClick={handleDeleteProduct}

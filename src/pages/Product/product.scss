@@ -48,9 +48,18 @@
     &__settings {
         display: flex;
         &__update {
+            box-sizing: border-box;
+            flex: 1;
+            margin: 14px 0;
+            padding: 10px 14px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
             background-color: black;
         }
         &__delete {
+            cursor: pointer;
+            flex: 1;
             background-color: red;
         }
     }

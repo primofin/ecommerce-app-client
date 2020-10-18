@@ -4,6 +4,7 @@ import {
   GET_ALL_PRODUCTS,
   CREATE_PRODUCT_SUCCESS,
   DELETE_PRODUCT_SUCCESS,
+  UPDATE_PRODUCT_SUCCESS,
 } from '../../types'
 
 export default function product(
@@ -24,6 +25,15 @@ export default function product(
       const { product } = action.payload
       if (product) {
         return { ...state, items: [...state.items, product] }
+      }
+      return state
+    }
+    case UPDATE_PRODUCT_SUCCESS: {
+      const { product } = action.payload
+      const copyItems = [...state.items]
+      const filterItems = copyItems.filter(p => p._id !== product._id)
+      if (product) {
+        return { ...state, items: [...filterItems, product] }
       }
       return state
     }

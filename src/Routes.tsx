@@ -6,6 +6,7 @@ import Auth from './pages/Auth/index'
 import ForgotPassword from './pages/ForgotPassword/index'
 import Cart from './pages/Cart/index'
 import Product from './pages/Product/index'
+import UpdateProduct from './pages/UpdateProduct/index'
 import UserProfile from './pages/UserProfile/index'
 import AddProduct from './pages/AddProduct/index'
 
@@ -16,6 +17,7 @@ const Routes = () => (
     <Route exact path="/auth/forgot-password" component={ForgotPassword} />
     <Route exact path="/checkout/cart" component={Cart} />
     <Route exact path="/products/:productId" component={Product} />
+    <Route exact path="/products/update/:productId" component={UpdateProduct} />
     <Route exact path="/user/:userId" component={UserProfile} />
     <Route exact path="/admin/addnewproduct" component={AddProduct} />
   </Switch>

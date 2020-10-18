@@ -45,6 +45,7 @@ const updateProduct = async (
   productId: string,
   name: string,
   price: number,
+  images: string[],
   description: string,
   category: string,
   variants: string[],
@@ -56,6 +57,7 @@ const updateProduct = async (
       {
         name,
         price,
+        images,
         description,
         category,
         variants,

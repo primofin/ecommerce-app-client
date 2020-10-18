@@ -1,0 +1,23 @@
+.back-btn {
+    margin-top: 120px;
+    margin-left: 20px;
+    border: none;
+    background-color: white;
+    font-size: 2em;
+    cursor: pointer;
+}
+.product {
+    &__container {
+        display: flex;
+        width: 80%;
+        margin: 40px auto;
+        justify-content: space-between;
+    }
+    &__img__container {
+        img {
+            max-height: 700px;
+            max-width: 600px;
+        }
+    }
+
+}

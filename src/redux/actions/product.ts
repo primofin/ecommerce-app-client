@@ -12,6 +12,7 @@ import {
   fetchAllProducts,
   createProduct,
   deleteProduct,
+  updateProduct,
 } from '../../api/product'
 
 export function getAllProducts(products: Product[]): ProductActions {
@@ -26,6 +27,15 @@ export function getAllProducts(products: Product[]): ProductActions {
 export function createProductSuccess(product: Product): ProductActions {
   return {
     type: CREATE_PRODUCT_SUCCESS,
+    payload: {
+      product,
+    },
+  }
+}
+
+export function updateProductSuccess(product: Product): ProductActions {
+  return {
+    type: UPDATE_PRODUCT_SUCCESS,
     payload: {
       product,
     },
@@ -78,6 +88,38 @@ export function adminCreateProduct(
       )
       // handle success
       dispatch(createProductSuccess(response.data))
+    } catch (error) {
+      // handle error
+      console.log(error)
+      return error
+    }
+  }
+}
+
+export function adminUpdateProduct(
+  productId: string,
+  name: string,
+  price: number,
+  images: string[],
+  description: string,
+  category: string,
+  variants: string[],
+  size: string | number
+) {
+  return async (dispatch: Dispatch) => {
+    try {
+      const response = await updateProduct(
+        productId,
+        name,
+        price,
+        images,
+        description,
+        category,
+        variants,
+        size
+      )
+      // handle success
+      dispatch(updateProductSuccess(response.data))
     } catch (error) {
       // handle error
       console.log(error)
