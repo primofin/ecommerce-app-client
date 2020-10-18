@@ -8,11 +8,21 @@ import './cart.scss'
 
 function Cart() {
   const user = useSelector((state: AppState) => state.auth.user)
-  const itemsInCart = user?.itemsInCart
+  const isLoggedIn = useSelector((state: AppState) => state.auth.isLoggedIn)
+  const itemsInCartLocal = useSelector(
+    (state: AppState) => state.local.itemsInCart
+  )
+  const itemsInCart = isLoggedIn
+    ? user?.itemsInCart
+      ? user?.itemsInCart
+      : []
+    : itemsInCartLocal
   return (
     <div className="cart__wrapper">
       <Header />
-      <div className="cart__content">{<EmptyCart />}</div>
+      <div className="cart__content">
+        {itemsInCart.length === 0 && <EmptyCart />}
+      </div>
     </div>
   )
 }
