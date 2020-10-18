@@ -15,7 +15,7 @@ const saveItemToLocalStorage = (product: Product) => {
   localStorage.setItem('itemsInCartLocal', stringCart)
 }
 
-const removeItemLocalStorage = (itemId: string) => {
+const removeItemFromLocalStorage = (itemId: string) => {
   let allItemsInCart: Product[] = []
   const serializedItems = localStorage.getItem('itemsInCartLocal')
   if (serializedItems) {
@@ -27,4 +27,4 @@ const removeItemLocalStorage = (itemId: string) => {
   localStorage.setItem('itemsInCartLocal', stringCart)
 }
 
-export { saveItemToLocalStorage, removeItemLocalStorage }
+export { saveItemToLocalStorage, removeItemFromLocalStorage }

@@ -5,8 +5,15 @@ import {
   UserActions,
   UPATE_PROFILE_SUCCESS,
   UPDATE_PASSWORD_SUCCESS,
+  ADD_ITEM_TO_CART_SUCCESS,
+  REMOVE_ITEM_FROM_CART_SUCCESS,
 } from '../../types'
-import { updateProfile, updatePassword } from '../../api/user'
+import {
+  updateProfile,
+  updatePassword,
+  addItemToCart,
+  removeItemFromCart,
+} from '../../api/user'
 
 export function updateProfileSuccess(user: User): UserActions {
   return {
@@ -23,6 +30,22 @@ export function updatePasswordSuccess(): UserActions {
   }
 }
 
+export function addItemtoCartSuccess(user: User): UserActions {
+  return {
+    type: ADD_ITEM_TO_CART_SUCCESS,
+    payload: {
+      user,
+    },
+  }
+}
+export function removeItemFromCartSuccess(user: User): UserActions {
+  return {
+    type: REMOVE_ITEM_FROM_CART_SUCCESS,
+    payload: {
+      user,
+    },
+  }
+}
 // Async action processed by redux-thunk middleware
 export function updateUserProfile(
   userId: string,
@@ -42,7 +65,6 @@ export function updateUserProfile(
     }
   }
 }
-
 export function updateUserPassword(
   userId: string,
   oldPassword: string,
@@ -52,6 +74,30 @@ export function updateUserPassword(
     try {
       await updatePassword(userId, oldPassword, newPassword)
       dispatch(updatePasswordSuccess())
+    } catch (error) {
+      // handle error
+      console.log(error)
+      return error
+    }
+  }
+}
+export function userAddItemToCart(userId: string, productId: string) {
+  return async (dispatch: Dispatch) => {
+    try {
+      const response = await addItemToCart(userId, productId)
+      dispatch(addItemtoCartSuccess(response.data))
+    } catch (error) {
+      // handle error
+      console.log(error)
+      return error
+    }
+  }
+}
+export function userRemoveItemFromCart(userId: string, productId: string) {
+  return async (dispatch: Dispatch) => {
+    try {
+      const response = await removeItemFromCart(userId, productId)
+      dispatch(removeItemFromCartSuccess(response.data))
     } catch (error) {
       // handle error
       console.log(error)

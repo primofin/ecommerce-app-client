@@ -20,9 +20,7 @@ type Params = {
   userId: string
 }
 const AddProductForm = () => {
-  const { userId } = useParams<Params>()
   const dispatch = useDispatch()
-  const user = useSelector((state: AppState) => state.auth.user)
   const isLoggedIn = useSelector((state: AppState) => state.auth.isLoggedIn)
 
   return (

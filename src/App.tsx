@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import { StylesProvider } from '@material-ui/core/styles'
 
 import Routes from './Routes'
 import { userAuthenticate } from './redux/actions/auth'
@@ -13,8 +14,10 @@ export default function App() {
     dispatch(getAllItemsFromLocalStorage())
   }, [])
   return (
-    <div className="app-wrapper">
-      <Routes />
-    </div>
+    <StylesProvider injectFirst>
+      <div className="app-wrapper">
+        <Routes />
+      </div>
+    </StylesProvider>
   )
 }

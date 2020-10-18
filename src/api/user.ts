@@ -42,4 +42,37 @@ const updatePassword = async (
   }
 }
 
-export { updateProfile, updatePassword }
+const addItemToCart = async (userId: string, productId: string) => {
+  try {
+    return await axios.patch(
+      baseUrl + `/users/addToCart/${userId}`,
+      {
+        productId,
+      },
+      { withCredentials: true }
+    )
+  } catch (error) {
+    return error
+  }
+}
+
+const removeItemFromCart = async (userId: string, productId: string) => {
+  try {
+    return await axios.patch(
+      baseUrl + `/users/removeFromCart/${userId}`,
+      {
+        productId,
+      },
+      { withCredentials: true }
+    )
+  } catch (error) {
+    return error
+  }
+}
+
+export {
+  updateProfile,
+  updatePassword,
+  addItemToCart,
+  removeItemFromCart,
+}

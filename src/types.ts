@@ -11,6 +11,8 @@ export const AUTHENTICATE_FAILURE = 'AUTHENTICATE_FAILURE'
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 export const UPATE_PROFILE_SUCCESS = 'UPATE_PROFILE_SUCCESS'
 export const UPDATE_PASSWORD_SUCCESS = 'UPDATE_PASSWORD_SUCCESS'
+export const ADD_ITEM_TO_CART_SUCCESS = 'ADD_ITEM_TO_CART_SUCCESS'
+export const REMOVE_ITEM_FROM_CART_SUCCESS = 'ADD_ITEM_TO_CART_SUCCESS'
 /**
  * Product actions
  */
@@ -23,8 +25,6 @@ export const TOGGLE_DIALOG = 'TOGGLE_DIALOG'
  * Local actions
  */
 export const GET_ALL_ITEMS_FROM_CART_LOCAL = 'GET_ALL_ITEMS_FROM_CART_LOCAL'
-export const ADD_ITEM_TO_CART_LOCAL = 'ADD_ITEM_TO_CART_LOCAL'
-export const REMOVE_ITEM_FROM_CART_LOCAL = 'REMOVE_ITEM_FROM_CART_LOCAL'
 
 // Enum
 export enum DialogType {
@@ -108,7 +108,7 @@ export type User = {
   google?: Google
   isAdmin?: boolean
   isBan?: boolean
-  itemsInCart?: Product[]
+  itemsInCart?: string[]
 }
 export type AuthState = {
   isLoggedIn: boolean
@@ -160,6 +160,18 @@ export type UpdateProfileSuccess = {
     user: User
   }
 }
+export type AddItemToCartSuccessAction = {
+  type: typeof ADD_ITEM_TO_CART_SUCCESS
+  payload: {
+    user: User
+  }
+}
+export type RemoveItemFromCartSuccessAction = {
+  type: typeof REMOVE_ITEM_FROM_CART_SUCCESS
+  payload: {
+    user: User
+  }
+}
 export type UpdatePasswordSuccess = {
   type: typeof UPDATE_PASSWORD_SUCCESS
 }
@@ -174,6 +186,8 @@ export type UserActions =
   | LogoutSuccess
   | UpdateProfileSuccess
   | UpdatePasswordSuccess
+  | AddItemToCartSuccessAction
+  | RemoveItemFromCartSuccessAction
 
 /**
  * -----------------UI----------------
@@ -196,22 +210,8 @@ export type GetAllItemsFromCartLocalAction = {
     products: Product[]
   }
 }
-export type AddItemToCartLocalAction = {
-  type: typeof ADD_ITEM_TO_CART_LOCAL
-  payload: {
-    product: Product
-  }
-}
-export type RemoveItemFromCartLocalAction = {
-  type: typeof REMOVE_ITEM_FROM_CART_LOCAL
-  payload: {
-    product: Product
-  }
-}
-export type LocalActions =
-  | GetAllItemsFromCartLocalAction
-  | AddItemToCartLocalAction
-  | RemoveItemFromCartLocalAction
+
+export type LocalActions = GetAllItemsFromCartLocalAction
 
 export type LocalState = {
   itemsInCart: Product[]

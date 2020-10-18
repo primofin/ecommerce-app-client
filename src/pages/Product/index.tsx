@@ -7,6 +7,7 @@ import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons'
 import Header from '../../components/Header/index'
 import Footer from '../../components/Footer/index'
 import { fetchProducts } from '../../redux/actions/product'
+import { userAddItemToCart } from '../../redux/actions/user'
 import { getAllItemsFromLocalStorage } from '../../redux/actions/local'
 import { saveItemToLocalStorage } from '../../localStorage/index'
 import { AppState, Product as ProductType } from '../../types'
@@ -20,6 +21,7 @@ function Product() {
   const history = useHistory()
   const dispatch = useDispatch()
   const isLoggedIn = useSelector((state: AppState) => state.auth.isLoggedIn)
+  const user = useSelector((state: AppState) => state.auth.user)
   const products = useSelector((state: AppState) => state.product.items)
   const itemsInCartLocal = useSelector(
     (state: AppState) => state.local.itemsInCart
@@ -36,6 +38,10 @@ function Product() {
         return true
       }
       return false
+    } else {
+      if (user?.itemsInCart) {
+        return user?.itemsInCart.includes(item._id)
+      }
     }
   }
   if (products.length === 0) {
@@ -54,6 +60,11 @@ function Product() {
     if (product && !isLoggedIn) {
       saveItemToLocalStorage(product)
       dispatch(getAllItemsFromLocalStorage())
+    }
+    if (user) {
+      if (product && isLoggedIn) {
+        dispatch(userAddItemToCart(user?._id, productId))
+      }
     }
   }
   const handleGoBack = () => history.goBack()
@@ -89,6 +100,14 @@ function Product() {
           <div>
             <span className="product__span">&#10003;</span>Free delivery to
             store
+          </div>
+          <div className="product__settings">
+            <button className="product__settings__update">
+              Update the product info
+            </button>
+            <button className="product__settings__delete">
+              Delete this product
+            </button>
           </div>
         </div>
       </section>

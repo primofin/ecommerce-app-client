@@ -15,8 +15,8 @@
     }
     &__img__container {
         img {
-            height: 700px;
-            width: 600px;
+            max-height: 700px;
+            max-width: 600px;
         }
     }
     &__info__container {
@@ -30,7 +30,6 @@
             width: 100%;
             border: none;
             padding: 10px 14px;
-            background-color: black;
             color: white;
         }
     }
@@ -38,11 +37,21 @@
         margin-right: 4px;
     }
     &__add-btn {
+        background-color: black;
         cursor: pointer;
         &--disable {
             &-true {
                 opacity: 0.5;
             }
+        }
+    }
+    &__settings {
+        display: flex;
+        &__update {
+            background-color: black;
+        }
+        &__delete {
+            background-color: red;
         }
     }
 }
