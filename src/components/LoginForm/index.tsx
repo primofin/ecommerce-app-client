@@ -6,6 +6,7 @@ import { GoogleLogin } from 'react-google-login'
 
 import { AppState } from '../../types'
 import { userLogin } from '../../redux/actions/auth'
+import GoogleLogo from '../../icons/icons8-google.svg'
 import './loginForm.scss'
 
 type Values = {
@@ -16,11 +17,6 @@ const LoginForm = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const isLoggedIn = useSelector((state: AppState) => state.auth.isLoggedIn)
-  const GOOGLE_ID =
-    '936466011859-tpvqnj6448vmi6ck6m7i78pd90ka2lva.apps.googleusercontent.com'
-  const responseGoogle = (response: any) => {
-    console.log('responseGoogle', response)
-  }
   if (isLoggedIn) {
     history.push('/')
   }
@@ -64,13 +60,10 @@ const LoginForm = () => {
       <div className="social__login__text">
         Or login with your social media account
       </div>
-      <GoogleLogin
-        clientId={GOOGLE_ID}
-        buttonText="Login"
-        onSuccess={responseGoogle}
-        onFailure={responseGoogle}
-        cookiePolicy={'single_host_origin'}
-      />
+      <a href="http://localhost:3000/api/v1/auth/google" className="google__link">
+        <img src={GoogleLogo} className="google__link__icon"/>
+        login
+      </a>
       <div className="forgot-password__link">
         <Link to="/auth/forgot-password">I forgot my password</Link>
       </div>

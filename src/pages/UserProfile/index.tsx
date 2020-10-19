@@ -1,6 +1,7 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
+import { AppState } from '../../types'
 import Header from '../../components/Header/index'
 import UserAccountNavigation from '../../components/UserAccountNavigation/index'
 import UserDataForm from '../../components/UserDataForm/index'
@@ -8,6 +9,8 @@ import UpdatePasswordForm from '../../components/UpdatePasswordForm/index'
 import './userProfile.scss'
 
 function UserProfile() {
+  const user = useSelector((state: AppState) => state.auth.user)
+
   return (
     <div className="profile__wrapper">
       <Header />
@@ -18,7 +21,7 @@ function UserProfile() {
           <UserAccountNavigation />
           <div className="account__form-wrapper">
             <UserDataForm />
-            <UpdatePasswordForm />
+            {!user?.google && <UpdatePasswordForm />}
           </div>
         </div>
       </div>

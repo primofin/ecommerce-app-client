@@ -14,6 +14,11 @@ const Header = () => {
   )
   const isLoggedIn = useSelector((state: AppState) => state.auth.isLoggedIn)
   let itemsInCart = user?.itemsInCart
+  const username = user?.google
+    ? user.google.name
+    : user?.username
+    ? user.username
+    : 'account'
   return (
     <div className="header">
       <div className="header__title">
@@ -54,7 +59,7 @@ const Header = () => {
             className="tool__link__img tool__link__img--user"
           />
           <div className="tool__link__text">
-            {user?.username ? user.username : 'account'}
+            {username}
           </div>
         </Link>
         <Link to="/checkout/cart" className="tool__link">
