@@ -1,33 +1,33 @@
 .auth {
-    &__wrapper {
-        display: flex;
-        flex-direction: column;
-        min-height: 100%;
-    }
-    &__content {
-        display: flex;
-        justify-content: space-around;
-        margin-top: 100px;
-        height: 100%;
-    }
-    &__login-btn {
-        align-self: center;
-        height: 40px;
-        width: 260px;
-        color: white;
-        background-color: black;
-        border: none
-    }
-    &__register-btn {
-        align-self: center;
-        height: 40px;
-        width: 260px;
-        color: white;
-        background-color: black;
-        border: none
-    }
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+  &__content {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 100px;
+    height: 100%;
+  }
+  &__login-btn {
+    align-self: center;
+    height: 40px;
+    width: 260px;
+    color: white;
+    background-color: black;
+    border: none;
+  }
+  &__register-btn {
+    align-self: center;
+    height: 40px;
+    width: 260px;
+    color: white;
+    background-color: black;
+    border: none;
+  }
 }
 .divider {
-    left: 50%;
-    border-left: 1px solid black;
+  left: 50%;
+  border-left: 1px solid black;
 }

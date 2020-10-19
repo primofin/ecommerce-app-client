@@ -1,24 +1,24 @@
 @mixin link {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 .empty-cart {
-    text-align: center;
-    &__break {
-        margin-top: 60px;
-        margin-bottom: 30px;
+  text-align: center;
+  &__break {
+    margin-top: 60px;
+    margin-bottom: 30px;
+  }
+  &__redirect {
+    border: 1px solid black;
+    display: flex;
+    &__item {
+      flex: 1;
+      padding: 10px 20px;
+      text-transform: uppercase;
+      @include link;
+      &:hover {
+        background-color: lightblue;
+      }
     }
-    &__redirect {
-        border: 1px solid black;
-        display: flex;
-        &__item {
-            flex: 1;
-            padding: 10px 20px;
-            text-transform: uppercase;
-            @include link;
-            &:hover{
-                background-color: lightblue;
-            }
-        }
-    }
+  }
 }

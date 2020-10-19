@@ -1,29 +1,29 @@
 @import "../../style/_form.scss";
 
 .social__login__text {
-    margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .forgot-password__link {
-    margin-top: 20px;
-    a {
-        color: inherit;
-    }
+	margin-top: 20px;
+	a {
+		color: inherit;
+	}
 }
 
 .google__link {
-    display: flex;
-    align-items: center;
-    width: 100px;
-    margin: auto;
-    padding: 10px 14px;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: inherit;
-    border-radius: 4px;
-    box-shadow: 2px 2px 2px 2px lightgray;
-    &__icon{
-        height: 26px;
-        margin-right: 4px;
-    }
+	display: flex;
+	align-items: center;
+	width: 100px;
+	margin: auto;
+	padding: 10px 14px;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: inherit;
+	border-radius: 4px;
+	box-shadow: 2px 2px 2px 2px lightgray;
+	&__icon {
+		height: 26px;
+		margin-right: 4px;
+	}
 }

@@ -2,7 +2,6 @@ import React from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { Formik, Field, Form, FormikHelpers } from 'formik'
-import { GoogleLogin } from 'react-google-login'
 
 import { AppState } from '../../types'
 import { userLogin } from '../../redux/actions/auth'
@@ -60,8 +59,11 @@ const LoginForm = () => {
       <div className="social__login__text">
         Or login with your social media account
       </div>
-      <a href="http://localhost:3000/api/v1/auth/google" className="google__link">
-        <img src={GoogleLogo} className="google__link__icon"/>
+      <a
+        href="http://localhost:3000/api/v1/auth/google"
+        className="google__link"
+      >
+        <img src={GoogleLogo} className="google__link__icon" />
         login
       </a>
       <div className="forgot-password__link">

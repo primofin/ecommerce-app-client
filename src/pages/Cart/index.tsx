@@ -20,9 +20,17 @@ function Cart() {
   return (
     <div className="cart__wrapper">
       <Header />
-      <div className="cart__content">
-        {itemsInCart.length === 0 && <EmptyCart />}
-      </div>
+      {itemsInCart.length === 0 && (
+        <div className="cart__empty__wrapper">
+          <EmptyCart />
+        </div>
+      )}
+      {itemsInCart.length !== 0 && (
+        <div className="cart__content__wrapper">
+          <div className="cart__list"></div>
+          <div className="cart__checkout__wrapper"></div>
+        </div>
+      )}
     </div>
   )
 }

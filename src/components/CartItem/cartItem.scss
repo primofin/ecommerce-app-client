@@ -1,0 +1,12 @@
+.cart-item {
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 25% auto 15%;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "cart-item__img cart__item__name . cart-item__icon"
+      "cart-item__img . . ."
+      "cart-item__img . . ."
+      "cart-item__img cart-item__quantity . cart-item__price";
+  }
+}

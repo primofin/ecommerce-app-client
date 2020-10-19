@@ -1,8 +1,7 @@
 import React from 'react'
-import { useHistory, Link } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { Formik, Field, Form, FormikHelpers } from 'formik'
-import { GoogleLogin } from 'react-google-login'
 
 import { AppState } from '../../types'
 import { userLogin } from '../../redux/actions/auth'

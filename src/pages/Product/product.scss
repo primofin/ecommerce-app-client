@@ -1,66 +1,66 @@
 .back-btn {
-    margin-top: 120px;
-    margin-left: 20px;
-    border: none;
-    background-color: white;
-    font-size: 2em;
-    cursor: pointer;
+  margin-top: 120px;
+  margin-left: 20px;
+  border: none;
+  background-color: white;
+  font-size: 2em;
+  cursor: pointer;
 }
 .product {
-    &__container {
-        display: flex;
-        width: 80%;
-        margin: 40px auto;
-        justify-content: space-between;
+  &__container {
+    display: flex;
+    width: 80%;
+    margin: 40px auto;
+    justify-content: space-between;
+  }
+  &__img__container {
+    img {
+      max-height: 700px;
+      max-width: 600px;
     }
-    &__img__container {
-        img {
-            max-height: 700px;
-            max-width: 600px;
-        }
+  }
+  &__info__container {
+    width: 500px;
+    height: 600px;
+    h2 {
+      text-align: center;
     }
-    &__info__container {
-        width: 500px;
-        height: 600px;
-        h2 {
-            text-align: center;
-        }
-        button {
-            margin: 14px 0;
-            width: 100%;
-            border: none;
-            padding: 10px 14px;
-            color: white;
-        }
+    button {
+      margin: 14px 0;
+      width: 100%;
+      border: none;
+      padding: 10px 14px;
+      color: white;
     }
-    &__span {
-        margin-right: 4px;
+  }
+  &__span {
+    margin-right: 4px;
+  }
+  &__add-btn {
+    background-color: black;
+    cursor: pointer;
+    &--disable {
+      &-true {
+        opacity: 0.5;
+      }
     }
-    &__add-btn {
-        background-color: black;
-        cursor: pointer;
-        &--disable {
-            &-true {
-                opacity: 0.5;
-            }
-        }
+  }
+  &__settings {
+    display: flex;
+    &__update {
+      box-sizing: border-box;
+      flex: 1;
+      margin: 14px 0;
+      padding: 10px 14px;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      background-color: black;
     }
-    &__settings {
-        display: flex;
-        &__update {
-            box-sizing: border-box;
-            flex: 1;
-            margin: 14px 0;
-            padding: 10px 14px;
-            text-align: center;
-            text-decoration: none;
-            color: white;
-            background-color: black;
-        }
-        &__delete {
-            cursor: pointer;
-            flex: 1;
-            background-color: red;
-        }
+    &__delete {
+      cursor: pointer;
+      flex: 1;
+      background-color: red;
     }
+  }
 }

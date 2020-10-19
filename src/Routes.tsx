@@ -22,5 +22,4 @@ const Routes = () => (
     <Route exact path="/admin/addnewproduct" component={AddProduct} />
   </Switch>
 )
-
 export default Routes
