@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import ProductCard from '../ProductCard/index'
@@ -9,10 +9,13 @@ import './productList.scss'
 const ProductList = () => {
   const dispatch = useDispatch()
   const products = useSelector((state: AppState) => state.product.items)
-  if (products.length === 0) {
+  // if (products.length === 0) {
+  //   dispatch(fetchProducts())
+  //   return <p>Loading...</p>
+  // }
+  useEffect(()=>{
     dispatch(fetchProducts())
-    return <p>Loading...</p>
-  }
+  },[])
   return (
     <>
       <div className="product__list">

@@ -11,7 +11,6 @@ import {
   userAddItemToCart,
   userRemoveItemFromCart,
 } from '../../redux/actions/user'
-import { getAllItemsFromLocalStorage } from '../../redux/actions/local'
 import {
   deleteItemFromLocalStorage,
   saveItemToLocalStorage,

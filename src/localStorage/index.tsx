@@ -33,7 +33,6 @@ const deleteItemFromLocalStorage = (productId: string) => {
     const itemAddedIndex = cartCopy.findIndex(
       (item) => item.product._id === productId
     )
-
     cartCopy.splice(itemAddedIndex, 1)
   }
   let stringCart = JSON.stringify(cartCopy)
