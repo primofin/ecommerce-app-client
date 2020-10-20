@@ -11,6 +11,7 @@ import {
   userAddItemToCart,
   userRemoveItemFromCart,
 } from '../../redux/actions/user'
+import { getAllItemsFromLocalStorage } from '../../redux/actions/local'
 import {
   deleteItemFromLocalStorage,
   saveItemToLocalStorage,
@@ -44,6 +45,7 @@ function Product() {
     // if user doesnt login yet, save item to localStorage
     if (product && !isLoggedIn) {
       saveItemToLocalStorage(product)
+      dispatch(getAllItemsFromLocalStorage())
     }
     if (user) {
       if (product && isLoggedIn) {
@@ -55,6 +57,7 @@ function Product() {
   const handleDeleteProduct = () => {
     if (user && isAdmin) {
       deleteItemFromLocalStorage(productId)
+      dispatch(getAllItemsFromLocalStorage())
       dispatch(userRemoveItemFromCart(user?._id, productId))
       dispatch(adminDeleteProduct(productId))
       history.push('/')

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { AppState, ItemInCart } from '../../types'
+import { AppState } from '../../types'
 import { getUserWithItemsPopulate } from '../../redux/actions/user'
 import shoppingCart from '../../icons/shopping-cart.svg'
 import userProfile from '../../icons//user-profile.svg'
