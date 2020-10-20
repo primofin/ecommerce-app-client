@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import Header from '../../components/Header/index'
 import EmptyCart from '../../components/EmptyCart/index'
-import { AppState } from '../../types'
+import CartItem from '../../components/CartItem/index'
+import { AppState, Product } from '../../types'
 import './cart.scss'
 
 function Cart() {
@@ -14,9 +15,15 @@ function Cart() {
   )
   const itemsInCart = isLoggedIn
     ? user?.itemsInCart
-      ? user?.itemsInCart
+      ? (user?.itemsInCart as Product[])
       : []
     : itemsInCartLocal
+  // if (isLoggedIn && user?.itemsInCart) {
+  //   const uniqueCartArr = Array.from(
+  //     new Set(itemsInCart.map((item: Product) => item))
+  //   )
+  //   console.log('uniqueCartArr', uniqueCartArr)
+  // }
   return (
     <div className="cart__wrapper">
       <Header />
@@ -27,7 +34,11 @@ function Cart() {
       )}
       {itemsInCart.length !== 0 && (
         <div className="cart__content__wrapper">
-          <div className="cart__list"></div>
+          <div className="cart__list">
+            {itemsInCart.map((item: Product, index) => (
+              <CartItem key={index} cartItem={item} />
+            ))}
+          </div>
           <div className="cart__checkout__wrapper"></div>
         </div>
       )}

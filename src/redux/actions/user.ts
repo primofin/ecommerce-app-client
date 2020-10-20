@@ -7,12 +7,14 @@ import {
   UPDATE_PASSWORD_SUCCESS,
   ADD_ITEM_TO_CART_SUCCESS,
   REMOVE_ITEM_FROM_CART_SUCCESS,
+  GET_USER_WITH_ITEMS_POPULATE_SUCCESS,
 } from '../../types'
 import {
   updateProfile,
   updatePassword,
   addItemToCart,
   removeItemFromCart,
+  getUserWithItemsInCart,
 } from '../../api/user'
 
 export function updateProfileSuccess(user: User): UserActions {
@@ -41,6 +43,14 @@ export function addItemtoCartSuccess(user: User): UserActions {
 export function removeItemFromCartSuccess(user: User): UserActions {
   return {
     type: REMOVE_ITEM_FROM_CART_SUCCESS,
+    payload: {
+      user,
+    },
+  }
+}
+export function getUserWithItemsPopulateSuccess(user: User): UserActions {
+  return {
+    type: GET_USER_WITH_ITEMS_POPULATE_SUCCESS,
     payload: {
       user,
     },
@@ -98,6 +108,19 @@ export function userRemoveItemFromCart(userId: string, productId: string) {
     try {
       const response = await removeItemFromCart(userId, productId)
       dispatch(removeItemFromCartSuccess(response.data))
+    } catch (error) {
+      // handle error
+      console.log(error)
+      return error
+    }
+  }
+}
+
+export function getUserWithItemsPopulate(userId: string) {
+  return async (dispatch: Dispatch) => {
+    try {
+      const response = await getUserWithItemsInCart(userId)
+      dispatch(getUserWithItemsPopulateSuccess(response.data))
     } catch (error) {
       // handle error
       console.log(error)

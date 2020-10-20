@@ -13,6 +13,8 @@ export const UPATE_PROFILE_SUCCESS = 'UPATE_PROFILE_SUCCESS'
 export const UPDATE_PASSWORD_SUCCESS = 'UPDATE_PASSWORD_SUCCESS'
 export const ADD_ITEM_TO_CART_SUCCESS = 'ADD_ITEM_TO_CART_SUCCESS'
 export const REMOVE_ITEM_FROM_CART_SUCCESS = 'ADD_ITEM_TO_CART_SUCCESS'
+export const GET_USER_WITH_ITEMS_POPULATE_SUCCESS =
+  'GET_USER_WITH_ITEM_POPULATE_SUCCESS'
 /**
  * Product actions
  */
@@ -111,7 +113,7 @@ export type User = {
   google?: Google
   isAdmin?: boolean
   isBan?: boolean
-  itemsInCart?: string[]
+  itemsInCart?: string[] | Product[]
 }
 export type AuthState = {
   isLoggedIn: boolean
@@ -178,6 +180,12 @@ export type RemoveItemFromCartSuccessAction = {
 export type UpdatePasswordSuccess = {
   type: typeof UPDATE_PASSWORD_SUCCESS
 }
+export type GetUserWithItemsPopulateSuccess = {
+  type: typeof GET_USER_WITH_ITEMS_POPULATE_SUCCESS
+  payload: {
+    user: User
+  }
+}
 // Use this union in reducer
 export type UserActions =
   | RegisterSuccess
@@ -191,6 +199,7 @@ export type UserActions =
   | UpdatePasswordSuccess
   | AddItemToCartSuccessAction
   | RemoveItemFromCartSuccessAction
+  | GetUserWithItemsPopulateSuccess
 
 /**
  * -----------------UI----------------

@@ -7,10 +7,7 @@ const saveItemToLocalStorage = (product: Product) => {
     allItemsInCart = JSON.parse(serializedItems)
   }
   let cartCopy = [...allItemsInCart]
-  let existingItem = cartCopy.find((cartItem) => cartItem._id === product._id)
-  if (!existingItem) {
-    cartCopy = [...cartCopy, product]
-  }
+  cartCopy = [...cartCopy, product]
   let stringCart = JSON.stringify(cartCopy)
   localStorage.setItem('itemsInCartLocal', stringCart)
 }

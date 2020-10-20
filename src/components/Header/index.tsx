@@ -1,13 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { AppState } from '../../types'
+import { getUserWithItemsPopulate } from '../../redux/actions/user'
 import shoppingCart from '../../icons/shopping-cart.svg'
 import userProfile from '../../icons//user-profile.svg'
 import './header.scss'
 
 const Header = () => {
+  const dispatch = useDispatch()
   const user = useSelector((state: AppState) => state.auth.user)
   const itemsInCartLocal = useSelector(
     (state: AppState) => state.local.itemsInCart
@@ -19,6 +21,13 @@ const Header = () => {
     : user?.username
     ? user.username
     : 'account'
+  
+  // if user logged in, populate items in cart of that user
+  const handleCartClick = () => {
+    if (user) {
+      dispatch(getUserWithItemsPopulate(user._id))
+    }
+  }
   return (
     <div className="header">
       <div className="header__title">
@@ -58,11 +67,13 @@ const Header = () => {
             src={userProfile}
             className="tool__link__img tool__link__img--user"
           />
-          <div className="tool__link__text">
-            {username}
-          </div>
+          <div className="tool__link__text">{username}</div>
         </Link>
-        <Link to="/checkout/cart" className="tool__link">
+        <Link
+          to="/checkout/cart"
+          className="tool__link"
+          onClick={handleCartClick}
+        >
           <span className="tool__link__badge">
             {/* {isLoggedIn ? (itemsInCart ? itemsInCart.length : '0') : '0'} */}
             {isLoggedIn

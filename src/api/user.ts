@@ -2,6 +2,19 @@ import axios from 'axios'
 
 const baseUrl = 'http://localhost:3000/api/v1'
 
+const getUserWithItemsInCart = async (
+  userId: string,
+) => {
+  try {
+    return await axios.get(
+      baseUrl + `/users/itemsInCart/${userId}`,
+      { withCredentials: true }
+    )
+  } catch (error) {
+    return error
+  }
+}
+
 const updateProfile = async (
   userId: string,
   email: string,
@@ -75,4 +88,5 @@ export {
   updatePassword,
   addItemToCart,
   removeItemFromCart,
+  getUserWithItemsInCart
 }

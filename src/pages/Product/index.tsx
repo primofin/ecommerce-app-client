@@ -7,6 +7,7 @@ import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons'
 import Header from '../../components/Header/index'
 import Footer from '../../components/Footer/index'
 import { fetchProducts, adminDeleteProduct } from '../../redux/actions/product'
+import { getUserWithItemsPopulate} from '../../redux/actions/user'
 import {
   userAddItemToCart,
   userRemoveItemFromCart,
@@ -30,27 +31,6 @@ function Product() {
   const user = useSelector((state: AppState) => state.auth.user)
   const isAdmin = user?.isAdmin
   const products = useSelector((state: AppState) => state.product.items)
-  const itemsInCartLocal = useSelector(
-    (state: AppState) => state.local.itemsInCart
-  )
-
-  const isItemAdded = (item: ProductType) => {
-    // if user doesnt login yet, check item in Local storage
-    if (!isLoggedIn) {
-      if (
-        itemsInCartLocal.find(
-          (cartItem: ProductType) => cartItem._id === item._id
-        )
-      ) {
-        return true
-      }
-      return false
-    } else {
-      if (user?.itemsInCart) {
-        return user?.itemsInCart.includes(item._id)
-      }
-    }
-  }
   if (products.length === 0) {
     dispatch(fetchProducts())
     return <p>Loading...</p>
@@ -83,9 +63,6 @@ function Product() {
       history.push('/')
     }
   }
-  // const handleUpdateProduct = () =>{
-  //   history.push(`/products/${productId}`)
-  // }
   return (
     <div>
       <Header />
@@ -106,13 +83,7 @@ function Product() {
           <h3>Size:</h3>
           <p>{product.size}</p>
           <p>{product.description}</p>
-          <button
-            disabled={isItemAdded(product)}
-            onClick={addProductToCart}
-            className={`product__add-btn  product__add-btn--disable-${isItemAdded(
-              product
-            )}`}
-          >
+          <button onClick={addProductToCart} className="product__add-btn">
             Add to shopping bag
           </button>
           <div>
