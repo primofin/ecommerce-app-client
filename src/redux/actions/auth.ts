@@ -105,11 +105,13 @@ export function userLogin(username: string, password: string) {
   return async (dispatch: Dispatch) => {
     try {
       const response = await login(username, password)
-      // handle success
-      dispatch(loginSuccess(response.data))
+      if (response.status === 200) {
+        // handle success
+        dispatch(loginSuccess(response.data))
+      }
     } catch (error) {
       // handle error
-      console.log(error)
+      console.log('loginError', error)
       return error
     }
   }
