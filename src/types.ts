@@ -39,7 +39,10 @@ export type Google = {
   token: string
   name: string
 }
-
+export type ItemInCart = {
+  product: Product
+  quantity: number
+}
 /**
  *  --------------PRODUCT --------------
  */
@@ -113,7 +116,7 @@ export type User = {
   google?: Google
   isAdmin?: boolean
   isBan?: boolean
-  itemsInCart?: string[] | Product[]
+  itemsInCart?: ItemInCart[]
 }
 export type AuthState = {
   isLoggedIn: boolean
@@ -219,14 +222,14 @@ export type UiState = {
 export type GetAllItemsFromCartLocalAction = {
   type: typeof GET_ALL_ITEMS_FROM_CART_LOCAL
   payload: {
-    products: Product[]
+    itemsInCart: ItemInCart[]
   }
 }
 
 export type LocalActions = GetAllItemsFromCartLocalAction
 
 export type LocalState = {
-  itemsInCart: Product[]
+  itemsInCart: ItemInCart[]
 }
 
 export type AppState = {

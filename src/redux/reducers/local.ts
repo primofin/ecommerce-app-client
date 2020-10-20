@@ -12,9 +12,9 @@ import {
   ): LocalState {
     switch (action.type) {
       case GET_ALL_ITEMS_FROM_CART_LOCAL: {
-        const { products } = action.payload
-        if (products) {
-          return { ...state, itemsInCart: products}
+        const { itemsInCart } = action.payload
+        if (itemsInCart) {
+          return { ...state, itemsInCart: itemsInCart}
         }
         return state
       }

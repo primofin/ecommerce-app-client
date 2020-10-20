@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Header from '../../components/Header/index'
 import EmptyCart from '../../components/EmptyCart/index'
 import CartItem from '../../components/CartItem/index'
-import { AppState, Product } from '../../types'
+import { AppState, ItemInCart } from '../../types'
 import './cart.scss'
 
 function Cart() {
@@ -13,17 +13,25 @@ function Cart() {
   const itemsInCartLocal = useSelector(
     (state: AppState) => state.local.itemsInCart
   )
+  // local storage
+  let numberOfItemsInCartLocal = 0
+  if (itemsInCartLocal) {
+    itemsInCartLocal.forEach(
+      (item) => (numberOfItemsInCartLocal += item.quantity)
+    )
+  }
+  // database
+  let numberOfItemsInCart = 0
+  if (user?.itemsInCart) {
+    user?.itemsInCart?.forEach((item) => (numberOfItemsInCart += item.quantity))
+  }
+  // check if user logged in
+  // if yes get data from database, if no get from localstorage
   const itemsInCart = isLoggedIn
     ? user?.itemsInCart
-      ? (user?.itemsInCart as Product[])
+      ? user?.itemsInCart
       : []
     : itemsInCartLocal
-  // if (isLoggedIn && user?.itemsInCart) {
-  //   const uniqueCartArr = Array.from(
-  //     new Set(itemsInCart.map((item: Product) => item))
-  //   )
-  //   console.log('uniqueCartArr', uniqueCartArr)
-  // }
   return (
     <div className="cart__wrapper">
       <Header />
@@ -35,7 +43,7 @@ function Cart() {
       {itemsInCart.length !== 0 && (
         <div className="cart__content__wrapper">
           <div className="cart__list">
-            {itemsInCart.map((item: Product, index) => (
+            {itemsInCart.map((item: ItemInCart, index) => (
               <CartItem key={index} cartItem={item} />
             ))}
           </div>

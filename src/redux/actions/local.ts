@@ -4,13 +4,14 @@ import {
   GET_ALL_ITEMS_FROM_CART_LOCAL,
   LocalActions,
   Product,
+  ItemInCart
 } from '../../types'
 
-export function getAllItemsFromCartLocal(products: Product[]): LocalActions {
+export function getAllItemsFromCartLocal(itemsInCart: ItemInCart[]): LocalActions {
   return {
     type: GET_ALL_ITEMS_FROM_CART_LOCAL,
     payload: {
-      products,
+      itemsInCart,
     },
   }
 }
@@ -19,7 +20,7 @@ export function getAllItemsFromCartLocal(products: Product[]): LocalActions {
 export function getAllItemsFromLocalStorage() {
   return async (dispatch: Dispatch) => {
     try {
-      let allItemsInCart: Product[] = []
+      let allItemsInCart: ItemInCart[] = []
       const serializedItems = localStorage.getItem('itemsInCartLocal')
       if (serializedItems) {
         allItemsInCart = JSON.parse(serializedItems)

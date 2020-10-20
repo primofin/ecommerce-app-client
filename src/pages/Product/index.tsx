@@ -7,14 +7,13 @@ import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons'
 import Header from '../../components/Header/index'
 import Footer from '../../components/Footer/index'
 import { fetchProducts, adminDeleteProduct } from '../../redux/actions/product'
-import { getUserWithItemsPopulate} from '../../redux/actions/user'
 import {
   userAddItemToCart,
   userRemoveItemFromCart,
 } from '../../redux/actions/user'
 import { getAllItemsFromLocalStorage } from '../../redux/actions/local'
 import {
-  removeItemFromLocalStorage,
+  deleteItemFromLocalStorage,
   saveItemToLocalStorage,
 } from '../../localStorage/index'
 import { AppState, Product as ProductType } from '../../types'
@@ -46,7 +45,6 @@ function Product() {
     // if user doesnt login yet, save item to localStorage
     if (product && !isLoggedIn) {
       saveItemToLocalStorage(product)
-      dispatch(getAllItemsFromLocalStorage())
     }
     if (user) {
       if (product && isLoggedIn) {
@@ -57,7 +55,7 @@ function Product() {
   const handleGoBack = () => history.goBack()
   const handleDeleteProduct = () => {
     if (user && isAdmin) {
-      removeItemFromLocalStorage(productId)
+      deleteItemFromLocalStorage(productId)
       dispatch(userRemoveItemFromCart(user?._id, productId))
       dispatch(adminDeleteProduct(productId))
       history.push('/')
