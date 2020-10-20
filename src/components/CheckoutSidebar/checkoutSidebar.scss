@@ -1,0 +1,26 @@
+.checkout-sidebar {
+  &__content {
+    width: 70%;
+    margin: auto;
+    margin-top: 40px;
+    text-transform: uppercase;
+  }
+  &__section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__link {
+    display: block;
+    padding: 10px 14px;
+    width: 70%;
+    margin: auto;
+    margin-top: 40px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    background-color: black;
+    color: white;
+  }
+}

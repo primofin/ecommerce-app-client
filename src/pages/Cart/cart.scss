@@ -14,4 +14,15 @@
     margin-top: 100px;
     display: flex;
   }
+  &__list {
+    flex: 3;
+    margin-left: 10%;
+    margin-right: 40px;
+    margin-top: 20px;
+  }
+  &__checkout-wrapper {
+    flex: 2;
+    min-height: 100vh;
+    background-color: lightgray;
+  }
 }

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Header from '../../components/Header/index'
 import EmptyCart from '../../components/EmptyCart/index'
 import CartItem from '../../components/CartItem/index'
+import CheckoutSidebar from '../../components/CheckoutSidebar/index'
 import { AppState, ItemInCart } from '../../types'
 import './cart.scss'
 
@@ -15,15 +16,22 @@ function Cart() {
   )
   // local storage
   let numberOfItemsInCartLocal = 0
+  let totalPriceOfAllItemsInCartLocal = 0
   if (itemsInCartLocal) {
-    itemsInCartLocal.forEach(
-      (item) => (numberOfItemsInCartLocal += item.quantity)
-    )
+    itemsInCartLocal.forEach((item) => {
+      numberOfItemsInCartLocal += item.quantity
+      totalPriceOfAllItemsInCartLocal += item.product.price * item.quantity
+    })
   }
+
   // database
   let numberOfItemsInCart = 0
+  let totalPriceOfAllItemsInCart = 0
   if (user?.itemsInCart) {
-    user?.itemsInCart?.forEach((item) => (numberOfItemsInCart += item.quantity))
+    user?.itemsInCart?.forEach((item) => {
+      numberOfItemsInCart += item.quantity
+      totalPriceOfAllItemsInCart += item.product.price * item.quantity
+    })
   }
   // check if user logged in
   // if yes get data from database, if no get from localstorage
@@ -43,11 +51,26 @@ function Cart() {
       {itemsInCart.length !== 0 && (
         <div className="cart__content__wrapper">
           <div className="cart__list">
+            <h1>
+              Cart <small>{itemsInCart.length} QTY</small>
+            </h1>
+            <p>
+              ! Do not delay with the purchase, adding items to the cart does
+              not mean their reservation.
+            </p>
             {itemsInCart.map((item: ItemInCart, index) => (
               <CartItem key={index} cartItem={item} />
             ))}
           </div>
-          <div className="cart__checkout__wrapper"></div>
+          <div className="cart__checkout-wrapper">
+            <CheckoutSidebar
+              totalPrice={
+                isLoggedIn
+                  ? totalPriceOfAllItemsInCart
+                  : totalPriceOfAllItemsInCartLocal
+              }
+            />
+          </div>
         </div>
       )}
     </div>

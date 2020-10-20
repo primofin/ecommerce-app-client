@@ -1,6 +1,8 @@
 .cart-item {
   &__img {
     grid-area: img;
+    width: 120px;
+    height: 160px;
   }
   &__name {
     grid-area: name;
@@ -11,9 +13,15 @@
   &__icon {
     grid-area: icon;
   }
+  &__price {
+    grid-area: price;
+  }
   &__wrapper {
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+    border-bottom: solid 1px lightgray;
     display: grid;
-    grid-template-columns: 25% auto 15%;
+    grid-template-columns: 150px auto 70% auto;
     grid-template-rows: auto;
     grid-template-areas:
       "img name . icon"
