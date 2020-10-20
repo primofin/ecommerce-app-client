@@ -9,9 +9,18 @@ import {
   UserActions,
   AUTHENTICATE_SUCCESS,
   AUTHENTICATE_FAILURE,
-  LOGOUT_SUCCESS
+  LOGOUT_SUCCESS,
+  REQUEST_FORGOT_PASSWORD_SUCCESS,
+  RESET_PASSWORD_SUCCESS,
 } from '../../types'
-import { register, login, isAuthenticated, logout } from '../../api/auth'
+import {
+  register,
+  login,
+  isAuthenticated,
+  logout,
+  requestForgotPassword,
+  resetPassword,
+} from '../../api/auth'
 
 export function registerSuccess(user: User): UserActions {
   return {
@@ -51,7 +60,18 @@ export function authenticateFailed(error: string): UserActions {
 
 export function logoutSuccess(): UserActions {
   return {
-    type: LOGOUT_SUCCESS
+    type: LOGOUT_SUCCESS,
+  }
+}
+
+export function requestForgotPasswordSuccess(): UserActions {
+  return {
+    type: REQUEST_FORGOT_PASSWORD_SUCCESS,
+  }
+}
+export function resetPasswordSuccess(): UserActions {
+  return {
+    type: RESET_PASSWORD_SUCCESS,
   }
 }
 // Async action processed by redux-thunk middleware
@@ -118,8 +138,35 @@ export function userLogout() {
   return async (dispatch: Dispatch) => {
     try {
       const response = await logout()
-      if(response.request.status === 200){
+      if (response.request.status === 200) {
         dispatch(logoutSuccess())
+      }
+    } catch (error) {
+      console.log(error)
+      return error
+    }
+  }
+}
+
+export function userRequestForgotPassword(email: string) {
+  return async (dispatch: Dispatch) => {
+    try {
+      const response = await requestForgotPassword(email)
+      if (response.request.status === 200) {
+        dispatch(requestForgotPasswordSuccess())
+      }
+    } catch (error) {
+      console.log(error)
+      return error
+    }
+  }
+}
+export function userResetPassword(password: string, token: string) {
+  return async (dispatch: Dispatch) => {
+    try {
+      const response = await resetPassword(password, token)
+      if (response.request.status === 200) {
+        dispatch(resetPasswordSuccess())
       }
     } catch (error) {
       console.log(error)

@@ -13,6 +13,8 @@ import {
   ADD_ITEM_TO_CART_SUCCESS,
   REMOVE_ITEM_FROM_CART_SUCCESS,
   GET_USER_WITH_ITEMS_POPULATE_SUCCESS,
+  REQUEST_FORGOT_PASSWORD_SUCCESS,
+  RESET_PASSWORD_SUCCESS,
 } from '../../types'
 
 export default function auth(
@@ -69,6 +71,12 @@ export default function auth(
       if (user) {
         return { ...state, user: user }
       }
+      return state
+    }
+    case REQUEST_FORGOT_PASSWORD_SUCCESS: {
+      return state
+    }
+    case RESET_PASSWORD_SUCCESS: {
       return state
     }
     default:

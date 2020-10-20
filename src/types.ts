@@ -15,6 +15,8 @@ export const ADD_ITEM_TO_CART_SUCCESS = 'ADD_ITEM_TO_CART_SUCCESS'
 export const REMOVE_ITEM_FROM_CART_SUCCESS = 'ADD_ITEM_TO_CART_SUCCESS'
 export const GET_USER_WITH_ITEMS_POPULATE_SUCCESS =
   'GET_USER_WITH_ITEM_POPULATE_SUCCESS'
+export const REQUEST_FORGOT_PASSWORD_SUCCESS = 'REQUEST_FORGOT_PASSWORD_SUCCESS'
+export const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS'
 /**
  * Product actions
  */
@@ -183,6 +185,12 @@ export type RemoveItemFromCartSuccessAction = {
 export type UpdatePasswordSuccess = {
   type: typeof UPDATE_PASSWORD_SUCCESS
 }
+export type RequestForgotPasswordSuccess = {
+  type: typeof REQUEST_FORGOT_PASSWORD_SUCCESS
+}
+export type ResetPasswordSuccess = {
+  type: typeof RESET_PASSWORD_SUCCESS
+}
 export type GetUserWithItemsPopulateSuccess = {
   type: typeof GET_USER_WITH_ITEMS_POPULATE_SUCCESS
   payload: {
@@ -200,6 +208,8 @@ export type UserActions =
   | LogoutSuccess
   | UpdateProfileSuccess
   | UpdatePasswordSuccess
+  | RequestForgotPasswordSuccess
+  | ResetPasswordSuccess
   | AddItemToCartSuccessAction
   | RemoveItemFromCartSuccessAction
   | GetUserWithItemsPopulateSuccess

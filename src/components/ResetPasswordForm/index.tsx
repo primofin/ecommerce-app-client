@@ -3,30 +3,32 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { Formik, Field, Form, FormikHelpers } from 'formik'
 
-import { userRequestForgotPassword } from '../../redux/actions/auth'
-import './forgotPasswordForm.scss'
-
-type Values = {
-  email: string
+import { userResetPassword } from '../../redux/actions/auth'
+import './resetPasswordForm.scss'
+type ResetPasswordFormParams = {
+  token: string
 }
-const ForgotPasswordForm = () => {
+type Values = {
+  newPassword: string
+}
+const ResetPasswordForm = (props: ResetPasswordFormParams) => {
+  const { token } = props
   const history = useHistory()
   const dispatch = useDispatch()
   return (
     <div className="form__wrapper">
-      <div className="form__title">RECOVER YOUR PASSWORD </div>
-      <p>We will send you an e-mail to reset your password: </p>
+      <div className="form__title">enter your new password </div>
       <Formik
         initialValues={{
-          email: '',
+          newPassword: '',
         }}
         onSubmit={async (
           values: Values,
           { setSubmitting, resetForm }: FormikHelpers<Values>
         ) => {
-          const { email } = values
-          dispatch(userRequestForgotPassword(email))
-          alert('The reset link is sent to your email')
+          const { newPassword } = values
+          dispatch(userResetPassword(newPassword, token))
+          alert('Reset password successfully')
           setSubmitting(false)
           resetForm()
           history.push('/auth')
@@ -34,13 +36,14 @@ const ForgotPasswordForm = () => {
       >
         <Form className="form__content">
           <Field
-            id="email"
-            name="email"
-            placeholder="Email"
+            type="password"
+            id="newPassword"
+            name="newPassword"
+            placeholder="new password"
             className="form__content__input"
           />
           <button type="submit" className="form__content__submit-btn">
-            SEND
+            reset
           </button>
         </Form>
       </Formik>
@@ -48,4 +51,4 @@ const ForgotPasswordForm = () => {
   )
 }
 
-export default ForgotPasswordForm
+export default ResetPasswordForm

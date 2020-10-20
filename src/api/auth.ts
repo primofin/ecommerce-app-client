@@ -64,4 +64,45 @@ const isAuthenticated = async () => {
   }
 }
 
-export { register, login, logout, isAuthenticated }
+const requestForgotPassword = async (email: string) => {
+  try {
+    const response = await axios.post(
+      baseUrl + '/auth/forgot-password',
+      {
+        email,
+      },
+      {
+        withCredentials: true,
+      }
+    )
+    return response
+  } catch (error) {
+    return error
+  }
+}
+
+const resetPassword = async (password: string, token: string) => {
+  try {
+    const response = await axios.post(
+      baseUrl + `/auth/reset-password/${token}`,
+      {
+        password,
+      },
+      {
+        withCredentials: true,
+      }
+    )
+    return response
+  } catch (error) {
+    return error
+  }
+}
+
+export {
+  register,
+  login,
+  logout,
+  isAuthenticated,
+  requestForgotPassword,
+  resetPassword,
+}
