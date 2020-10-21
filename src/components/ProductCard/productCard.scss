@@ -1,8 +1,9 @@
 .product {
-  &__wrapper {
-  }
   &__photo {
     width: 350px;
     height: 500px;
+  }
+  &__price {
+    opacity: 0.8;
   }
 }

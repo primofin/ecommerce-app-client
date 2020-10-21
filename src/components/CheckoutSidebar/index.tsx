@@ -13,7 +13,7 @@ function CheckoutSidebar(props: CheckoutSidebarProps) {
       <div className="checkout-sidebar__content">
         <div className="checkout-sidebar__section">
           <h3>Products price</h3>
-          <p>{totalPrice} EUR</p>
+          <p>{totalPrice.toFixed(2)} EUR</p>
         </div>
         <div className="checkout-sidebar__section">
           <h3>Delivery</h3>
@@ -23,7 +23,7 @@ function CheckoutSidebar(props: CheckoutSidebarProps) {
           <h2>
             Total<span> (with vat)</span>
           </h2>
-          <p>{totalPrice*1.01} EUR</p>
+          <p>{(totalPrice*1.01).toFixed(2)} EUR</p>
         </div>
       </div>
       <Link to="#" className="checkout-sidebar__link">

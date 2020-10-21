@@ -21,7 +21,7 @@ function ProductCard(props: ProductCard) {
         </Link>
         <figcaption>{product.name}</figcaption>
         <section>
-          <p>{product.price}</p>
+          <p className="product__price">{product.price} €</p>
         </section>
       </figure>
     </article>

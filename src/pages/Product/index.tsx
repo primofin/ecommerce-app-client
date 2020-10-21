@@ -79,7 +79,7 @@ function Product() {
         <div className="product__info__container">
           <h2>{product.name}</h2>
           <h3>Price:</h3>
-          <p>{product.price}</p>
+          <p>{product.price} €</p>
           <h3>Size:</h3>
           <p>{product.size}</p>
           <p>{product.description}</p>
