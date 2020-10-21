@@ -5,9 +5,15 @@ import { ItemInCart, AppState } from '../../types'
 import {
   getUserWithItemsPopulate,
   userRemoveItemFromCart,
+  userAddItemToCart,
+  userDecreaseItemQuantityFromCart,
 } from '../../redux/actions/user'
 import { getAllItemsFromLocalStorage } from '../../redux/actions/local'
-import { deleteItemFromLocalStorage } from '../../localStorage/index'
+import {
+  deleteItemFromLocalStorage,
+  saveItemToLocalStorage,
+  decreaseItemQuantityFromLocalStorage,
+} from '../../localStorage/index'
 import trashIcon from '../../icons/icons8-trash.svg'
 import './cartItem.scss'
 
@@ -31,6 +37,24 @@ function CartItem(props: CartItemProps) {
       dispatch(getAllItemsFromLocalStorage())
     }
   }
+  const handleIncreaseProductQuantityToCart = () => {
+    if (isLoggedIn && user) {
+      dispatch(userAddItemToCart(user?._id, cartItem.product._id))
+    } else if (!isLoggedIn) {
+      saveItemToLocalStorage(cartItem.product)
+      dispatch(getAllItemsFromLocalStorage())
+    }
+  }
+  const handleDecreaseProductQuantityToCart = () => {
+    if (isLoggedIn && user) {
+      dispatch(
+        userDecreaseItemQuantityFromCart(user?._id, cartItem.product._id)
+      )
+    } else if (!isLoggedIn) {
+      decreaseItemQuantityFromLocalStorage(cartItem.product._id)
+      dispatch(getAllItemsFromLocalStorage())
+    }
+  }
   return (
     <div className="cart-item__wrapper">
       <img className="cart-item__img" src={cartItem.product.images[0]}></img>
@@ -40,12 +64,14 @@ function CartItem(props: CartItemProps) {
         <button
           className="cart-item__util__add"
           aria-label="Increase the item quantity"
+          onClick={handleIncreaseProductQuantityToCart}
         >
           +
         </button>
         <button
           className="cart-item__util__sub"
           aria-label="Decrease the item quantity"
+          onClick={handleDecreaseProductQuantityToCart}
         >
           -
         </button>

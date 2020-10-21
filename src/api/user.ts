@@ -2,14 +2,11 @@ import axios from 'axios'
 
 const baseUrl = 'http://localhost:3000/api/v1'
 
-const getUserWithItemsInCart = async (
-  userId: string,
-) => {
+const getUserWithItemsInCart = async (userId: string) => {
   try {
-    return await axios.get(
-      baseUrl + `/users/itemsInCart/${userId}`,
-      { withCredentials: true }
-    )
+    return await axios.get(baseUrl + `/users/itemsInCart/${userId}`, {
+      withCredentials: true,
+    })
   } catch (error) {
     return error
   }
@@ -83,10 +80,28 @@ const removeItemFromCart = async (userId: string, productId: string) => {
   }
 }
 
+const decreaseProductQuantityFromCart = async (
+  userId: string,
+  productId: string
+) => {
+  try {
+    return await axios.patch(
+      baseUrl + `/users/decreaseProductQuantityFromCart/${userId}`,
+      {
+        productId,
+      },
+      { withCredentials: true }
+    )
+  } catch (error) {
+    return error
+  }
+}
+
 export {
   updateProfile,
   updatePassword,
   addItemToCart,
+  decreaseProductQuantityFromCart,
   removeItemFromCart,
-  getUserWithItemsInCart
+  getUserWithItemsInCart,
 }

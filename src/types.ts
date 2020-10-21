@@ -13,6 +13,8 @@ export const UPATE_PROFILE_SUCCESS = 'UPATE_PROFILE_SUCCESS'
 export const UPDATE_PASSWORD_SUCCESS = 'UPDATE_PASSWORD_SUCCESS'
 export const ADD_ITEM_TO_CART_SUCCESS = 'ADD_ITEM_TO_CART_SUCCESS'
 export const REMOVE_ITEM_FROM_CART_SUCCESS = 'REMOVE_ITEM_FROM_CART_SUCCESS'
+export const DECREASE_ITEM_QUANTITY_FROM_CART_SUCCESS =
+  'DECREASE_ITEM_QUANTITY_FROM_CART_SUCCESS'
 export const GET_USER_WITH_ITEMS_POPULATE_SUCCESS =
   'GET_USER_WITH_ITEM_POPULATE_SUCCESS'
 export const REQUEST_FORGOT_PASSWORD_SUCCESS = 'REQUEST_FORGOT_PASSWORD_SUCCESS'
@@ -182,6 +184,12 @@ export type RemoveItemFromCartSuccessAction = {
     user: User
   }
 }
+export type DecreaseItemQuantityFromCartSuccessAction = {
+  type: typeof DECREASE_ITEM_QUANTITY_FROM_CART_SUCCESS
+  payload: {
+    user: User
+  }
+}
 export type UpdatePasswordSuccess = {
   type: typeof UPDATE_PASSWORD_SUCCESS
 }
@@ -211,6 +219,7 @@ export type UserActions =
   | RequestForgotPasswordSuccess
   | ResetPasswordSuccess
   | AddItemToCartSuccessAction
+  | DecreaseItemQuantityFromCartSuccessAction
   | RemoveItemFromCartSuccessAction
   | GetUserWithItemsPopulateSuccess
 

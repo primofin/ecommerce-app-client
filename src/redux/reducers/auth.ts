@@ -11,6 +11,7 @@ import {
   UPATE_PROFILE_SUCCESS,
   UPDATE_PASSWORD_SUCCESS,
   ADD_ITEM_TO_CART_SUCCESS,
+  DECREASE_ITEM_QUANTITY_FROM_CART_SUCCESS,
   REMOVE_ITEM_FROM_CART_SUCCESS,
   GET_USER_WITH_ITEMS_POPULATE_SUCCESS,
   REQUEST_FORGOT_PASSWORD_SUCCESS,
@@ -60,6 +61,13 @@ export default function auth(
       return state
     }
     case REMOVE_ITEM_FROM_CART_SUCCESS: {
+      const { user } = action.payload
+      if (user) {
+        return { ...state, user: user }
+      }
+      return state
+    }
+    case DECREASE_ITEM_QUANTITY_FROM_CART_SUCCESS: {
       const { user } = action.payload
       if (user) {
         return { ...state, user: user }
