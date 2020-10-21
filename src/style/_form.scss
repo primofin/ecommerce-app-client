@@ -28,7 +28,10 @@
             border: none;
             padding: 10px 14px;
             cursor: pointer;
-            text-transform: uppercase;
+            text-transform: uppercase;  
+        }
+        &__submit-btn:active {
+            opacity: 0.8;
         }
         &__error {
             text-align: start;

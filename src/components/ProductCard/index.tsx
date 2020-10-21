@@ -19,7 +19,7 @@ function ProductCard(props: ProductCard) {
             alt={product.name}
           />
         </Link>
-        <figcaption>{product.name}</figcaption>
+        <figcaption className="product__name">{product.name}</figcaption>
         <section>
           <p className="product__price">{product.price} €</p>
         </section>

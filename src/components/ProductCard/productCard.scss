@@ -1,9 +1,18 @@
+@font-face {
+  font-family: Barlow-label;
+  src: url("../../fonts/Barlow-Light.ttf");
+  font-weight: bold;
+}
 .product {
   &__photo {
     width: 350px;
     height: 500px;
   }
+  &__name {
+    margin-top: 8px;
+  }
   &__price {
-    opacity: 0.8;
+    font-family: Barlow-label,sans-serif;
+    margin-top: 4px;
   }
 }

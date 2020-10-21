@@ -77,18 +77,21 @@ function Product() {
           <img src={product.images[0]} alt={product.name} />
         </div>
         <div className="product__info__container">
-          <h2>{product.name}</h2>
-          <h3>Price:</h3>
+          <h2 className="product__info__name">{product.name}</h2>
+          <h3 className="product__info__label">Price:</h3>
           <p>{product.price} €</p>
-          <h3>Size:</h3>
+          <h3 className="product__info__label">Size:</h3>
           <p>{product.size}</p>
           <p>{product.description}</p>
           <button onClick={addProductToCart} className="product__add-btn">
             Add to shopping bag
           </button>
-          <div>
+          <div className="product__info__sub">
             <span className="product__span">&#10003;</span>Free delivery to
             store
+          </div>
+          <div className="product__info__sub">
+            <span className="product__span">&#10003;</span>Material and care
           </div>
           {isAdmin && (
             <div className="product__settings">

@@ -1,6 +1,6 @@
 .checkout-sidebar {
   &__content {
-    width: 70%;
+    width: 60%;
     margin: auto;
     margin-top: 40px;
     text-transform: uppercase;
@@ -10,11 +10,16 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    h2 {
+      span {
+        font-size: 14px;
+      }
+    }
   }
   &__link {
     display: block;
     padding: 10px 14px;
-    width: 70%;
+    width: 60%;
     margin: auto;
     margin-top: 40px;
     text-align: center;
@@ -22,5 +27,11 @@
     text-transform: uppercase;
     background-color: black;
     color: white;
+  }
+  &__link:active {
+    opacity: 0.8;
+  }
+  &__total {
+    font-size: 18px;
   }
 }

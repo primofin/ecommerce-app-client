@@ -1,3 +1,4 @@
+@import "../../style/variables";
 @mixin link {
   text-decoration: none;
   color: inherit;
@@ -17,7 +18,7 @@
       text-transform: uppercase;
       @include link;
       &:hover {
-        background-color: lightblue;
+        background-color: $color-secondary;
       }
     }
   }

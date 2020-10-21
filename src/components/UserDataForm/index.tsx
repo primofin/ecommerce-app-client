@@ -63,7 +63,7 @@ const UserDataForm = () => {
                 <div className="form__content__error">{errors.email}</div>
               ) : null}
               <label htmlFor="firstName" className="form__content__label">
-                Firstname:
+                First name:
               </label>
               <Field
                 id="firstName"

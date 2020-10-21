@@ -1,3 +1,10 @@
+@import "../../style/variables";
+@font-face {
+  font-family: Barlow-label;
+  src: url("../../fonts/Barlow-Light.ttf");
+  font-weight: bold;
+}
+
 .back-btn {
   margin-top: 120px;
   margin-left: 20px;
@@ -19,18 +26,27 @@
       max-width: 600px;
     }
   }
-  &__info__container {
-    width: 500px;
-    height: 600px;
-    h2 {
+  &__info {
+    &__container {
+      width: 500px;
+      height: 600px;
+      button {
+        margin: 14px 0;
+        width: 100%;
+        border: none;
+        padding: 10px 14px;
+        color: white;
+      }
+    }
+    &__name {
       text-align: center;
     }
-    button {
-      margin: 14px 0;
-      width: 100%;
-      border: none;
-      padding: 10px 14px;
-      color: white;
+    &__label {
+      font-size: 20px;
+    }
+    &__sub {
+      margin-bottom: 10px;
+      font-family: Barlow-label, sans-serif;
     }
   }
   &__span {
@@ -39,11 +55,15 @@
   &__add-btn {
     background-color: black;
     cursor: pointer;
+    font-size: 14px;
     &--disable {
       &-true {
         opacity: 0.5;
       }
     }
+  }
+  &__add-btn:active {
+    opacity: 0.8;
   }
   &__settings {
     display: flex;
@@ -55,12 +75,17 @@
       text-align: center;
       text-decoration: none;
       color: white;
-      background-color: black;
+      background-color: $color-secondary;
+      font-size: 14px;
     }
     &__delete {
       cursor: pointer;
       flex: 1;
-      background-color: red;
+      background-color: $color-red;
+      font-size: 14px;
     }
+  }
+  &__settings:active {
+    opacity: 0.8;
   }
 }

@@ -15,7 +15,7 @@
 			text-decoration: none;
 			&--active {
 				font-size: 18px;
-				color: grey
+				border-bottom: 1px solid lightgray;
 			}
 		}
 		&__btn {
