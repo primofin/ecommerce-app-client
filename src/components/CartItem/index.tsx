@@ -2,7 +2,10 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { ItemInCart, AppState } from '../../types'
-import { userRemoveItemFromCart } from '../../redux/actions/user'
+import {
+  getUserWithItemsPopulate,
+  userRemoveItemFromCart,
+} from '../../redux/actions/user'
 import { getAllItemsFromLocalStorage } from '../../redux/actions/local'
 import { deleteItemFromLocalStorage } from '../../localStorage/index'
 import trashIcon from '../../icons/icons8-trash.svg'
@@ -17,6 +20,7 @@ function CartItem(props: CartItemProps) {
   const isLoggedIn = useSelector((state: AppState) => state.auth.isLoggedIn)
   const user = useSelector((state: AppState) => state.auth.user)
   if (!cartItem.product.images) {
+    if (user) dispatch(getUserWithItemsPopulate(user?._id))
     return <div>Loading...</div>
   }
   const handleDeleteProductInCart = () => {
