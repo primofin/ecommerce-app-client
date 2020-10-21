@@ -4,6 +4,15 @@
   right: 0;
   bottom: 0;
 }
+@font-face {
+  font-family: Barlow-body;
+  src: url("./fonts/Barlow-Medium.ttf");
+  font-weight: bold;
+}
+
+* {
+  font-family: Barlow-body, sans-serif;
+}
 .app-wrapper {
   display: flex;
   flex-direction: column;

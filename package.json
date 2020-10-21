@@ -22,6 +22,7 @@
     "axios": "^0.20.0",
     "formik": "^2.2.0",
     "react": "^16.12.0",
+    "react-alice-carousel": "^2.0.1",
     "react-dom": "^16.12.0",
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.1.2",
