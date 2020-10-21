@@ -30,5 +30,10 @@
             cursor: pointer;
             text-transform: uppercase;
         }
+        &__error {
+            text-align: start;
+            font-size: 14px;
+            color: red;
+        }
     }
 }

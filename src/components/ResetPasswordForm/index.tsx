@@ -2,6 +2,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { Formik, Field, Form, FormikHelpers } from 'formik'
+import * as Yup from 'yup'
 
 import { userResetPassword } from '../../redux/actions/auth'
 import './resetPasswordForm.scss'
@@ -11,6 +12,11 @@ type ResetPasswordFormParams = {
 type Values = {
   newPassword: string
 }
+const ResetPasswordSchema = Yup.object().shape({
+  newPassword: Yup.string()
+    .min(8, 'Minimum 8 characters')
+    .required('Required!'),
+})
 const ResetPasswordForm = (props: ResetPasswordFormParams) => {
   const { token } = props
   const history = useHistory()
@@ -22,6 +28,7 @@ const ResetPasswordForm = (props: ResetPasswordFormParams) => {
         initialValues={{
           newPassword: '',
         }}
+        validationSchema={ResetPasswordSchema}
         onSubmit={async (
           values: Values,
           { setSubmitting, resetForm }: FormikHelpers<Values>
@@ -34,18 +41,23 @@ const ResetPasswordForm = (props: ResetPasswordFormParams) => {
           history.push('/auth')
         }}
       >
-        <Form className="form__content">
-          <Field
-            type="password"
-            id="newPassword"
-            name="newPassword"
-            placeholder="new password"
-            className="form__content__input"
-          />
-          <button type="submit" className="form__content__submit-btn">
-            reset
-          </button>
-        </Form>
+        {({ errors, touched }) => (
+          <Form className="form__content">
+            <Field
+              type="password"
+              id="newPassword"
+              name="newPassword"
+              placeholder="new password"
+              className="form__content__input"
+            />
+             {errors.newPassword && touched.newPassword ? (
+              <div className="form__content__error">{errors.newPassword}</div>
+            ) : null}
+            <button type="submit" className="form__content__submit-btn">
+              reset
+            </button>
+          </Form>
+        )}
       </Formik>
     </div>
   )

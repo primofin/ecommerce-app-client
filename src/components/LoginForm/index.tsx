@@ -6,6 +6,7 @@ import { Formik, Field, Form, FormikHelpers } from 'formik'
 import { AppState } from '../../types'
 import { userLogin } from '../../redux/actions/auth'
 import GoogleLogo from '../../icons/icons8-google.svg'
+import LoginSchema from './validate'
 import './loginForm.scss'
 
 type Values = {
@@ -27,6 +28,7 @@ const LoginForm = () => {
           username: '',
           password: '',
         }}
+        validationSchema={LoginSchema}
         onSubmit={async (
           values: Values,
           { setSubmitting }: FormikHelpers<Values>
@@ -35,26 +37,34 @@ const LoginForm = () => {
           dispatch(userLogin(username, password))
         }}
       >
-        <Form className="form__content">
-          <Field
-            required
-            id="username"
-            name="username"
-            placeholder="Username"
-            className="form__content__input"
-          />
-          <Field
-            required
-            id="password"
-            name="password"
-            type="password"
-            placeholder="Password"
-            className="form__content__input"
-          />
-          <button type="submit" className="form__content__submit-btn">
-            Log in to AMOUR
-          </button>
-        </Form>
+        {({ errors, touched }) => (
+          <Form className="form__content">
+            <Field
+              required
+              id="username"
+              name="username"
+              placeholder="Username"
+              className="form__content__input"
+            />
+            {errors.username && touched.username ? (
+              <div className="form__content__error">{errors.username}</div>
+            ) : null}
+            <Field
+              required
+              id="password"
+              name="password"
+              type="password"
+              placeholder="Password"
+              className="form__content__input"
+            />
+            {errors.password && touched.password ? (
+              <div className="form__content__error">{errors.password}</div>
+            ) : null}
+            <button type="submit" className="form__content__submit-btn">
+              Log in to AMOUR
+            </button>
+          </Form>
+        )}
       </Formik>
       <div className="social__login__text">
         Or login with your social media account

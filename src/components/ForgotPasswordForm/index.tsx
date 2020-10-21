@@ -9,6 +9,15 @@ import './forgotPasswordForm.scss'
 type Values = {
   email: string
 }
+function validateEmail(value: string) {
+  let error
+  if (!value) {
+    error = 'Required!'
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+    error = 'Invalid email address!'
+  }
+  return error
+}
 const ForgotPasswordForm = () => {
   const history = useHistory()
   const dispatch = useDispatch()
@@ -32,17 +41,23 @@ const ForgotPasswordForm = () => {
           history.push('/auth')
         }}
       >
-        <Form className="form__content">
-          <Field
-            id="email"
-            name="email"
-            placeholder="Email"
-            className="form__content__input"
-          />
-          <button type="submit" className="form__content__submit-btn">
-            SEND
-          </button>
-        </Form>
+        {({ errors, touched, isValidating }) => (
+          <Form className="form__content">
+            <Field
+              id="email"
+              name="email"
+              placeholder="Email"
+              className="form__content__input"
+              validate={validateEmail}
+            />
+            {errors.email && touched.email && (
+              <div className="form__content__error">{errors.email}</div>
+            )}
+            <button type="submit" className="form__content__submit-btn">
+              SEND
+            </button>
+          </Form>
+        )}
       </Formik>
     </div>
   )
