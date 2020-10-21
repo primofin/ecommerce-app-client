@@ -5,6 +5,7 @@ import { Formik, Field, Form, FormikHelpers, FieldArray } from 'formik'
 
 import { AppState } from '../../types'
 import { adminUpdateProduct } from '../../redux/actions/product'
+import AddProductSchema from '../AddProductForm/validate'
 import './updateProductForm.scss'
 
 type Values = {
@@ -44,6 +45,7 @@ const UpdateProductForm = () => {
             variants: product.variants ? product.variants : [''],
             size: product.size,
           }}
+          validationSchema={AddProductSchema}
           onSubmit={async (
             values,
             { setSubmitting, resetForm }: FormikHelpers<Values>
@@ -74,7 +76,7 @@ const UpdateProductForm = () => {
             resetForm()
           }}
         >
-          {({ isSubmitting, values }) => (
+          {({ isSubmitting, values, errors, touched }) => (
             <Form className="form__content update-product__form__content">
               <label htmlFor="productName" className="form__content__label">
                 *Name:
@@ -86,6 +88,9 @@ const UpdateProductForm = () => {
                 name="productName"
                 className="form__content__input"
               />
+              {errors.productName && touched.productName ? (
+                <div className="form__content__error">{errors.productName}</div>
+              ) : null}
               <label htmlFor="price" className="form__content__label">
                 *Price <span>(e)</span>:
               </label>
@@ -96,6 +101,9 @@ const UpdateProductForm = () => {
                 name="price"
                 className="form__content__input"
               />
+              {errors.price && touched.price ? (
+                <div className="form__content__error">{errors.price}</div>
+              ) : null}
               <label className="form__content__label">*Images (links):</label>
               <FieldArray name="images">
                 {({ insert, remove, push }) => (
@@ -125,6 +133,9 @@ const UpdateProductForm = () => {
                   </div>
                 )}
               </FieldArray>
+              {errors.images && touched.images ? (
+                <div className="form__content__error">{errors.images}</div>
+              ) : null}
               <label htmlFor="description" className="form__content__label">
                 Description:
               </label>
@@ -133,6 +144,9 @@ const UpdateProductForm = () => {
                 name="description"
                 className="form__content__input"
               />
+              {errors.description && touched.description ? (
+                <div className="form__content__error">{errors.description}</div>
+              ) : null}
               <label htmlFor="category" className="form__content__label">
                 *Category:
               </label>
@@ -142,6 +156,9 @@ const UpdateProductForm = () => {
                 name="category"
                 className="form__content__input"
               />
+              {errors.category && touched.category ? (
+                <div className="form__content__error">{errors.category}</div>
+              ) : null}
               <label htmlFor="variants" className="form__content__label">
                 Variants:
               </label>
@@ -172,6 +189,9 @@ const UpdateProductForm = () => {
                   </div>
                 )}
               </FieldArray>
+              {errors.variants && touched.variants ? (
+                <div className="form__content__error">{errors.variants}</div>
+              ) : null}
               <label htmlFor="size" className="form__content__label">
                 *Size:
               </label>
@@ -181,6 +201,9 @@ const UpdateProductForm = () => {
                 name="size"
                 className="form__content__input"
               />
+              {errors.size && touched.size ? (
+                <div className="form__content__error">{errors.size}</div>
+              ) : null}
               <button
                 type="submit"
                 className="form__content__submit-btn"
