@@ -5,6 +5,7 @@ import { Formik, Field, Form, FormikHelpers } from 'formik'
 
 import { AppState } from '../../types'
 import { updateUserProfile } from '../../redux/actions/user'
+import * as Yup from 'yup'
 import './userDataForm.scss'
 
 type Values = {
@@ -15,6 +16,11 @@ type Values = {
 type Params = {
   userId: string
 }
+const UserDataSchema = Yup.object().shape({
+  email: Yup.string().email('Invalid email').required('Required'),
+  firstName: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!'),
+  lastName: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!'),
+})
 const UserDataForm = () => {
   const { userId } = useParams<Params>()
   const dispatch = useDispatch()
@@ -31,6 +37,7 @@ const UserDataForm = () => {
             firstName: user?.firstName ? user.firstName : '',
             lastName: user?.lastName ? user.lastName : '',
           }}
+          validationSchema={UserDataSchema}
           onSubmit={async (
             values: Values,
             { setSubmitting }: FormikHelpers<Values>
@@ -41,7 +48,7 @@ const UserDataForm = () => {
             setSubmitting(false)
           }}
         >
-          {({ isSubmitting }) => (
+          {({ isSubmitting, errors, touched }) => (
             <Form className="form__content personal__form__content">
               <label htmlFor="email" className="form__content__label">
                 Email:
@@ -52,6 +59,9 @@ const UserDataForm = () => {
                 className="form__content__input"
                 required
               />
+              {errors.email && touched.email ? (
+                <div className="form__content__error">{errors.email}</div>
+              ) : null}
               <label htmlFor="firstName" className="form__content__label">
                 Firstname:
               </label>
@@ -61,6 +71,9 @@ const UserDataForm = () => {
                 placeholder="first name"
                 className="form__content__input"
               />
+              {errors.firstName && touched.firstName ? (
+                <div className="form__content__error">{errors.firstName}</div>
+              ) : null}
               <label htmlFor="lastName" className="form__content__label">
                 Last name:
               </label>
@@ -70,6 +83,9 @@ const UserDataForm = () => {
                 placeholder="last name"
                 className="form__content__input"
               />
+              {errors.lastName && touched.lastName ? (
+                <div className="form__content__error">{errors.lastName}</div>
+              ) : null}
               <button
                 type="submit"
                 className="form__content__submit-btn"

@@ -7,12 +7,10 @@ const RegisterSchema = Yup.object().shape({
     .required('Required!'),
   firstName: Yup.string()
     .min(2, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required!'),
+    .max(50, 'Too Long!'),
   lastName: Yup.string()
     .min(2, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required!'),
+    .max(50, 'Too Long!'),
   email: Yup.string().email('Invalid email!').required('Required!'),
   password: Yup.string()
     .min(8, 'Minimum 8 characters')
