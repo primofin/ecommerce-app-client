@@ -36,7 +36,25 @@ function CartItem(props: CartItemProps) {
       <img className="cart-item__img" src={cartItem.product.images[0]}></img>
       <a className="cart__item__name">{cartItem.product.name}</a>
       <div className="cart-item__quantity">Quantity: {cartItem.quantity}</div>
-      <button className="cart-item__button" onClick={handleDeleteProductInCart}>
+      <div className="cart-item__util">
+        <button
+          className="cart-item__util__add"
+          aria-label="Increase the item quantity"
+        >
+          +
+        </button>
+        <button
+          className="cart-item__util__sub"
+          aria-label="Decrease the item quantity"
+        >
+          -
+        </button>
+      </div>
+      <button
+        aria-label="Delete the item"
+        className="cart-item__delete-button"
+        onClick={handleDeleteProductInCart}
+      >
         <img src={trashIcon} />
       </button>
       <div className="cart-item__price">{cartItem.product.price}</div>

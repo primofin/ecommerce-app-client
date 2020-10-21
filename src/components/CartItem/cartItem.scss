@@ -11,14 +11,17 @@
   &__quantity {
     grid-area: quantity;
   }
-  &__button {
+  &__util {
+    grid-area: add-sub;
+  }
+  &__delete-button {
     grid-area: button;
     background-color: $color-red;
     border: none;
     border-radius: 4px;
     cursor: pointer;
   }
-  &__button:active{
+  &__delete-button:active {
     opacity: 0.8;
   }
   &__price {
@@ -35,6 +38,6 @@
       "img name . button"
       "img . . ."
       "img . . ."
-      "img quantity . price";
+      "img quantity add-sub price";
   }
 }
