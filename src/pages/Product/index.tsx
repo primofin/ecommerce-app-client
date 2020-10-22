@@ -38,6 +38,7 @@ function Product() {
   if (!product) {
     return <div>Product not found</div>
   }
+  console.log('product', product)
   /**
    * Add product to cart
    */
@@ -82,7 +83,16 @@ function Product() {
           <p>{product.price} €</p>
           <h3 className="product__info__label">Size:</h3>
           <p>{product.size}</p>
+          <h3 className="product__info__label">Description:</h3>
           <p>{product.description}</p>
+          {product.variants && (
+            <>
+              <h3 className="product__info__label">Variants:</h3>
+              {product.variants.map((variant) => (
+                <div key={variant}>#{variant}</div>
+              ))}
+            </>
+          )}
           <button onClick={addProductToCart} className="product__add-btn">
             Add to shopping bag
           </button>
