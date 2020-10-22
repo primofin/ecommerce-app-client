@@ -4,6 +4,10 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { AppState } from '../../types'
 import { getUserWithItemsPopulate } from '../../redux/actions/user'
+import {
+  fetchProducts,
+  fetchProductsByCategorySuccess,
+} from '../../redux/actions/product'
 import shoppingCart from '../../icons/shopping-cart.svg'
 import userProfile from '../../icons//user-profile.svg'
 import './header.scss'
@@ -39,24 +43,44 @@ const Header = () => {
       dispatch(getUserWithItemsPopulate(user._id))
     }
   }
+  const handleClickNewIn = () => {
+    dispatch(fetchProducts())
+  }
+  const handleClickWomen = () => {
+    dispatch(fetchProductsByCategorySuccess('women'))
+  }
+  const handleClickMen = () => {
+    dispatch(fetchProductsByCategorySuccess('men'))
+  }
+  const handleClickKids = () => {
+    dispatch(fetchProductsByCategorySuccess('kids'))
+  }
   return (
     <div className="header">
       <div className="header__title">
-        <Link to="/">AMOUR</Link>
+        <a href="http://localhost:3001/">AMOUR</a>
       </div>
       <div className="nav">
         <ul className="nav__list">
           <li className="nav__item">
-            <Link to="#">NEW IN</Link>
+            <Link to="/newin" onClick={handleClickNewIn}>
+              NEW IN
+            </Link>
           </li>
           <li className="nav__item">
-            <Link to="#">WOMAN</Link>
+            <Link to="/women" onClick={handleClickWomen}>
+              WOMEN
+            </Link>
           </li>
           <li className="nav__item">
-            <Link to="#">MEN</Link>
+            <Link to="/men" onClick={handleClickMen}>
+              MEN
+            </Link>
           </li>
           <li className="nav__item">
-            <Link to="#">KIDS</Link>
+            <Link to="/kids" onClick={handleClickKids}>
+              KIDS
+            </Link>
           </li>
           <li className="nav__item">
             <Link to="#">ABOUT US</Link>

@@ -2,6 +2,7 @@ import { Dispatch } from 'redux'
 
 import {
   GET_ALL_PRODUCTS,
+  FIND_PRODUCT_BY_CATEGORY_SUCCESS,
   CREATE_PRODUCT_SUCCESS,
   UPDATE_PRODUCT_SUCCESS,
   DELETE_PRODUCT_SUCCESS,
@@ -10,6 +11,7 @@ import {
 } from '../../types'
 import {
   fetchAllProducts,
+  findProductByCategory,
   createProduct,
   deleteProduct,
   updateProduct,
@@ -18,6 +20,17 @@ import {
 export function getAllProducts(products: Product[]): ProductActions {
   return {
     type: GET_ALL_PRODUCTS,
+    payload: {
+      products,
+    },
+  }
+}
+
+export function findProductByCategorySuccess(
+  products: Product[]
+): ProductActions {
+  return {
+    type: FIND_PRODUCT_BY_CATEGORY_SUCCESS,
     payload: {
       products,
     },
@@ -58,6 +71,20 @@ export function fetchProducts() {
       const response = await fetchAllProducts()
       // handle success
       dispatch(getAllProducts(response.data))
+    } catch (error) {
+      // handle error
+      console.log(error)
+      return error
+    }
+  }
+}
+
+export function fetchProductsByCategorySuccess(productCategory: string) {
+  return async (dispatch: Dispatch) => {
+    try {
+      const response = await findProductByCategory(productCategory)
+      // handle success
+      dispatch(findProductByCategorySuccess(response.data))
     } catch (error) {
       // handle error
       console.log(error)

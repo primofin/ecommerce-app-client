@@ -13,15 +13,13 @@ function EmptyCart() {
       </p>
       <p className="empty-cart__break"> OR CONTINUE SHOPPING</p>
       <div className="empty-cart__redirect">
-        <Link to="#" className="empty-cart__redirect__item">
-          women
+        <Link
+          to="/"
+          className="empty-cart__redirect__item"
+        >
+          Home
         </Link>
-        <Link to="#" className="empty-cart__redirect__item">
-          men
-        </Link>
-        <Link to="#" className="empty-cart__redirect__item">
-          kid
-        </Link>
+       
       </div>
     </section>
   )

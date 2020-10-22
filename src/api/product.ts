@@ -12,6 +12,19 @@ const fetchAllProducts = async () => {
     return error
   }
 }
+const findProductByCategory = async (productCategory: string) => {
+  try {
+    const res = await axios.get(
+      `${baseUrl}/products/findByCategory/${productCategory}`,
+      {
+        withCredentials: true,
+      }
+    )
+    return res
+  } catch (error) {
+    return error
+  }
+}
 
 const createProduct = async (
   name: string,
@@ -80,4 +93,10 @@ const deleteProduct = async (productId: string) => {
   }
 }
 
-export { fetchAllProducts, createProduct, updateProduct, deleteProduct }
+export {
+  fetchAllProducts,
+  findProductByCategory,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+}

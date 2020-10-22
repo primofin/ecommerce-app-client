@@ -14,6 +14,10 @@ import AddProduct from './pages/AddProduct/index'
 const Routes = () => (
   <Switch>
     <Route exact path="/" component={Home} />
+    <Route exact path="/newin" component={Home} />
+    <Route exact path="/women" component={Home} />
+    <Route exact path="/men" component={Home} />
+    <Route exact path="/kids" component={Home} />
     <Route exact path="/auth" component={Auth} />
     <Route exact path="/auth/forgot-password" component={ForgotPassword} />
     <Route exact path="/auth/reset-password/:token" component={ResetPassword} />
