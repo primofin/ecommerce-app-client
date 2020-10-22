@@ -23,6 +23,8 @@ export const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS'
  * Product actions
  */
 export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
+export const GET_ALL_PRODUCTS_BY_NAME_SUCCESS =
+  'GET_ALL_PRODUCTS_BY_NAME_SUCCESS'
 export const FIND_PRODUCT_BY_CATEGORY_SUCCESS =
   'FIND_PRODUCT_BY_CATEGORY_SUCCESS'
 export const CREATE_PRODUCT_SUCCESS = 'CREATE_PRODUCT_SUCCESS'
@@ -71,6 +73,12 @@ export type GetAllProductAction = {
     products: Product[]
   }
 }
+export type GetAllProductsByNameSuccessAction = {
+  type: typeof GET_ALL_PRODUCTS_BY_NAME_SUCCESS
+  payload: {
+    products: Product[]
+  }
+}
 export type FindProductByCategorySuccessAction = {
   type: typeof FIND_PRODUCT_BY_CATEGORY_SUCCESS
   payload: {
@@ -100,6 +108,7 @@ export type DeleteProductSuccessAction = {
 // Use this union in reducer
 export type ProductActions =
   | GetAllProductAction
+  | GetAllProductsByNameSuccessAction
   | FindProductByCategorySuccessAction
   | CreateProductSuccessAction
   | UpdateProductSuccessAction

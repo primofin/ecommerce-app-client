@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -6,6 +6,7 @@ import { AppState } from '../../types'
 import { getUserWithItemsPopulate } from '../../redux/actions/user'
 import {
   fetchProducts,
+  fetchProductsByNameSuccess,
   fetchProductsByCategorySuccess,
 } from '../../redux/actions/product'
 import shoppingCart from '../../icons/shopping-cart.svg'
@@ -13,12 +14,12 @@ import userProfile from '../../icons//user-profile.svg'
 import './header.scss'
 
 const Header = () => {
+  const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch()
   const user = useSelector((state: AppState) => state.auth.user)
   const itemsInCartLocal = useSelector(
     (state: AppState) => state.local.itemsInCart
   )
-
   let numberOfItemsInCartLocal = 0
   if (itemsInCartLocal) {
     itemsInCartLocal.forEach(
@@ -55,6 +56,14 @@ const Header = () => {
   const handleClickKids = () => {
     dispatch(fetchProductsByCategorySuccess('kids'))
   }
+  // handle Input change
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('event.target.value',event.target.value)
+    setSearchTerm(event.target.value);
+  };
+  const handleSearch = () =>{
+    dispatch(fetchProductsByNameSuccess(searchTerm))
+  }
   return (
     <div className="header">
       <div className="header__title">
@@ -89,8 +98,8 @@ const Header = () => {
       </div>
       <div className="tool">
         <div className="tool__search-container">
-          <input type="text" placeholder="Search.." name="search" />
-          <button>
+          <input type="text" placeholder="Search.." name="search" onChange={handleChange}/>
+          <button onClick={handleSearch}>
             <div className="tool__search-container__text">search</div>
           </button>
         </div>

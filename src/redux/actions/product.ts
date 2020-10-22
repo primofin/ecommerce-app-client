@@ -2,6 +2,7 @@ import { Dispatch } from 'redux'
 
 import {
   GET_ALL_PRODUCTS,
+  GET_ALL_PRODUCTS_BY_NAME_SUCCESS,
   FIND_PRODUCT_BY_CATEGORY_SUCCESS,
   CREATE_PRODUCT_SUCCESS,
   UPDATE_PRODUCT_SUCCESS,
@@ -20,6 +21,17 @@ import {
 export function getAllProducts(products: Product[]): ProductActions {
   return {
     type: GET_ALL_PRODUCTS,
+    payload: {
+      products,
+    },
+  }
+}
+
+export function getAllProductsByNameSuccess(
+  products: Product[]
+): ProductActions {
+  return {
+    type: GET_ALL_PRODUCTS_BY_NAME_SUCCESS,
     payload: {
       products,
     },
@@ -71,6 +83,23 @@ export function fetchProducts() {
       const response = await fetchAllProducts()
       // handle success
       dispatch(getAllProducts(response.data))
+    } catch (error) {
+      // handle error
+      console.log(error)
+      return error
+    }
+  }
+}
+export function fetchProductsByNameSuccess(searchTerm: string) {
+  return async (dispatch: Dispatch) => {
+    try {
+      const response = await fetchAllProducts()
+      if (response && searchTerm) {
+        const filteredProducts = response.data.filter((product: Product) =>
+          product.name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+        dispatch(getAllProductsByNameSuccess(filteredProducts))
+      }
     } catch (error) {
       // handle error
       console.log(error)

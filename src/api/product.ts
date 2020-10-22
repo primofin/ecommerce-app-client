@@ -95,8 +95,8 @@ const deleteProduct = async (productId: string) => {
 
 export {
   fetchAllProducts,
-  findProductByCategory,
   createProduct,
+  findProductByCategory,
   updateProduct,
   deleteProduct,
 }

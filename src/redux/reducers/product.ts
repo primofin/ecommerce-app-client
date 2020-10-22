@@ -2,6 +2,7 @@ import {
   ProductState,
   ProductActions,
   GET_ALL_PRODUCTS,
+  GET_ALL_PRODUCTS_BY_NAME_SUCCESS,
   FIND_PRODUCT_BY_CATEGORY_SUCCESS,
   CREATE_PRODUCT_SUCCESS,
   DELETE_PRODUCT_SUCCESS,
@@ -16,6 +17,13 @@ export default function product(
 ): ProductState {
   switch (action.type) {
     case GET_ALL_PRODUCTS: {
+      const { products } = action.payload
+      if (products) {
+        return { ...state, items: products }
+      }
+      return state
+    }
+    case GET_ALL_PRODUCTS_BY_NAME_SUCCESS: {
       const { products } = action.payload
       if (products) {
         return { ...state, items: products }
