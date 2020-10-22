@@ -110,6 +110,7 @@ const AddProductForm = () => {
                               name={`images.${index}`}
                               placeholder="https://imgur.com/O4osup3"
                               type="text"
+                              className="add-product__form__imgUrl"
                             />
                           </div>
                           <div className="col">

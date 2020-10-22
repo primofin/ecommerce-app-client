@@ -118,6 +118,7 @@ const UpdateProductForm = () => {
                               name={`images.${index}`}
                               placeholder="https://imgur.com/O4osup3"
                               type="text"
+                              className="update-product__form__imgUrl"
                             />
                           </div>
                           <div className="col">
