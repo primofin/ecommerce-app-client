@@ -24,6 +24,10 @@ export default function Carousel() {
     'https://staticpages.mngbcn.com/homes/images/fw20/kids/septiembre/otherbrand_nino.jpg?imwidth=628&imdensity=1',
     'https://staticpages.mngbcn.com/homes/images/fw20/kids/septiembre/otherbrand_nina.jpg?imwidth=628&imdensity=1',
     'https://staticpages.mngbcn.com/homes/images/fw20/violeta/octubre/otherbrands_violeta_1020.jpg?imwidth=628&imdensity=1',
+    'https://www.reserved.com/media/catalog/product/cache/850/a4e40ebdc3e371adff845072e1c73f37/Z/M/ZM291-29X-003_1.jpg',
+    'https://www.reserved.com/media/catalog/product/cache/1200/a4e40ebdc3e371adff845072e1c73f37/3/3/3306A-99X-040_1.jpg',
+    'https://staticpages.mngbcn.com/homes/images/fw20/mm/octubre/calzado_she.jpg?imwidth=476&imdensity=1',
+    'https://st.mngbcn.com/rcs/pics/static/T7/fotos/outfit/S20/77086718_99-99999999_01.jpg?ts=1600430655708&imwidth=637&imdensity=1'
   ]
   return (
     <div>

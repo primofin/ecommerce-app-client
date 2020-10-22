@@ -3,7 +3,10 @@ import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import ProductCard from '../ProductCard/index'
-import { fetchProducts } from '../../redux/actions/product'
+import {
+  fetchProducts,
+  fetchProductsByCategorySuccess,
+} from '../../redux/actions/product'
 import { AppState } from '../../types'
 import './productList.scss'
 
@@ -14,6 +17,15 @@ const ProductList = () => {
   useEffect(() => {
     if (history.location.pathname === '/') {
       dispatch(fetchProducts())
+    }
+    if (history.location.pathname === '/women') {
+      dispatch(fetchProductsByCategorySuccess('women'))
+    }
+    if (history.location.pathname === '/men') {
+      dispatch(fetchProductsByCategorySuccess('men'))
+    }
+    if (history.location.pathname === '/kids') {
+      dispatch(fetchProductsByCategorySuccess('kids'))
     }
   }, [])
   return (

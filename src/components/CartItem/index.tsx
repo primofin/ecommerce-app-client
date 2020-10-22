@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { ItemInCart, AppState } from '../../types'
@@ -58,7 +59,12 @@ function CartItem(props: CartItemProps) {
   return (
     <div className="cart-item__wrapper">
       <img className="cart-item__img" src={cartItem.product.images[0]}></img>
-      <a className="cart__item__name">{cartItem.product.name}</a>
+      <Link
+        to={`/products/${cartItem.product._id}`}
+        className="cart-item__name"
+      >
+        {cartItem.product.name}
+      </Link>
       <div className="cart-item__quantity">Quantity: {cartItem.quantity}</div>
       <div className="cart-item__util">
         <button

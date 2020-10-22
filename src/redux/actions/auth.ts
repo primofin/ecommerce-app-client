@@ -91,8 +91,10 @@ export function userRegister(
         firstName,
         lastName
       )
-      // handle success
-      dispatch(registerSuccess(response.data))
+      if (response.status === 200) {
+        // handle success
+        dispatch(registerSuccess(response.data))
+      }
     } catch (error) {
       // handle error
       console.log(error)
@@ -163,6 +165,7 @@ export function userRequestForgotPassword(email: string) {
     }
   }
 }
+
 export function userResetPassword(password: string, token: string) {
   return async (dispatch: Dispatch) => {
     try {

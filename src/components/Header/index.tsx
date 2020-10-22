@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { AppState } from '../../types'
@@ -14,7 +14,7 @@ import userProfile from '../../icons//user-profile.svg'
 import './header.scss'
 
 const Header = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('')
   const dispatch = useDispatch()
   const user = useSelector((state: AppState) => state.auth.user)
   const itemsInCartLocal = useSelector(
@@ -58,10 +58,10 @@ const Header = () => {
   }
   // handle Input change
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('event.target.value',event.target.value)
-    setSearchTerm(event.target.value);
-  };
-  const handleSearch = () =>{
+    console.log('event.target.value', event.target.value)
+    setSearchTerm(event.target.value)
+  }
+  const handleSearch = () => {
     dispatch(fetchProductsByNameSuccess(searchTerm))
   }
   return (
@@ -72,24 +72,40 @@ const Header = () => {
       <div className="nav">
         <ul className="nav__list">
           <li className="nav__item">
-            <Link to="/newin" onClick={handleClickNewIn}>
+            <NavLink
+              to="/newin"
+              activeClassName="nav__item__link--active"
+              onClick={handleClickNewIn}
+            >
               NEW IN
-            </Link>
+            </NavLink>
           </li>
           <li className="nav__item">
-            <Link to="/women" onClick={handleClickWomen}>
+            <NavLink
+              to="/women"
+              activeClassName="nav__item__link--active"
+              onClick={handleClickWomen}
+            >
               WOMEN
-            </Link>
+            </NavLink>
           </li>
           <li className="nav__item">
-            <Link to="/men" onClick={handleClickMen}>
+            <NavLink
+              to="/men"
+              activeClassName="nav__item__link--active"
+              onClick={handleClickMen}
+            >
               MEN
-            </Link>
+            </NavLink>
           </li>
           <li className="nav__item">
-            <Link to="/kids" onClick={handleClickKids}>
+            <NavLink
+              to="/kids"
+              activeClassName="nav__item__link--active"
+              onClick={handleClickKids}
+            >
               KIDS
-            </Link>
+            </NavLink>
           </li>
           <li className="nav__item">
             <Link to="#">ABOUT US</Link>
@@ -98,7 +114,12 @@ const Header = () => {
       </div>
       <div className="tool">
         <div className="tool__search-container">
-          <input type="text" placeholder="Search.." name="search" onChange={handleChange}/>
+          <input
+            type="text"
+            placeholder="Search.."
+            name="search"
+            onChange={handleChange}
+          />
           <button onClick={handleSearch}>
             <div className="tool__search-container__text">search</div>
           </button>

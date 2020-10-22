@@ -38,6 +38,9 @@
 		a {
 			@include link;
 		}
+		&__link--active {
+			border-bottom: 1px solid black;
+		}
 	}
 }
 
