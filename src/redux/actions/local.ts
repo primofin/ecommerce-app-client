@@ -3,7 +3,6 @@ import { Dispatch } from 'redux'
 import {
   GET_ALL_ITEMS_FROM_CART_LOCAL,
   LocalActions,
-  Product,
   ItemInCart
 } from '../../types'
 

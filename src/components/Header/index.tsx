@@ -58,7 +58,6 @@ const Header = () => {
   }
   // handle Input change
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('event.target.value', event.target.value)
     setSearchTerm(event.target.value)
   }
   const handleSearch = () => {
@@ -131,6 +130,7 @@ const Header = () => {
           <img
             src={userProfile}
             className="tool__link__img tool__link__img--user"
+            alt="user icon"
           />
           <div className="tool__link__text">{username}</div>
         </Link>
@@ -146,7 +146,7 @@ const Header = () => {
                 : '0'
               : numberOfItemsInCartLocal}
           </span>
-          <img src={shoppingCart} className="tool__link__img" />
+          <img src={shoppingCart} className="tool__link__img" alt="shopping cart"/>
           <div className="tool__link__text">cart</div>
         </Link>
       </div>

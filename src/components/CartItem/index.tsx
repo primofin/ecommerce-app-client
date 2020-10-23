@@ -58,7 +58,7 @@ function CartItem(props: CartItemProps) {
   }
   return (
     <div className="cart-item__wrapper">
-      <img className="cart-item__img" src={cartItem.product.images[0]}></img>
+      <img className="cart-item__img" src={cartItem.product.images[0]} alt="cart item"></img>
       <Link
         to={`/products/${cartItem.product._id}`}
         className="cart-item__name"
@@ -87,7 +87,7 @@ function CartItem(props: CartItemProps) {
         className="cart-item__delete-button"
         onClick={handleDeleteProductInCart}
       >
-        <img src={trashIcon} />
+        <img src={trashIcon} alt="delete"/>
       </button>
       <div className="cart-item__price">{cartItem.product.price}</div>
     </div>

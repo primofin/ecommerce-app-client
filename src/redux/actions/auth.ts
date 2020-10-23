@@ -2,9 +2,7 @@ import { Dispatch } from 'redux'
 
 import {
   REGISTER_SUCCESS,
-  REGISTER_FAILURE,
   LOGIN_SUCCESS,
-  LOGIN_FAILURE,
   User,
   UserActions,
   AUTHENTICATE_SUCCESS,

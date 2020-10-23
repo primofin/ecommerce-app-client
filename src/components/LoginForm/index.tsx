@@ -73,7 +73,7 @@ const LoginForm = () => {
         href="http://localhost:3000/api/v1/auth/google"
         className="google__link"
       >
-        <img src={GoogleLogo} className="google__link__icon" />
+        <img src={GoogleLogo} className="google__link__icon" alt="google icon"/>
         login
       </a>
       <div className="forgot-password__link">

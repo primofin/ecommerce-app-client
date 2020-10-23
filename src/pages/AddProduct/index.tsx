@@ -1,5 +1,4 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, useLocation } from 'react-router-dom'
 
 import Header from '../../components/Header/index'
 import UserAccountNavigation from '../../components/UserAccountNavigation/index'
