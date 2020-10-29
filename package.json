@@ -2,6 +2,10 @@
   "name": "fast-track-typescript-redux-template",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "npm": "6.14.4",
+    "node": "12.13.1"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-brands-svg-icons": "^5.15.1",
