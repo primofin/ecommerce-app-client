@@ -1,6 +1,9 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:3000/api/v1'
+const baseUrl =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000/api/v1'
+    : 'https://dcd-node-deploy.herokuapp.com/api/v1'
 
 const getUserWithItemsInCart = async (userId: string) => {
   try {
