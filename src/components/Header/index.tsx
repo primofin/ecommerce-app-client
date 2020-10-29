@@ -17,7 +17,7 @@ const Header = () => {
   const baseUrl =
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3001/'
-      : 'https://dcd-node-deploy.herokuapp.com/'
+      : 'https://ecommerce-app-client.herokuapp.com/'
   const [searchTerm, setSearchTerm] = useState('')
   const dispatch = useDispatch()
   const user = useSelector((state: AppState) => state.auth.user)
