@@ -14,6 +14,10 @@ import userProfile from '../../icons//user-profile.svg'
 import './header.scss'
 
 const Header = () => {
+  const baseUrl =
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3001/'
+      : 'https://dcd-node-deploy.herokuapp.com/'
   const [searchTerm, setSearchTerm] = useState('')
   const dispatch = useDispatch()
   const user = useSelector((state: AppState) => state.auth.user)
@@ -35,8 +39,8 @@ const Header = () => {
   const username = user?.google
     ? user.google.name
     : user?.username
-    ? user.username
-    : 'account'
+      ? user.username
+      : 'account'
 
   // if user logged in, populate items in cart of that user
   const handleCartClick = () => {
@@ -66,7 +70,7 @@ const Header = () => {
   return (
     <div className="header">
       <div className="header__title">
-        <a href="http://localhost:3001/">AMOUR</a>
+        <a href={baseUrl}>AMOUR</a>
       </div>
       <div className="nav">
         <ul className="nav__list">
@@ -146,7 +150,11 @@ const Header = () => {
                 : '0'
               : numberOfItemsInCartLocal}
           </span>
-          <img src={shoppingCart} className="tool__link__img" alt="shopping cart"/>
+          <img
+            src={shoppingCart}
+            className="tool__link__img"
+            alt="shopping cart"
+          />
           <div className="tool__link__text">cart</div>
         </Link>
       </div>
