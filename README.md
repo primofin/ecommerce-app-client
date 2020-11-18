@@ -6,6 +6,8 @@
 
 - [Live demo](https://ecommerce-app-client.herokuapp.com/)
 
+**notice** : The deployed app has some features that are not working properly due to the limitation of the free hosting site (E.g: persist logged-in user data, authenticate with Google, etc..., read more at https://devcenter.heroku.com/articles/cookies-and-herokuapp-com). To test the project, try to clone down the project.
+
 ## Installation and Setup Instructions
 
 1. Clone the app
