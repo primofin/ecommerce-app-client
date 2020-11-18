@@ -23,7 +23,7 @@ npm install
 3. To Start App:
 
 ```
-npm start
+npm run dev
 ```
 
 ## Technology used
