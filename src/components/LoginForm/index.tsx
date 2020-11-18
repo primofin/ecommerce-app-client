@@ -72,8 +72,8 @@ const LoginForm = () => {
       <a
         href={
           process.env.NODE_ENV === 'development'
-            ? 'https://ecommerce-app-client.herokuapp.com/api/v1/auth/google'
-            : 'http://localhost:3000/api/v1/auth/google'
+            ? 'http://localhost:3000/api/v1/auth/google'
+            : 'https://ecommerce-app-client.herokuapp.com/api/v1/auth/google'
         }
         className="google__link"
       >
