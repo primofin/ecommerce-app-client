@@ -10,7 +10,7 @@ const saveItemToLocalStorage = (product: Product) => {
   const itemAdded = cartCopy.find((item) => item.product._id === product._id)
   if (itemAdded) {
     const itemAddedIndex = cartCopy.findIndex(
-      (item) => item.product._id == product._id
+      (item) => item.product._id === product._id
     )
     itemAdded.quantity += 1
     cartCopy[itemAddedIndex] = itemAdded
@@ -62,4 +62,8 @@ const decreaseItemQuantityFromLocalStorage = (productId: string) => {
   localStorage.setItem('itemsInCartLocal', stringCart)
 }
 
-export { saveItemToLocalStorage,deleteItemFromLocalStorage, decreaseItemQuantityFromLocalStorage }
+export {
+  saveItemToLocalStorage,
+  deleteItemFromLocalStorage,
+  decreaseItemQuantityFromLocalStorage,
+}

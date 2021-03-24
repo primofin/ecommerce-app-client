@@ -16,7 +16,7 @@ import {
   deleteItemFromLocalStorage,
   saveItemToLocalStorage,
 } from '../../localStorage/index'
-import { AppState, Product as ProductType } from '../../types'
+import { AppState } from '../../types'
 import './product.scss'
 
 type ProductParams = {

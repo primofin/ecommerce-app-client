@@ -5,14 +5,14 @@ import { StylesProvider } from '@material-ui/core/styles'
 import Routes from './Routes'
 import { userAuthenticate } from './redux/actions/auth'
 import { getAllItemsFromLocalStorage } from './redux/actions/local'
-import './app.scss'
+import './style/app.scss'
 
 export default function App() {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(userAuthenticate())
     dispatch(getAllItemsFromLocalStorage())
-  }, [])
+  }, [dispatch])
   return (
     <StylesProvider injectFirst>
       <div className="app-wrapper">

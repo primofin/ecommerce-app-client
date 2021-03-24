@@ -10,7 +10,8 @@ import {
   fetchProductsByCategorySuccess,
 } from '../../redux/actions/product'
 import shoppingCart from '../../icons/shopping-cart.svg'
-import userProfile from '../../icons//user-profile.svg'
+import userProfile from '../../icons/user-profile.svg'
+import hambugerMenu from '../../icons/icons8-menu.svg'
 import './header.scss'
 
 const Header = () => {
@@ -19,6 +20,8 @@ const Header = () => {
       ? 'http://localhost:3001/'
       : 'https://ecommerce-app-client.herokuapp.com/'
   const [searchTerm, setSearchTerm] = useState('')
+  // the state of the mobile nav bar
+  const [isNavOpen, setIsNavOpen] = useState(false)
   const dispatch = useDispatch()
   const user = useSelector((state: AppState) => state.auth.user)
   const itemsInCartLocal = useSelector(
@@ -50,15 +53,19 @@ const Header = () => {
   }
   const handleClickNewIn = () => {
     dispatch(fetchProducts())
+    setIsNavOpen(!isNavOpen)
   }
   const handleClickWomen = () => {
     dispatch(fetchProductsByCategorySuccess('women'))
+    setIsNavOpen(!isNavOpen)
   }
   const handleClickMen = () => {
     dispatch(fetchProductsByCategorySuccess('men'))
+    setIsNavOpen(!isNavOpen)
   }
   const handleClickKids = () => {
     dispatch(fetchProductsByCategorySuccess('kids'))
+    setIsNavOpen(!isNavOpen)
   }
   // handle Input change
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,12 +74,16 @@ const Header = () => {
   const handleSearch = () => {
     dispatch(fetchProductsByNameSuccess(searchTerm))
   }
+  // handle the hamburger menu button click event
+  const handleMenuBtnClick = () => {
+    setIsNavOpen(!isNavOpen)
+  }
   return (
     <div className="header">
       <div className="header__title">
         <a href={baseUrl}>AMOUR</a>
       </div>
-      <div className="nav">
+      <div className={`nav nav--${isNavOpen}`}>
         <ul className="nav__list">
           <li className="nav__item">
             <NavLink
@@ -157,6 +168,9 @@ const Header = () => {
           />
           <div className="tool__link__text">cart</div>
         </Link>
+        <button className="tool__button" onClick={handleMenuBtnClick}>
+          <img src={hambugerMenu} className="tool__menu" alt="Menu icon" />
+        </button>
       </div>
     </div>
   )

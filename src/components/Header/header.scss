@@ -1,29 +1,40 @@
+@import "../../style/abstracts/mixins";
 @mixin link {
 	text-decoration: none;
 	color: inherit;
 }
 .header {
-	z-index: 2;
 	position: fixed;
-	width: 100%;
-	left: 0;
+	z-index: 2;
 	top: 0;
-	padding: 10px 16px;
+	left: 0;
 	display: grid;
 	align-items: center;
-	grid-template-columns: 10% 68% auto;
-	text-transform: uppercase;
+	grid-template-columns: 1fr 6fr 400px;
+	width: 100%;
+	padding: 10px 16px;
 	background-color: white;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	text-transform: uppercase;
+	@include responsive(small-device) {
+		grid-template-columns: 1fr 6fr 220px;
+		grid-template-rows: auto auto;
+		grid-template-areas: 
+			"logo . tools"
+			"nav nav nav";
+	}
 	&__title {
 		text-align: center;
 		text-decoration: none;
 		font-weight: 700;
-		font-size: 26px;
 		color: black;
 		a:link,
 		a:visited {
+			font-size: 1.8em;
 			@include link;
+		}
+		@include responsive(small-device) {
+			grid-area: logo;
 		}
 	}
 }
@@ -32,28 +43,52 @@
 		display: flex;
 		flex-direction: row;
 		list-style: none;
+		@include responsive(small-device) {
+			flex-direction: column;
+			padding-left: 0;
+		}
 	}
 	&__item {
 		padding: 10px 16px;
 		a {
 			@include link;
+			font-size: 1.2em;
 		}
 		&__link--active {
 			border-bottom: 1px solid black;
 		}
+		@include responsive(small-device) {
+			text-align: center;
+			width: 100%;
+			border-bottom: 1px solid;
+		}
+	}
+	&--false{
+		@include responsive(small-device) {
+			display: none;
+		};
+	}
+	@include responsive(small-device) {
+		grid-area: nav;
 	}
 }
 
 .tool {
-	margin-right: 20px;
 	display: flex;
+	margin-right: 20px;
 	height: 100%;
+	@include responsive(small-device) {
+		grid-area: tools;
+	}
 	&__search-container {
-		flex: 3;
 		display: flex;
+		flex: 3;
 		flex-direction: row;
 		align-self: center;
-		height: 80%;
+		height: 70%;
+		@include responsive(small-device) {
+			display: none;
+		}
 		button {
 			background-color: white;
 			background-image: url("../../icons/icons8-search.svg");
@@ -67,12 +102,12 @@
 		}
 	}
 	&__link {
-		position: relative;
-		align-self: center;
-		flex: 1;
 		@include link;
 		display: flex;
 		flex-direction: column;
+		flex: 1;
+		align-self: center;
+		position: relative;
 		&__img {
 			height: 34px;
 			&--user {
@@ -80,21 +115,27 @@
 			}
 		}
 		&__text {
-			font-size: 14px;
+			margin-top: 4px;
+			font-size: 0.9em;
 			text-align: center;
 			text-transform: none;
-			margin-top: 4px;
 		}
 		&__badge {
 			position: absolute;
 			right: 12px;
-			font-size: 12px;
 			text-align: center;
 			height: 14px;
 			width: 14px;
 			background-color: white;
 			border-radius: 50%;
 			border: 1px solid black;
+			font-size: 12px;
+		}
+	}
+	&__button {
+		display: none;
+		@include responsive(small-device) {
+			@include icon-button;
 		}
 	}
 }

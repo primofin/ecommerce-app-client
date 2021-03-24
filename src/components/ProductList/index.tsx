@@ -27,7 +27,7 @@ const ProductList = () => {
     if (history.location.pathname === '/kids') {
       dispatch(fetchProductsByCategorySuccess('kids'))
     }
-  }, [])
+  }, [history.location.pathname, dispatch])
   return (
     <>
       <div className="product__list">

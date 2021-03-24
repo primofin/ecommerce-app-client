@@ -7,7 +7,6 @@ type CheckoutSidebarProps = {
 }
 function CheckoutSidebar(props: CheckoutSidebarProps) {
   const { totalPrice } = props
-  console.log('totalPrice', totalPrice)
   return (
     <>
       <div className="checkout-sidebar__content">
@@ -23,7 +22,9 @@ function CheckoutSidebar(props: CheckoutSidebarProps) {
           <h2>
             Total<span> (with vat)</span>
           </h2>
-          <p className="checkout-sidebar__total">{(totalPrice*1.01).toFixed(2)} EUR</p>
+          <p className="checkout-sidebar__total">
+            {(totalPrice * 1.01).toFixed(2)} EUR
+          </p>
         </div>
       </div>
       <Link to="#" className="checkout-sidebar__link">

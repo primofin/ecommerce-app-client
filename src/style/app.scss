@@ -6,12 +6,13 @@
 }
 @font-face {
   font-family: Barlow-body;
-  src: url("./fonts/Barlow-Medium.ttf");
+  src: url("../fonts/Barlow-Medium.ttf");
   font-weight: bold;
 }
 
 * {
   font-family: Barlow-body, sans-serif;
+  font-size: 16px;
 }
 .app-wrapper {
   display: flex;

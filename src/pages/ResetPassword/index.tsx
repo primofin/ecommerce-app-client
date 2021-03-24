@@ -10,7 +10,7 @@ type ResetPasswordParams = {
   token: string
 }
 export default function ResetPassword() {
-  const {token } = useParams<ResetPasswordParams>()
+  const { token } = useParams<ResetPasswordParams>()
   return (
     <div className="reset-password__wrapper">
       <Header />

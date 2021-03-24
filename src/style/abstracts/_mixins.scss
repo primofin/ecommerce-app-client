@@ -1,0 +1,50 @@
+// MEDIA QUERY MANAGER
+/*
+
+0 - 37.5em:        Extra small devices (phones, 600px and down)
+37.5em - 56em      Small devices (portrait tablets and large phones, 600px and up)
+56em - 75em        Large devices (laptops/desktops, 992px and up)
+75em - 112.5em     Desktop Normal Styles
+112.5em  +         Big Desktop
+
+*/
+
+@mixin responsive($break-point) {
+  // Big Desktop
+  @if $break-point == big-desktop {
+    @media (min-width: 112.5em) {
+      @content;
+    }
+  }
+  //desktop
+  @if $break-point == desktop {
+    @media (min-width: 75em) and (max-width: 112.5em) {
+      @content;
+    }
+  }
+  // laptop
+  @if $break-point == laptop {
+    @media (min-width: 56em) and (max-width: 75em) {
+      @content;
+    }
+  }
+  // small-device
+  @if $break-point == small-device {
+    @media (max-width: 56em) {
+      @content;
+    }
+  }
+  // Phone
+  @if $break-point == phone {
+    @media (max-width: 37.5em) {
+      @content;
+    }
+  }
+}
+
+@mixin icon-button {
+  display: block;
+  border:none;
+  background: none;
+  cursor: pointer;
+}
