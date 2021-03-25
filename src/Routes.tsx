@@ -10,6 +10,7 @@ import Product from './pages/Product/index'
 import UpdateProduct from './pages/UpdateProduct/index'
 import UserProfile from './pages/UserProfile/index'
 import AddProduct from './pages/AddProduct/index'
+import NoMatch from './pages/NoMatch/index'
 
 const Routes = () => (
   <Switch>
@@ -26,6 +27,7 @@ const Routes = () => (
     <Route exact path="/products/update/:productId" component={UpdateProduct} />
     <Route exact path="/user/:userId" component={UserProfile} />
     <Route exact path="/admin/addnewproduct" component={AddProduct} />
+    <Route path="*" component={NoMatch} />
   </Switch>
 )
 export default Routes
