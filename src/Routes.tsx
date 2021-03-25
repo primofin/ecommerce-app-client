@@ -14,15 +14,43 @@ import NoMatch from './pages/NoMatch/index'
 
 const Routes = () => (
   <Switch>
-    <Route exact path="/" component={Home} />
-    <Route exact path="/newin" component={Home} />
-    <Route exact path="/women" component={Home} />
-    <Route exact path="/men" component={Home} />
-    <Route exact path="/kids" component={Home} />
-    <Route exact path="/auth" component={Auth} />
+    <Route
+      exact
+      path="/"
+      render={(props) => <Home {...props} title="AMOUR Finland" />}
+    />
+    <Route
+      exact
+      path="/newin"
+      render={(props) => <Home {...props} title="NEW IN" />}
+    />
+    <Route
+      exact
+      path="/women"
+      render={(props) => <Home {...props} title="WOMEN" />}
+    />
+    <Route
+      exact
+      path="/men"
+      render={(props) => <Home {...props} title="MEN" />}
+    />
+    <Route
+      exact
+      path="/kids"
+      render={(props) => <Home {...props} title="KIDS" />}
+    />
+    <Route
+      exact
+      path="/auth"
+      render={(props) => <Auth {...props} title="LOGIN/CREATE NEW ACCOUNT" />}
+    />
     <Route exact path="/auth/forgot-password" component={ForgotPassword} />
     <Route exact path="/auth/reset-password/:token" component={ResetPassword} />
-    <Route exact path="/checkout/cart" component={Cart} />
+    <Route
+      exact
+      path="/checkout/cart"
+      render={(props) => <Cart {...props} title="SHOPPING CART" />}
+    />
     <Route exact path="/products/:productId" component={Product} />
     <Route exact path="/products/update/:productId" component={UpdateProduct} />
     <Route exact path="/user/:userId" component={UserProfile} />
