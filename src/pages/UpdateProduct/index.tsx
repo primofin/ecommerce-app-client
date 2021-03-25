@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams, useHistory} from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons'
@@ -7,9 +7,9 @@ import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons'
 import Header from '../../components/Header/index'
 import Footer from '../../components/Footer/index'
 import UpdateProductForm from '../../components/UpdateProductForm/index'
-import { fetchProducts} from '../../redux/actions/product'
-import { AppState} from '../../types'
-import './updateProduct.scss'
+import { fetchProducts } from '../../redux/actions/product'
+import { AppState } from '../../types'
+import '../Product/product.scss'
 
 type ProductParams = {
   productId: string

@@ -1,4 +1,5 @@
 @import "../../style/abstracts/variables";
+@import "../../style/abstracts/mixins";
 @font-face {
   font-family: Barlow-label;
   src: url("../../fonts/Barlow-Light.ttf");
@@ -16,14 +17,22 @@
 .product {
   &__container {
     display: flex;
+    justify-content: space-between;
     width: 80%;
     margin: 40px auto;
-    justify-content: space-between;
+    @include responsive(phone){
+      flex-direction: column;
+      align-items: center;
+    }
   }
   &__img__container {
     img {
-      max-height: 700px;
-      max-width: 600px;
+      max-height: 80%;
+      max-width: 80%;
+      @include responsive(phone){
+        max-width: 300px;
+        margin: auto
+      }
     }
   }
   &__info {
@@ -36,6 +45,10 @@
         border: none;
         padding: 10px 14px;
         color: white;
+      }
+      @include responsive(phone){
+        width: auto;
+        margin: auto;
       }
     }
     &__name {
